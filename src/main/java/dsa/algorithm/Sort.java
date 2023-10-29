@@ -1,6 +1,6 @@
-package dsa.datastructure.linear;
+package dsa.algorithm;
 
-import common.Utils;
+import common.*;
 
 public class Sort {
     private int length;

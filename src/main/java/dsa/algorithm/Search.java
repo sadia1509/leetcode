@@ -1,4 +1,4 @@
-package dsa.datastructure.linear;
+package dsa.algorithm;
 
 import common.*;
 
