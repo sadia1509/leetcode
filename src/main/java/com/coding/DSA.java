@@ -2,7 +2,7 @@ package com.coding;
 
 import common.*;
 import dsa.datastructure.linear.*;
-import dsa.datastructure.nonlinear.TreeClass;
+import dsa.datastructure.nonlinear.*;
 
 public class DSA {
     public static void run() {
@@ -10,6 +10,50 @@ public class DSA {
 
 
         /* LINEAR */
+        Array array = new Array();
+//        Object [] arr = new Object[]{1,2,3,4,5};
+//        array.leftShift(arr, 3);
+//        array.rightShift(arr, 3);
+
+        LinkedList linkedList = new LinkedList();
+//        Node head = Node.getSinglyList(new Object[]{10,4,5,3,6});
+//        linkedList.printSinglyList(head);
+//        head = Node.getDoublyList(new Object[]{10,4,5,3,6});
+//        linkedList.printDoublyList(head);
+//        head = Node.getSinglyCircularList(new Object[]{10,4,5,3,6});
+//        linkedList.printSinglyCircularList(head);
+//        head = Node.getDoublyCircularList(new Object[]{10,4,5,3,6});
+//        linkedList.printDoublyCircularList(head);
+//        linkedList.insert(head, 100, 5);
+//        linkedList.insert(head, 100);
+//        Logs.print(linkedList.lastNode(head).data);
+//        linkedList.delete(head, 4);
+//        linkedList.delete(head, 100);
+//        Logs.println("Total count: " + linkedList.count(head));
+//        Logs.println("Is circular: " + linkedList.isCircular(head));
+
+//        linkedList.rotateLinkedList(linkedList.makeDoublyLinkedList(new int[]{1,2,3,4,5}),3);
+//        linkedList.removeDuplicate(linkedList.makeDoublyLinkedList(new int[]{1,2,3,2,2,4,2,2,4,4,5}));
+//        linkedList.insertInSortedDoubly(linkedList.makeDoublyLinkedList(new int[]{2,4,5,6,8,9}), 11);
+//        linkedList.pairSum(linkedList.makeDoublyLinkedList(new int[]{1,2,4,5,6,8,9}), 7);
+//        linkedList.deletionCircular(linkedList.makeCircularLinkedList(new int[]{1,2,3,4,5,6}), 6);
+//        linkedList.splitInHalves(linkedList.makeCircularLinkedList(new int[]{1,2,3,4,5,6}));
+//        linkedList.intersectionTwoLinkedList(linkedList.makeLinkedList(new int[]{4,5}), linkedList.makeLinkedList(new int[]{1,2,4,5,6}));
+//        linkedList.removeDuplicates(linkedList.makeLinkedList(new int[]{1,2,4}));
+//        linkedList.detectLoopLength(linkedList.circleLinkedList());
+//        linkedList.detectLoop(linkedList.circleLinkedList());
+//        linkedList.deleteNodeDoubly(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}), linkedList.makeLinkedList(new int[]{1}));
+//        linkedList.circularLinkedListTraversal(linkedList.makeCircularLinkedList(new int[]{5, 4, 3, 2, 1}));
+//        linkedList.sizeOfDoubly(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}));
+//        linkedList.reverseDoublyLinkedList(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}));
+//        linkedList.exchangeFirstLast(linkedList.makeCircularLinkedList(new int[]{5, 4, 3, 2, 1}));
+//        linkedList.convertToCircular(linkedList.makeLinkedList(new int[]{9, 1, 2, 10, 3, 7}));
+//        linkedList.countCircularNodes(linkedList.makeCircularLinkedList(new int[]{9, 1, 2, 10, 3, 7}));
+//        linkedList.circularLinkedListCheck(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
+//        linkedList.circularLinkedListCheck(linkedList.makeCircularLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
+//        linkedList.elemCount(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7, 1}), 1);
+//        linkedList.middlePrint(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
+
         Search search = new Search();
 //        Logs.println("Binary Search: " + search.binarySearch(new int[]{2, 5, 6, 8, 9, 10}, 0, 5, 6));
 //        Logs.println("Linear 2D Search: " + search.linerSearch2D(new String[][]{{"hay", "hay"}, {"hay", "hay"},
