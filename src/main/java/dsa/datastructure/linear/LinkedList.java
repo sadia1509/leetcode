@@ -49,6 +49,16 @@ public class LinkedList {
         else printSinglyList(head);
     }
 
+    private void printDoubly(Node head) {
+        if (isCircular(head)) {
+            printSinglyCircularList(head);
+            printDoublyCircularList(head);
+        } else {
+            printSinglyList(head);
+            printDoublyList(head);
+        }
+    }
+
     // Insert an element based on index (both for linear and circular)
     public void insert(Node head, Object elem, int index) {
         Node node = new Node(elem);
@@ -60,7 +70,7 @@ public class LinkedList {
             }
             head = node;
         } else {
-            Node temp = prevNode(head, index);
+            Node temp = get(head, index - 1);
             if (temp == null) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -69,22 +79,6 @@ public class LinkedList {
             temp.next = node;
         }
         print(head);
-    }
-
-    private Node prevNode(Node head, int index) {
-        if (index == 1) return head;
-        int count = count(head);
-        if (index == count) return lastNode(head);
-        else if (index > count) return null;
-        else {
-            count = 0;
-            Node n = head;
-            while (n != null) {
-                if (index - 1 == count++) return n;
-                n = n.next;
-            }
-        }
-        return null;
     }
 
     public void insert(Node head, Object elem) {
@@ -107,7 +101,7 @@ public class LinkedList {
             }
             head = head.next;
         } else {
-            Node temp = prevNode(head, index);
+            Node temp = get(head, index - 1);
             if (temp == null || temp.next == null || temp.next == head) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -115,6 +109,79 @@ public class LinkedList {
             temp.next = temp.next.next;
         }
         print(head);
+    }
+
+    // Insert an element based on index (both for linear and circular) for doubly
+    public void insertDoubly(Node head, Object elem, int index) {
+        Node node = new Node(elem);
+        if (index == 0) {
+            node.next = head;
+            head.prev = node;
+            if (isCircular(head)) {
+                Node last = lastNode(head);
+                last.next = node;
+                node.prev = last;
+            }
+            head = node;
+        } else {
+            Node temp = get(head, index - 1);
+            if (temp == null) {
+                Logs.print("Invalid Index!!!");
+                return;
+            }
+            node.prev = temp;
+            node.next = temp.next;
+            if (temp.next != null) temp.next.prev = node;
+            temp.next = node;
+        }
+
+        printDoubly(head);
+    }
+
+    public void insertDoubly(Node head, Object elem) {
+        Node node = new Node(elem);
+        if (head == null) head = node;
+        else {
+            Node temp = lastNode(head);
+            node.prev = temp;
+            node.next = temp.next;
+            temp.next = node;
+            if (isCircular(head)) head.prev = node;
+        }
+        printDoubly(head);
+    }
+
+    // Delete an element based on index (both for linear and circular) for doubly
+    public void deleteDoubly(Node head, int index) {
+        if (index == 0) {
+            if (isCircular(head)) {
+                Node last = lastNode(head);
+                last.next = head.next;
+                last.next.prev = last;
+            }
+            head.next.prev = head.prev;
+            head = head.next;
+        } else {
+            Node temp = get(head, index - 1);
+            if (temp == null || temp.next == null || temp.next == head) {
+                Logs.print("Invalid Index!!!");
+                return;
+            }
+            temp.next = temp.next.next;
+            if (temp.next != null) temp.next.prev = temp;
+        }
+        printDoubly(head);
+    }
+
+    // i-th node
+    public Node get(Node head, int index) {
+        if (index + 1 > count(head)) return null; //this line is for internal logic convenience, not mandatory.
+        Node n = head;
+        for (int i = 0; i < index; i++) {
+            if (n == null) break;
+            n = n.next;
+        }
+        return n;
     }
 
     // Total element counter

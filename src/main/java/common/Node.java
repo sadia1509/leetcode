@@ -23,8 +23,8 @@ public class Node {
     public String toString() {
         return "Node{" +
                 "data=" + data +
-                ", next=" + next +
-                ", prev=" + prev +
+//                ", next=" + next +
+//                ", prev=" + prev +
                 '}';
     }
 
