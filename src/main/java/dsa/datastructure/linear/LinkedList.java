@@ -4,29 +4,29 @@ import common.*;
 
 public class LinkedList {
 
-    public void printSinglyList(Node head) {
+    public void printSinglyList(ListNode head) {
         Logs.print("Singly linked list: ");
-        for (Node n = head; n != null; n = n.next)
+        for (ListNode n = head; n != null; n = n.next)
             System.out.print(n.data + " ");
         System.out.println();
     }
 
-    public void printDoublyList(Node head) {
+    public void printDoublyList(ListNode head) {
         Logs.print("Singly doubly linked list: ");
-        for (Node n = lastNode(head); n != null; n = n.prev)
+        for (ListNode n = lastNode(head); n != null; n = n.prev)
             System.out.print(n.data + " ");
         System.out.println();
     }
 
-    public Node lastNode(Node head) {
-        Node n = head.next;
+    public ListNode lastNode(ListNode head) {
+        ListNode n = head.next;
         while (n.next != head && n.next != null) n = n.next;
         return n;
     }
 
-    public void printSinglyCircularList(Node head) {
+    public void printSinglyCircularList(ListNode head) {
         Logs.print("Singly circular linked list: ");
-        Node n = head;
+        ListNode n = head;
         do {
             System.out.print(n.data + " ");
             n = n.next;
@@ -34,9 +34,9 @@ public class LinkedList {
         System.out.println();
     }
 
-    public void printDoublyCircularList(Node head) {
+    public void printDoublyCircularList(ListNode head) {
         Logs.print("Singly doubly circular linked list: ");
-        Node n = lastNode(head);
+        ListNode n = lastNode(head);
         do {
             System.out.print(n.data + " ");
             n = n.prev;
@@ -44,12 +44,12 @@ public class LinkedList {
         System.out.println();
     }
 
-    private void print(Node head) {
+    private void print(ListNode head) {
         if (isCircular(head)) printSinglyCircularList(head);
         else printSinglyList(head);
     }
 
-    private void printDoubly(Node head) {
+    private void printDoubly(ListNode head) {
         if (isCircular(head)) {
             printSinglyCircularList(head);
             printDoublyCircularList(head);
@@ -60,17 +60,17 @@ public class LinkedList {
     }
 
     // Insert an element based on index (both for linear and circular)
-    public void insert(Node head, Object elem, int index) {
-        Node node = new Node(elem);
+    public void insert(ListNode head, Object elem, int index) {
+        ListNode node = new ListNode(elem);
         if (index == 0) {
             node.next = head;
             if (isCircular(head)) {
-                Node lastNode = lastNode(head);
+                ListNode lastNode = lastNode(head);
                 lastNode.next = node;
             }
             head = node;
         } else {
-            Node temp = get(head, index - 1);
+            ListNode temp = get(head, index - 1);
             if (temp == null) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -81,11 +81,11 @@ public class LinkedList {
         print(head);
     }
 
-    public void insert(Node head, Object elem) {
-        Node node = new Node(elem);
+    public void insert(ListNode head, Object elem) {
+        ListNode node = new ListNode(elem);
         if (head == null) head = node;
         else {
-            Node temp = lastNode(head);
+            ListNode temp = lastNode(head);
             node.next = temp.next;
             temp.next = node;
         }
@@ -93,15 +93,15 @@ public class LinkedList {
     }
 
     // Delete an element based on index (both for linear and circular)
-    public void delete(Node head, int index) {
+    public void delete(ListNode head, int index) {
         if (index == 0) {
             if (isCircular(head)) {
-                Node lastNode = lastNode(head);
+                ListNode lastNode = lastNode(head);
                 lastNode.next = head.next;
             }
             head = head.next;
         } else {
-            Node temp = get(head, index - 1);
+            ListNode temp = get(head, index - 1);
             if (temp == null || temp.next == null || temp.next == head) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -112,19 +112,19 @@ public class LinkedList {
     }
 
     // Insert an element based on index (both for linear and circular) for doubly
-    public void insertDoubly(Node head, Object elem, int index) {
-        Node node = new Node(elem);
+    public void insertDoubly(ListNode head, Object elem, int index) {
+        ListNode node = new ListNode(elem);
         if (index == 0) {
             node.next = head;
             head.prev = node;
             if (isCircular(head)) {
-                Node last = lastNode(head);
+                ListNode last = lastNode(head);
                 last.next = node;
                 node.prev = last;
             }
             head = node;
         } else {
-            Node temp = get(head, index - 1);
+            ListNode temp = get(head, index - 1);
             if (temp == null) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -138,11 +138,11 @@ public class LinkedList {
         printDoubly(head);
     }
 
-    public void insertDoubly(Node head, Object elem) {
-        Node node = new Node(elem);
+    public void insertDoubly(ListNode head, Object elem) {
+        ListNode node = new ListNode(elem);
         if (head == null) head = node;
         else {
-            Node temp = lastNode(head);
+            ListNode temp = lastNode(head);
             node.prev = temp;
             node.next = temp.next;
             temp.next = node;
@@ -152,17 +152,17 @@ public class LinkedList {
     }
 
     // Delete an element based on index (both for linear and circular) for doubly
-    public void deleteDoubly(Node head, int index) {
+    public void deleteDoubly(ListNode head, int index) {
         if (index == 0) {
             if (isCircular(head)) {
-                Node last = lastNode(head);
+                ListNode last = lastNode(head);
                 last.next = head.next;
                 last.next.prev = last;
             }
             head.next.prev = head.prev;
             head = head.next;
         } else {
-            Node temp = get(head, index - 1);
+            ListNode temp = get(head, index - 1);
             if (temp == null || temp.next == null || temp.next == head) {
                 Logs.print("Invalid Index!!!");
                 return;
@@ -174,9 +174,9 @@ public class LinkedList {
     }
 
     // i-th node
-    public Node get(Node head, int index) {
+    public ListNode get(ListNode head, int index) {
         if (index + 1 > count(head)) return null; //this line is for internal logic convenience, not mandatory.
-        Node n = head;
+        ListNode n = head;
         for (int i = 0; i < index; i++) {
             if (n == null) break;
             n = n.next;
@@ -185,8 +185,8 @@ public class LinkedList {
     }
 
     // Total element counter
-    public int count(Node head) {
-        Node m = head.next;
+    public int count(ListNode head) {
+        ListNode m = head.next;
         int count = 1;
         while (m != head && m != null) {
             m = m.next;
@@ -196,8 +196,8 @@ public class LinkedList {
     }
 
     //Check if a linked list is Circular Linked List
-    public boolean isCircular(Node head) {
-        Node m = head.next;
+    public boolean isCircular(ListNode head) {
+        ListNode m = head.next;
         while (m != head && m != null) m = m.next;
         return (m == head);
     }

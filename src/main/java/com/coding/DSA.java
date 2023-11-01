@@ -17,14 +17,14 @@ public class DSA {
 //        array.rightShift(arr, 3);
 
         LinkedList linkedList = new LinkedList();
-//        Node head = null;
-//        head = Node.getSinglyList(new Object[]{10,4,5,3,6});
+//        ListNode head = null;
+//        head = ListNode.getSinglyList(new Object[]{10,4,5,3,6});
 //        linkedList.printSinglyList(head);
-//        head = Node.getDoublyList(new Object[]{10,4,5,3,6});
+//        head = ListNode.getDoublyList(new Object[]{10,4,5,3,6});
 //        linkedList.printDoublyList(head);
-//        head = Node.getSinglyCircularList(new Object[]{10,4,5,3,6});
+//        head = ListNode.getSinglyCircularList(new Object[]{10,4,5,3,6});
 //        linkedList.printSinglyCircularList(head);
-//        head = Node.getDoublyCircularList(new Object[]{10,4,5,3,6});
+//        head = ListNode.getDoublyCircularList(new Object[]{10,4,5,3,6});
 //        linkedList.printDoublyCircularList(head);
 //        linkedList.insert(head, 100, 6);
 //        linkedList.insert(head, 100);
@@ -37,6 +37,7 @@ public class DSA {
 //        linkedList.deleteDoubly(head, 5);
 //        Logs.println("Total count: " + linkedList.count(head));
 //        Logs.println("Is circular: " + linkedList.isCircular(head));
+
 
 //        linkedList.rotateLinkedList(linkedList.makeDoublyLinkedList(new int[]{1,2,3,4,5}),3);
 //        linkedList.removeDuplicate(linkedList.makeDoublyLinkedList(new int[]{1,2,3,2,2,4,2,2,4,4,5}));

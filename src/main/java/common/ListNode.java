@@ -1,19 +1,19 @@
 package common;
 
-public class Node {
+public class ListNode {
     public Object data;
-    public Node next, prev;
+    public ListNode next, prev;
 
-    public Node(Object data) {
+    public ListNode(Object data) {
         this.data = data;
     }
 
-    public Node(Object data, Node next) {
+    public ListNode(Object data, ListNode next) {
         this.data = data;
         this.next = next;
     }
 
-    public Node(int data, Node next, Node prev) {
+    public ListNode(int data, ListNode next, ListNode prev) {
         this.data = data;
         this.next = next;
         this.prev = prev;
@@ -21,7 +21,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "ListNode{" +
                 "data=" + data +
 //                ", next=" + next +
 //                ", prev=" + prev +
@@ -29,11 +29,11 @@ public class Node {
     }
 
     // Making a Singly Linked List from array
-    public static Node getSinglyList(Object[] arr) {
-        Node head = new Node(arr[0]);
-        Node tail = head;
+    public static ListNode getSinglyList(Object[] arr) {
+        ListNode head = new ListNode(arr[0]);
+        ListNode tail = head;
         for (int i = 1; i < arr.length; i++) {
-            Node node = new Node(arr[i]);
+            ListNode node = new ListNode(arr[i]);
             tail.next = node;
             tail = tail.next;
         }
@@ -41,11 +41,11 @@ public class Node {
     }
 
     // Making a Doubly Linked List from array
-    public static Node getDoublyList(Object[] arr) {
-        Node head = new Node(arr[0]);
-        Node tail = head;
+    public static ListNode getDoublyList(Object[] arr) {
+        ListNode head = new ListNode(arr[0]);
+        ListNode tail = head;
         for (int i = 1; i < arr.length; i++) {
-            Node node = new Node(arr[i]);
+            ListNode node = new ListNode(arr[i]);
             tail.next = node;
             node.prev = tail;
             tail = tail.next;
@@ -54,11 +54,11 @@ public class Node {
     }
 
     // Making a Singly Circular Linked List from array
-    public static Node getSinglyCircularList(Object[] arr) {
-        Node head = new Node(arr[0]);
-        Node tail = head;
+    public static ListNode getSinglyCircularList(Object[] arr) {
+        ListNode head = new ListNode(arr[0]);
+        ListNode tail = head;
         for (int i = 1; i < arr.length; i++) {
-            Node node = new Node(arr[i]);
+            ListNode node = new ListNode(arr[i]);
             tail.next = node;
             tail = tail.next;
         }
@@ -67,11 +67,11 @@ public class Node {
     }
 
     // Making a Doubly Circular Linked List from array
-    public static Node getDoublyCircularList(Object[] arr) {
-        Node head = new Node(arr[0]);
-        Node tail = head;
+    public static ListNode getDoublyCircularList(Object[] arr) {
+        ListNode head = new ListNode(arr[0]);
+        ListNode tail = head;
         for (int i = 1; i < arr.length; i++) {
-            Node node = new Node(arr[i]);
+            ListNode node = new ListNode(arr[i]);
             tail.next = node;
             node.prev = tail;
             tail = tail.next;
