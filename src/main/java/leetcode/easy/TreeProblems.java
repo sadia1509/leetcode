@@ -1,6 +1,7 @@
 package leetcode.easy;
 
 import common.*;
+import dsa.datastructure.nonlinear.*;
 
 import java.util.*;
 
@@ -29,4 +30,24 @@ public class TreeProblems {
         max = findMode(root.right, map, max);
         return max;
     }
+
+    //Same Tree
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        return isSameTree(p.left, q.left) && (int) p.value == (int) q.value && isSameTree(p.right, q.right);
+    }
+
+    // Symmetric Tree
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return false;
+        return isSymmetric(root.left, root.right);
+    }
+
+    private boolean isSymmetric(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        return isSymmetric(p.left, q.right) && (int) p.value == (int) q.value && isSymmetric(p.right, q.left);
+    }
+
 }
