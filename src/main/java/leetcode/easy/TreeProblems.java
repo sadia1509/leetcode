@@ -6,6 +6,8 @@ import dsa.datastructure.nonlinear.*;
 import java.util.*;
 
 public class TreeProblems {
+    TreeClass treeClass = new TreeClass();
+
     //Find Mode in Binary Search Tree
     public Integer[] findMode(TreeNode root) {
         if (root == null) return null;
@@ -49,5 +51,37 @@ public class TreeProblems {
         if (p == null || q == null) return false;
         return isSymmetric(p.left, q.right) && (int) p.value == (int) q.value && isSymmetric(p.right, q.left);
     }
+
+    // Balanced Binary Tree
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) return true;
+        int leftHeight = treeClass.height(root.left);
+        int rightHeight = treeClass.height(root.right);
+        if (Math.abs(leftHeight - rightHeight) > 1) return false;
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    // Minimum Depth of Binary Tree
+    public int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return 1;
+
+        int leftDepth = root.left != null ? minDepth(root.left) : Integer.MAX_VALUE;
+        int rightDepth = root.right != null ? minDepth(root.right) : Integer.MAX_VALUE;
+
+        return Math.min(leftDepth, rightDepth) + 1;
+    }
+
+    // Path Sum
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) return false;
+        if (root.left == null && root.right == null && (int) root.value == targetSum)
+            return true;
+
+        return hasPathSum(root.left, targetSum - (int) root.value)
+                || hasPathSum(root.right, targetSum - (int) root.value);
+
+    }
+
 
 }
