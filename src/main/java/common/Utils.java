@@ -5,6 +5,10 @@ public class Utils {
         return new GenericUtils<Object>();
     }
 
+    public static GenericUtils<Character> Character() {
+        return new GenericUtils<Character>();
+    }
+
     public static GenericUtils<Integer> Integer() {
         return new GenericUtils<Integer>();
     }

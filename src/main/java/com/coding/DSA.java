@@ -18,7 +18,7 @@ public class DSA {
 
         LinkedList linkedList = new LinkedList();
 //        ListNode head = null;
-//        head = ListNode.getSinglyList(new Object[]{10,4,5,3,6});
+//        head = ListNode.getSinglyList(new Object[]{7,7});
 //        linkedList.printSinglyList(head);
 //        head = ListNode.getDoublyList(new Object[]{10,4,5,3,6});
 //        linkedList.printDoublyList(head);
@@ -37,6 +37,9 @@ public class DSA {
 //        linkedList.deleteDoubly(head, 5);
 //        Logs.println("Total count: " + linkedList.count(head));
 //        Logs.println("Is circular: " + linkedList.isCircular(head));
+//        Logs.println("Reverse: ");  linkedList.reverseList(head);
+//        Logs.println("Remove value: ");
+//        linkedList.removeElements(head, 7);
 
 
 //        linkedList.rotateLinkedList(linkedList.makeDoublyLinkedList(new int[]{1,2,3,4,5}),3);

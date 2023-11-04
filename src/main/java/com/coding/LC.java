@@ -1,14 +1,14 @@
 package com.coding;
 
 import common.*;
-import dsa.datastructure.nonlinear.TreeClass;
+import dsa.datastructure.nonlinear.*;
 import leetcode.easy.*;
 
 public class LC {
     public static void run() {
         /* List */
         ListProblems listProblems = new ListProblems();
-        ListNode head = ListNode.getSinglyList(new Object[]{1, 2, 3, 4, 5, 4});
+//        ListNode head = ListNode.getSinglyList(new Object[]{1, 2, 3, 4, 5, 4});
 //        head = ListNode.getSinglyCircularList(new Object[]{1, 2, 3, 4, 5});
 //        Logs.println("Middle node: " + listProblems.middleNode(head));
 //        Logs.println("Has cycle: " + listProblems.hasCycle(null));
@@ -21,17 +21,18 @@ public class LC {
 
         /* Tree */
         TreeProblems treeProblems = new TreeProblems();
-        TreeClass treeClass = new TreeClass();
+//        TreeClass treeClass = new TreeClass();
 //        TreeNode root = TreeNode.getBSTTree(new int[]{1, 2, 2, 2, 5, 6, 6, 6, 6, 10});
-        TreeNode root = TreeNode.getIntTree(new int[]{5,4,8,11,-1,13,4,7,2,-1,-1,-1,1}, 0);
+//        TreeNode root = TreeNode.getIntTree(new int[]{4,2,7,1,3,6,9}, 0);
 //        Utils.Integer().printArray(treeProblems.findMode(root));
 //        Logs.println("Same tree: " + treeProblems.isSameTree(root, rootAnother));
 //        Logs.println("Mirror tree: " + treeProblems.isSymmetric(root));
 //        Logs.println("Balanced tree: " + treeProblems.isBalanced(root));
 //        Logs.println("Minimum depth of a tree: " + treeProblems.minDepth(root));
-        Logs.println("Path sum of a tree: " + treeProblems.hasPathSum(root, 22));
+//        Logs.println("Path sum of a tree: " + treeProblems.hasPathSum(root, 22));
 //        Logs.print("BST: ");
 //        treeProblems.temp(new int[]{-10, -3, 0, 5, 9});
+//        Logs.print("Inverted tree: "); treeClass.levelOrderTraversal(treeProblems.invertTree(root));
 
 
 
@@ -39,6 +40,14 @@ public class LC {
         ArrayProblems arrayProblems = new ArrayProblems();
 //        int [] arr = {2,1,2,2,3,0,0,2};
 //        Logs.println("Remove element: " + arrayProblems.removeElement(arr, 2));
+//        Logs.println("Reverse a string: "); arrayProblems.reverseString(new Character[]{'h','e','l','l','o'});
+//        Logs.println("Counting bits: "); arrayProblems.countBits(5);
+//        Logs.println("Reverse vowels only: " + arrayProblems.reverseVowels("Euston saw I was not Sue."));
+//        arrayProblems.intersection(new int[]{4,9,5}, new int[]{9,4,9,8,4}, 1);
+//        Logs.println("Intersect: "); arrayProblems.intersection(new int[]{4,9,5}, new int[]{9,4,9,8,4});
+//        Logs.println("Contains duplicates ||: " + arrayProblems.containsNearbyDuplicate(new int[]{1,1,0,2,3,1}, 1));
+//        Logs.println("Contains duplicates: " + arrayProblems.containsDuplicate(new int[]{1,1,0,2,3,1}));
+//        Logs.println("Summary ranges: " + arrayProblems.summaryRanges(new int[]{0,2,3,4,6,8,9}));
 
     }
 }
