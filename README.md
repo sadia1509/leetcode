@@ -3,7 +3,11 @@
 All DSA / leetcode related problems in java
 
 ## **Complexity**
-
+<style>
+table {
+  font-size: 90%;
+}
+</style>
 <table>
   <thead>
     <tr>
