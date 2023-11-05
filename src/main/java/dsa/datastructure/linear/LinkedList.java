@@ -203,8 +203,8 @@ public class LinkedList {
     }
 
     //Reverse Singly Linked list
-    public void reverseList(ListNode head) {  //10,4,5,3,6
-        if (head == null) return;
+    public ListNode reverseList(ListNode head) {  //10,4,5,3,6
+        if (head == null) return head;
         ListNode prev = null, current = head;
         while (current != null) {
             ListNode nextTemp = current.next;
@@ -212,12 +212,12 @@ public class LinkedList {
             prev = current;
             current = nextTemp;
         }
-        printSinglyList(prev);
+        return prev;
     }
 
     // For now only LinkedList
     public void removeElements(ListNode head, Object val) {
-        while (head!=null && head.data == val) head = head.next;
+        while (head != null && head.data == val) head = head.next;
 
         if (head == null) return;
         ListNode n = head.next, prev = head;

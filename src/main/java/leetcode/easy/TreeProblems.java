@@ -94,4 +94,41 @@ public class TreeProblems {
         return root;
     }
 
+    //Binary Tree Paths
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> paths = new LinkedList<>();
+        Stack<Integer> stack = new Stack<>();
+        getAllPaths(root, paths, stack);
+        return paths;
+    }
+
+    private void getAllPaths(TreeNode root, List<String> paths, Stack<Integer> stack) {
+        if (root == null) return;
+        stack.push((int) root.value);
+        getAllPaths(root.left, paths, stack);
+        if (root.left == null && root.right == null) {
+            StringBuilder sb = new StringBuilder();
+            Iterator iterator = stack.iterator();
+            while (iterator.hasNext()) sb.append(iterator.next() + "->");
+            int count = sb.length();
+            sb.delete(count - 2, count);
+            paths.add(sb.toString());
+        }
+        getAllPaths(root.right, paths, stack);
+        stack.pop();
+    }
+
+    //Sum of Left Leaves
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) return 0;
+        int sum = 0;
+
+        if (root.left != null && root.left.left == null && root.left.right == null)
+            sum += (int) root.left.value;
+
+        sum += sumOfLeftLeaves(root.left);
+        sum += sumOfLeftLeaves(root.right);
+
+        return sum;
+    }
 }

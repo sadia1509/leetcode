@@ -31,4 +31,14 @@ public class ListProblems {
         return n.next == head;
     }
 
+    //Palindrome Linked List
+    public boolean isPalindrome(ListNode head) {
+        if (head == null) return false;
+        List<Object> list = new ArrayList<>();
+        for (ListNode n = head; n != null; n = n.next) list.add(n.data);
+        int l = 0, r = list.size() - 1;
+        while (l < r)
+            if (!list.get(l++).equals(list.get(r--))) return false;
+        return true;
+    }
 }

@@ -88,7 +88,7 @@ public class ArrayProblems {
 
     //Summary Ranges
     public List<String> summaryRanges(int[] nums) {
-        if(nums.length==0) return new ArrayList<>();
+        if (nums.length == 0) return new ArrayList<>();
         List<String> list = new ArrayList<>();
         int val = nums[0];
         String temp = "" + val;
@@ -107,4 +107,50 @@ public class ArrayProblems {
         return list;
     }
 
+
+    //3Sum
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j < len; j++) {
+                for (int k = j + 1; k < len; k++) {
+                    if (i != j && i != k && j != k && nums[i] + nums[j] + nums[k] == 0) {
+
+                        List<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[k]);
+                        Collections.sort(list);
+
+                        if (!lists.contains(list)) lists.add(list);
+                    }
+                }
+            }
+        }
+        return lists;
+    }
+
+    //Missing Number
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+        int missingNum = nums[0];
+        for (int i : nums) {
+            if (i != missingNum) return missingNum;
+            missingNum++;
+        }
+        return nums[0] == 0 ? missingNum : 0;
+    }
+
+    //Move Zeroes
+    public void moveZeroes(int[] nums) { //0,1,0,3,12
+        int nonZeroIndex = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) continue;
+            nums[nonZeroIndex] = nums[i];
+            if (i != nonZeroIndex) nums[i] = 0;
+            nonZeroIndex++;
+        }
+        for (int i : nums) System.out.print(i + " ");
+    }
 }
