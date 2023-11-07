@@ -7,8 +7,7 @@ import java.util.*;
 
 
 public class ArrayProblems {
-    //    Search search = new Search();
-    //Remove Element
+    // Remove Element
     public int removeElement(int[] nums, int val) {
         int currentIndex = 0;
         for (int i = 0; i < nums.length; i++)
@@ -17,7 +16,7 @@ public class ArrayProblems {
         return currentIndex;
     }
 
-    //Reverse String
+    // Reverse String
     public void reverseString(Character[] s) {
         int i = 0, j = s.length - 1;
         while (i < j)
@@ -25,7 +24,7 @@ public class ArrayProblems {
         Utils.Character().printArray(s);
     }
 
-    //Counting Bits
+    // Counting Bits
     public void countBits(int n) {
         Integer[] arr = new Integer[n + 1];
         for (int i = 0; i <= n; i++)
@@ -33,27 +32,24 @@ public class ArrayProblems {
         Utils.Integer().printArray(arr);
     }
 
-    //Reverse Vowels of a String
+    // Reverse Vowels of a String
     public String reverseVowels(String s) {
         List<Character> vowels = List.of('a', 'e', 'o', 'i', 'u', 'A', 'E', 'O', 'I', 'U');
         char[] arr = s.toCharArray();
         int l = 0, r = s.length() - 1;
         while (l < r) {
             while (l < r && !vowels.contains(arr[l])) l++;
-
             while (l < r && !vowels.contains(arr[r])) r--;
-
             char temp = arr[l];
             arr[l] = arr[r];
             arr[r] = temp;
-
             l++;
             r--;
         }
         return new String(arr);
     }
 
-    //Intersection of Two Arrays
+    // Intersection of Two Arrays
     public void intersection(int[] nums1, int[] nums2) {
         Set<Integer> set = new HashSet<>();
         Set<Integer> num1Set = new HashSet<>();
@@ -66,10 +62,9 @@ public class ArrayProblems {
         System.out.println(set);
     }
 
-    //Contains Duplicate II
+    // Contains Duplicate II
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
-
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(nums[i]) && Math.abs(map.get(nums[i]) - i) <= k) return true;
             else map.put(nums[i], i);
@@ -77,16 +72,15 @@ public class ArrayProblems {
         return false;
     }
 
-    //Contains Duplicate
+    // Contains Duplicate
     public boolean containsDuplicate(int[] nums) {
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 1; i++)
             if (nums[i] == nums[i + 1]) return true;
-
         return false;
     }
 
-    //Summary Ranges
+    // Summary Ranges
     public List<String> summaryRanges(int[] nums) {
         if (nums.length == 0) return new ArrayList<>();
         List<String> list = new ArrayList<>();
@@ -108,7 +102,7 @@ public class ArrayProblems {
     }
 
 
-    //3Sum
+    // 3Sum
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
         int len = nums.length;
@@ -131,7 +125,7 @@ public class ArrayProblems {
         return lists;
     }
 
-    //Missing Number
+    // Missing Number
     public int missingNumber(int[] nums) {
         Arrays.sort(nums);
         int missingNum = nums[0];
@@ -142,7 +136,7 @@ public class ArrayProblems {
         return nums[0] == 0 ? missingNum : 0;
     }
 
-    //Move Zeroes
+    // Move Zeroes
     public void moveZeroes(int[] nums) { //0,1,0,3,12
         int nonZeroIndex = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -153,4 +147,49 @@ public class ArrayProblems {
         }
         for (int i : nums) System.out.print(i + " ");
     }
+
+    // Find Target Indices After Sorting Array
+    public List<Integer> targetIndices(Integer[] nums, int target) {
+        List<Integer> list = new LinkedList<>();
+        Sort.mergeSort(nums);
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] == target) list.add(i);
+        return list;
+    }
+
+    // Count Negative Numbers in a Sorted Matrix
+    public int countNegatives(int[][] grid) {
+        int count = 0;
+        for (int[] row : grid) {
+            for (int i = row.length - 1; i >= 0; i--) {
+                if (row[i] < 0) count++;
+                else break;
+            }
+        }
+        return count;
+    }
+
+    // Points That Intersect With Cars
+    public int numberOfPoints(List<List<Integer>> nums) {
+        if (nums.isEmpty()) return 0;
+        Set<Integer> set = new HashSet<>();
+        for (List<Integer> n : nums) {
+            int l = n.get(0), h = n.get(1);
+            while (l <= h) {
+                set.add(l++);
+                set.add(h--);
+            }
+        }
+        return set.size();
+    }
+
+    // Count Pairs Whose Sum is Less than Target
+    public int countPairs(List<Integer> nums, int target) {
+        int count = 0, len = nums.size();
+        for (int i = 0; i < len - 1; i++)
+            for (int j = i + 1; j < len; j++)
+                if (nums.get(i) + nums.get(j) < target) count++;
+        return count;
+    }
+
 }

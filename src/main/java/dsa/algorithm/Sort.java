@@ -3,7 +3,6 @@ package dsa.algorithm;
 import common.*;
 
 public class Sort {
-    private int length;
 
     // Bubble sort
     public void bubbleSort(Integer[] arr) {
@@ -70,12 +69,12 @@ public class Sort {
     }
 
     // Merge sort
-    public void mergeSort(Integer[] arr) {
+    public static void mergeSort(Integer[] arr) {
         mergeSort(arr, arr.length);
         Utils.Integer().printArray(arr);
     }
 
-    public void mergeSort(Integer[] arr, int arrLength) {
+    private static void mergeSort(Integer[] arr, int arrLength) {
         if (arrLength < 2) return;
         int midIndex = arrLength / 2;
 
@@ -89,7 +88,7 @@ public class Sort {
         merge(arr, leftArray, rightArray);
     }
 
-    private void merge(Integer[] arr, Integer[] leftArray, Integer[] rightArray) {
+    private static void merge(Integer[] arr, Integer[] leftArray, Integer[] rightArray) {
         int i = 0, j = 0, k = 0;
         while (i < leftArray.length && j < rightArray.length) {
             if (leftArray[i] <= rightArray[j]) arr[k++] = leftArray[i++];
