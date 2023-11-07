@@ -7,15 +7,15 @@ public class LinkedList {
     public void printSinglyList(ListNode head) {
         Logs.print("Singly linked list: ");
         for (ListNode n = head; n != null; n = n.next)
-            System.out.print(n.data + " ");
-        System.out.println();
+            Logs.print(n.data + " ");
+        Logs.lineBreak(1);
     }
 
     public void printDoublyList(ListNode head) {
         Logs.print("Singly doubly linked list: ");
         for (ListNode n = lastNode(head); n != null; n = n.prev)
-            System.out.print(n.data + " ");
-        System.out.println();
+            Logs.print(n.data + " ");
+        Logs.lineBreak(1);
     }
 
     public ListNode lastNode(ListNode head) {
@@ -28,20 +28,20 @@ public class LinkedList {
         Logs.print("Singly circular linked list: ");
         ListNode n = head;
         do {
-            System.out.print(n.data + " ");
+            Logs.print(n.data + " ");
             n = n.next;
         } while (n != head);
-        System.out.println();
+        Logs.lineBreak(1);
     }
 
     public void printDoublyCircularList(ListNode head) {
         Logs.print("Singly doubly circular linked list: ");
         ListNode n = lastNode(head);
         do {
-            System.out.print(n.data + " ");
+            Logs.print(n.data + " ");
             n = n.prev;
         } while (n != head.prev);
-        System.out.println();
+        Logs.lineBreak(1);
     }
 
     private void print(ListNode head) {

@@ -32,4 +32,12 @@ public class Array {
         Logs.print("Right shift by " + k + ": ");
         Utils.Object().printArray(arr);
     }
+
+    // Print left rotation of array in O(n) time and O(1) space
+    public void printLeftRotation(int[] arr, int k) {
+        for (int i : arr) {
+            k %= arr.length;
+            Logs.print(arr[k++] + " ");
+        }
+    }
 }

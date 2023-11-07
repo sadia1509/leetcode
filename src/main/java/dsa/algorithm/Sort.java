@@ -1,6 +1,7 @@
 package dsa.algorithm;
 
 import common.*;
+import java.util.Arrays;
 
 public class Sort {
 
@@ -96,5 +97,13 @@ public class Sort {
         }
         while (i < leftArray.length) arr[k++] = leftArray[i++];
         while (j < rightArray.length) arr[k++] = rightArray[j++];
+    }
+
+    // Sort an array in wave form
+    public void waveSort(Integer[] arr) {
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length - 1; i += 2)
+            Utils.Integer().swap(arr, i, i + 1);
+        Utils.Integer().printArray(arr);
     }
 }

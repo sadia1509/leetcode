@@ -1,5 +1,6 @@
 package leetcode.easy;
 
+import common.*;
 import java.util.*;
 
 public class StackProblems {
@@ -34,10 +35,10 @@ public class StackProblems {
         push(2);
         push(3);
         push(4);
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
+        Logs.println(pop());
+        Logs.println(pop());
+        Logs.println(pop());
+        Logs.println(pop());
     }
 
 }

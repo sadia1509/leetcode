@@ -9,7 +9,7 @@ public class TreeClass {
     // Preorder Traversal (root, left, right)
     public void preOrderTraversal(TreeNode root) {
         if (root != null) {
-            System.out.print(root.value + " ");
+            Logs.print(root.value + " ");
             preOrderTraversal(root.left);
             preOrderTraversal(root.right);
         }
@@ -19,7 +19,7 @@ public class TreeClass {
     public void inOrderTraversal(TreeNode root) {
         if (root != null) {
             inOrderTraversal(root.left);
-            System.out.print(root.value + " ");
+            Logs.print(root.value + " ");
             inOrderTraversal(root.right);
         }
     }
@@ -29,7 +29,7 @@ public class TreeClass {
         if (root != null) {
             postOrderTraversal(root.left);
             postOrderTraversal(root.right);
-            System.out.print(root.value + " ");
+            Logs.print(root.value + " ");
         }
     }
 
@@ -40,7 +40,7 @@ public class TreeClass {
         while (!queue.isEmpty()) {
             TreeNode node = queue.remove();
             if (node == null) continue;
-            System.out.print(node.value + " ");
+            Logs.print(node.value + " ");
             queue.add(node.left);
             queue.add(node.right);
         }

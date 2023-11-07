@@ -9,7 +9,7 @@ public class GenericUtils<T> {;
     }
 
     public void printArray (T [] arr){
-        for(T i : arr) System.out.print(i + " ");
-        System.out.println();
+        for(T i : arr) Logs.print(i + " ");
+        Logs.lineBreak(1);
     }
 }

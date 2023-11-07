@@ -59,7 +59,7 @@ public class ArrayProblems {
         int[] arr = new int[set.size()];
         int i = 0;
         for (int x : set) arr[i++] = x;
-        System.out.println(set);
+        Logs.println(set);
     }
 
     // Contains Duplicate II
@@ -137,7 +137,7 @@ public class ArrayProblems {
     }
 
     // Move Zeroes
-    public void moveZeroes(int[] nums) { //0,1,0,3,12
+    public void moveZeroes(Integer[] nums) { //0,1,0,3,12
         int nonZeroIndex = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) continue;
@@ -145,7 +145,7 @@ public class ArrayProblems {
             if (i != nonZeroIndex) nums[i] = 0;
             nonZeroIndex++;
         }
-        for (int i : nums) System.out.print(i + " ");
+        Utils.Integer().printArray(nums);
     }
 
     // Find Target Indices After Sorting Array

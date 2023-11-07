@@ -1,5 +1,7 @@
 package leetcode.easy;
 
+import java.util.HashSet;
+
 public class NumberProblems {
     // Add Digits
     public int addDigits(int num) {
@@ -62,4 +64,19 @@ public class NumberProblems {
         else while (purchaseAmount % 10 != 0) purchaseAmount++;
         return 100 - purchaseAmount;
     }
+
+    // Single Number
+    public int singleNumber(int[] nums) {
+        HashSet<Integer> hashSet = generateHashSet(new HashSet<>(), nums, 0);
+        return Integer.parseInt(hashSet.iterator().next().toString());
+    }
+    private HashSet<Integer> generateHashSet(HashSet<Integer> hashSet, int[] nums, int i) {
+        if (i >= nums.length) return hashSet;
+        else {
+            if (hashSet.contains(nums[i])) hashSet.remove(nums[i]);
+            else hashSet.add(nums[i]);
+            return generateHashSet(hashSet, nums, ++i);
+        }
+    }
+
 }

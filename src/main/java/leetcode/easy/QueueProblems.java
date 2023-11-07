@@ -1,5 +1,6 @@
 package leetcode.easy;
 
+import common.*;
 import java.util.*;
 
 public class QueueProblems {
@@ -30,9 +31,9 @@ public class QueueProblems {
         push(1);
         push(2);
         push(7);
-        System.out.println(peek());
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
+        Logs.println(peek());
+        Logs.println(pop());
+        Logs.println(pop());
+        Logs.println(pop());
     }
 }
