@@ -74,4 +74,28 @@ public class PracticeClass {
         flag = flag - j;
         Logs.println(tempSum + " || " + j + " " + flag);
     }
+
+    // Rearrange an array such that arr[i] = i
+    public void rearrange(Integer[] arr) {
+        for (int k = 0; k < 2; k++)
+            for (int i = 0; i < arr.length; i++)
+                if (arr[i] < arr.length && arr[i] != -1)
+                    Utils.Integer().swap(arr, i, arr[i]);
+        Utils.Integer().printArray(arr);
+    }
+
+    // Reorder an array according to given indexes
+    public void reorderingTheArrays(Integer[] arr, Integer[] index) {
+        for (int i = 0; i < index.length; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < index.length; j++)
+                if (index[j] < index[minIndex]) minIndex = j;
+            Utils.Integer().swap(index, i, minIndex);
+            Utils.Integer().swap(arr, i, minIndex);
+        }
+        Utils.Integer().printArray(index);
+        Utils.Integer().printArray(arr);
+    }
+
+
 }

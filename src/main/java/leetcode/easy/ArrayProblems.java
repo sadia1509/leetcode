@@ -192,4 +192,14 @@ public class ArrayProblems {
         return count;
     }
 
+    // Min Cost Climbing Stairs
+    public int minCostClimbingStairs(int[] cost) {
+        int p1 = 0, p2 = 0;
+        for (int i = 0; i < cost.length; i++) {
+            int p0 = cost[i] + Math.min(p1, p2);
+            p2 = p1;
+            p1 = p0;
+        }
+        return Math.min(p1, p2);
+    }
 }

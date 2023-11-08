@@ -35,6 +35,7 @@ public class LCM {
         ArrayProblems arrayProblems = new ArrayProblems();
 //        Logs.println("Winner of the game: " + arrayProblems.getWinner(new int[]{1,11,22,33,44,55,66,77,88,99}, 1000000000));
 //        Logs.println("Sort colors: " ); arrayProblems.sortColors(new Integer[]{2,0,2,1,1,0});
+//        Logs.println("Sub array sum == k: " + arrayProblems.subArraySum(new int[]{1, 1, 1}, 2));
 
     }
 }
