@@ -8,6 +8,9 @@ public class LCM {
         /* List */
         ListProblems listProblems = new ListProblems();
         // addTwoNumbers;
+
+        /* Tree */
+        TreeProblems treeProblems = new TreeProblems();
         // averageOfSubtree
 
         /* Stack */

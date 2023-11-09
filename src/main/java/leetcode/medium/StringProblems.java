@@ -26,4 +26,24 @@ public class StringProblems {
         }
         return maxLength;
     }
+
+    // Count Number of Homogenous Substrings
+    public int countHomogenous(String s) {
+        if (s.isEmpty()) return 0;
+        final int MOD = 1000000007;
+        int sum = 0, counter = 1;
+        char prev = ' ', temp = ' ';
+        for (int i = 0; i < s.length(); i++) {
+            temp = s.charAt(i);
+            if (prev == temp) counter++;
+            else {
+                counter = 1;
+                prev = temp;
+            }
+            counter %= MOD;
+            sum += counter;
+            sum %= MOD;
+        }
+        return sum;
+    }
 }

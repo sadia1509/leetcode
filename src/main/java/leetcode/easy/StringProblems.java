@@ -134,4 +134,29 @@ public class StringProblems {
         return s.contentEquals(sb);
     }
 
+    // Split a String in Balanced Strings
+    public int balancedStringSplit(String s) {
+        int counterL = 0, counterR = 0, counter = 0;
+        for (char c : s.toCharArray()) {
+            if (c == 'L') counterL++;
+            else counterR++;
+            if (counterL == counterR) {
+                counter++;
+                counterL = 0;
+                counterR = 0;
+            }
+        }
+        return counter;
+    }
+
+    // DI String Match
+    public int[] diStringMatch(String s) {
+        int high = s.length(), low = 0;
+        int[] arr = new int[high + 1];
+        int k = 0;
+        for (char c : s.toCharArray())
+            arr[k++] = c == 'I' ? low++ : high--;
+        arr[k] = s.charAt(s.length() - 1) == 'I' ? low : high;
+        return arr;
+    }
 }

@@ -2,10 +2,16 @@ package common;
 
 public class TreeNode {
     public Object value;
+    public int val;
     public TreeNode left, right;
 
     public TreeNode(Object value) {
         this.value = value;
+    }
+
+    public TreeNode(int val) {
+        this.val = val;
+        this.value = val;
     }
 
     public TreeNode(Object value, TreeNode left, TreeNode right) {
@@ -65,7 +71,7 @@ public class TreeNode {
 
     private static TreeNode insertNodeBST(TreeNode root, int value) {
         if (root == null) return new TreeNode(value);
-        else if (value < (int) root.value) root.left = insertNodeBST(root.left, value);
+        else if (value < root.val) root.left = insertNodeBST(root.left, value);
         else root.right = insertNodeBST(root.right, value);
         return root;
     }

@@ -202,4 +202,67 @@ public class ArrayProblems {
         }
         return Math.min(p1, p2);
     }
+
+    // Final Prices With a Special Discount in a Shop
+    public Integer[] finalPrices(Integer[] prices) {
+        int len = prices.length;
+        for (int i = 0; i < len - 1; i++) {
+            int discount = 0;
+            for (int j = i + 1; j < len; j++) {
+                if (prices[j] <= prices[i]) {
+                    discount = prices[j];
+                    break;
+                }
+            }
+            prices[i] -= discount;
+        }
+        Utils.Integer().printArray(prices);
+        return prices;
+    }
+
+    // Next Greater Element I
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+        for (int n : nums2) {
+            while (!stack.isEmpty() && stack.peek() < n)
+                map.put(stack.pop(), n);
+            stack.push(n);
+        }
+        for (int i = 0; i < nums1.length; i++)
+            nums1[i] = map.getOrDefault(nums1[i], -1);
+        return nums1;
+    }
+
+    // Array Partition
+    public int arrayPairSum(int[] nums) {
+        int sum = 0;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i += 2)
+            sum += nums[i];
+        return sum;
+    }
+
+    // Maximum Sum With Exactly K Elements
+    public int maximizeSum(int[] nums, int k) {
+        Arrays.sort(nums);
+        int m = nums[nums.length - 1];
+        int sum = 0;
+        while (k-- != 0) sum += m++;
+        return sum;
+    }
+
+    // Minimum Operations to Make the Array Increasing
+    public int minOperations(int[] nums) {
+        int total = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] >= nums[i]) {
+                total += nums[i - 1] - nums[i] + 1;
+                nums[i] = nums[i - 1] + 1;
+            }
+        }
+        return total;
+    }
+
+
 }

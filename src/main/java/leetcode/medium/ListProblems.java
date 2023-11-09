@@ -3,7 +3,7 @@ package leetcode.medium;
 import common.*;
 
 public class ListProblems {
-    //Add Two Numbers
+    // Add Two Numbers
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) return null;
         ListNode head, tail, n = l1, m = l2;
@@ -55,23 +55,5 @@ public class ListProblems {
         }
 
         return head;
-    }
-
-    //Count Nodes Equal to Average of Subtree
-    int counter = 0;
-
-    public int averageOfSubtree(TreeNode root) {
-        averageOfSubtreeHelper(root);
-        return counter;
-    }
-
-    public int[] averageOfSubtreeHelper(TreeNode root) {
-        if (root == null) return new int[]{0, 0};
-        int[] left = averageOfSubtreeHelper(root.left);
-        int[] right = averageOfSubtreeHelper(root.right);
-        int sum = left[0] + (int) root.value + right[0];
-        int total = left[1] + 1 + right[1];
-        if (sum / total == (int) root.value) counter++;
-        return new int[]{sum, total};
     }
 }

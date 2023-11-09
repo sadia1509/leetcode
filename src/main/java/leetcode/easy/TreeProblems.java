@@ -8,7 +8,7 @@ import java.util.*;
 public class TreeProblems {
     TreeClass treeClass = new TreeClass();
 
-    //Find Mode in Binary Search Tree
+    // Find Mode in Binary Search Tree
     public Integer[] findMode(TreeNode root) {
         if (root == null) return null;
         Map<Integer, Integer> map = new HashMap<>();
@@ -27,17 +27,17 @@ public class TreeProblems {
     public int findMode(TreeNode root, Map<Integer, Integer> map, int max) {
         if (root == null) return max;
         max = findMode(root.left, map, max);
-        map.put((int) root.value, map.getOrDefault(root.value, 0) + 1);
-        max = Math.max(max, map.get(root.value));
+        map.put(root.val, map.getOrDefault(root.val, 0) + 1);
+        max = Math.max(max, map.get(root.val));
         max = findMode(root.right, map, max);
         return max;
     }
 
-    //Same Tree
+    // Same Tree
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         if (p == null || q == null) return false;
-        return isSameTree(p.left, q.left) && (int) p.value == (int) q.value && isSameTree(p.right, q.right);
+        return isSameTree(p.left, q.left) && p.val == q.val && isSameTree(p.right, q.right);
     }
 
     // Symmetric Tree
@@ -49,7 +49,7 @@ public class TreeProblems {
     private boolean isSymmetric(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         if (p == null || q == null) return false;
-        return isSymmetric(p.left, q.right) && (int) p.value == (int) q.value && isSymmetric(p.right, q.left);
+        return isSymmetric(p.left, q.right) && p.val == q.val && isSymmetric(p.right, q.left);
     }
 
     // Balanced Binary Tree
@@ -75,11 +75,11 @@ public class TreeProblems {
     // Path Sum
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) return false;
-        if (root.left == null && root.right == null && (int) root.value == targetSum)
+        if (root.left == null && root.right == null && root.val == targetSum)
             return true;
 
-        return hasPathSum(root.left, targetSum - (int) root.value)
-                || hasPathSum(root.right, targetSum - (int) root.value);
+        return hasPathSum(root.left, targetSum - root.val)
+                || hasPathSum(root.right, targetSum - root.val);
 
     }
 
@@ -94,7 +94,7 @@ public class TreeProblems {
         return root;
     }
 
-    //Binary Tree Paths
+    // Binary Tree Paths
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new LinkedList<>();
         Stack<Integer> stack = new Stack<>();
@@ -104,7 +104,7 @@ public class TreeProblems {
 
     private void getAllPaths(TreeNode root, List<String> paths, Stack<Integer> stack) {
         if (root == null) return;
-        stack.push((int) root.value);
+        stack.push(root.val);
         getAllPaths(root.left, paths, stack);
         if (root.left == null && root.right == null) {
             StringBuilder sb = new StringBuilder();
@@ -118,17 +118,39 @@ public class TreeProblems {
         stack.pop();
     }
 
-    //Sum of Left Leaves
+    // Sum of Left Leaves
     public int sumOfLeftLeaves(TreeNode root) {
         if (root == null) return 0;
         int sum = 0;
 
         if (root.left != null && root.left.left == null && root.left.right == null)
-            sum += (int) root.left.value;
+            sum += root.left.val;
 
         sum += sumOfLeftLeaves(root.left);
         sum += sumOfLeftLeaves(root.right);
 
         return sum;
+    }
+
+    // Range Sum of BST
+    int rangeSumBSTSum = 0;
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if (root == null) return 0;
+        rangeSumBST(root.left, low, high);
+        int value = root.val;
+        if (value >= low && value <= high) rangeSumBSTSum += value;
+        rangeSumBST(root.right, low, high);
+        return rangeSumBSTSum;
+    }
+
+    // Find a Corresponding Node of a Binary Tree in a Clone of That Tree
+    public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+        if (original == null || cloned == null) return null;
+        if (cloned.value == target.value) return cloned;
+        TreeNode cloneRef;
+        cloneRef = getTargetCopy(original.left, cloned.left, target);
+        if (cloneRef != null) return cloneRef;
+        return getTargetCopy(original.right, cloned.right, target);
     }
 }

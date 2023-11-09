@@ -33,8 +33,8 @@ public class Search {
 
     public boolean searchInBST(TreeNode root, int elem) {
         if (root == null) return false;
-        if ((int) root.value == elem) return true;
-        else if (elem < (int) root.value) return searchInBST(root.left, elem);
+        if (root.val == elem) return true;
+        else if (elem < root.val) return searchInBST(root.left, elem);
         else return searchInBST(root.right, elem);
     }
 }

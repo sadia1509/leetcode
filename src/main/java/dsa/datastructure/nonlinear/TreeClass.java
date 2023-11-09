@@ -91,12 +91,12 @@ public class TreeClass {
 
     // Sum of the entire int tree
     public int sum(TreeNode node) {
-        return node == null ? 0 : (sum(node.left) + (int)node.value + sum(node.right));
+        return node == null ? 0 : (sum(node.left) + node.val + sum(node.right));
     }
 
     // Two nodes are cousin of not
     public boolean isCousin(TreeNode root, TreeNode node1, TreeNode node2) {
-        return  (depth(root, node1, 0) == depth(root, node2, 0)
+        return (depth(root, node1, 0) == depth(root, node2, 0)
                 && findParent(root, node1) != findParent(root, node2));
     }
 
@@ -126,18 +126,19 @@ public class TreeClass {
     }
 
     // Subtree of another tree?
-    boolean isSimilar(TreeNode root, TreeNode subRoot){
-        if(root==null && subRoot==null) return true;
-        if(root==null || subRoot==null) return false;
-        if(root.value==subRoot.value)
+    boolean isSimilar(TreeNode root, TreeNode subRoot) {
+        if (root == null && subRoot == null) return true;
+        if (root == null || subRoot == null) return false;
+        if (root.value == subRoot.value)
             return isSimilar(root.left, subRoot.left) && isSimilar(root.right, subRoot.right);
         return false;
     }
-    public boolean isSubTree(TreeNode root, TreeNode subRoot){
-        if(subRoot==null) return true;
-        if(root==null) return false;
-        if(root.value==subRoot.value)
-            if(isSimilar(root, subRoot)) return true;
+
+    public boolean isSubTree(TreeNode root, TreeNode subRoot) {
+        if (subRoot == null) return true;
+        if (root == null) return false;
+        if (root.value == subRoot.value)
+            if (isSimilar(root, subRoot)) return true;
         return isSubTree(root.left, subRoot.right) || isSubTree(root.right, subRoot.right);
     }
 
