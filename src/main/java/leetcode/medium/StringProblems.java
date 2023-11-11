@@ -46,4 +46,34 @@ public class StringProblems {
         }
         return sum;
     }
+
+    // Longest Palindromic Substring
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        if (len == 0) return s;
+        int maxLen = 0, start = 0;
+        char[] sCharArray = s.toCharArray();
+        for (int i = 0; i < len; i++) {
+            int[] arr = isPalindrome(sCharArray, i, i, maxLen, start);
+            maxLen = arr[0];
+            start = arr[1];
+            arr = isPalindrome(sCharArray, i, i + 1, maxLen, start);
+            maxLen = arr[0];
+            start = arr[1];
+        }
+        return s.substring(start, start + maxLen);
+    }
+
+    private int[] isPalindrome(char[] s, int j, int k, int maxLen, int start) {
+        while (j >= 0 && k < s.length && s[j] == s[k]) {
+            j--;
+            k++;
+        }
+        if (maxLen < k - j - 1) {
+            maxLen = k - j - 1;
+            start = j + 1;
+        }
+        return new int[]{maxLen, start};
+    }
+
 }

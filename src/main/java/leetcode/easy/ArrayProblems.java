@@ -264,5 +264,44 @@ public class ArrayProblems {
         return total;
     }
 
+    // Maximum Product of Two Elements in an Array
+    public int maxProduct(int[] nums) {
+        int len = nums.length;
+        if (len < 2) return 0;
+        Arrays.sort(nums);
+        return (nums[len - 2] - 1) * (nums[len - 1] - 1);
+    }
+
+    // Delete Greatest Value in Each Row
+    public int deleteGreatestValue(int[][] grid) {
+        int sum = 0;
+        for (int[] row : grid) Arrays.sort(row);
+        int size = grid[0].length;
+        for (int i = size - 1; i >= 0; i--) {
+            int max = Integer.MIN_VALUE;
+            for (int[] ints : grid) max = Math.max(max, ints[i]);
+            sum += max;
+        }
+        return sum;
+    }
+
+    // The K Weakest Rows in a Matrix
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int[] arr = new int[k];
+        int[][] tempArr = new int[mat.length][2];
+        int j = 0;
+        for (int[] row : mat) {
+            int sum = 0;
+            for (int i : row) {
+                if (i == 0) break;
+                sum += i;
+            }
+            tempArr[j][0] = sum;
+            tempArr[j][1] = j++;
+        }
+        Arrays.sort(tempArr, Comparator.comparingInt(a -> a[0]));
+        for (int i = 0; i < k; i++) arr[i] = tempArr[i][1];
+        return arr;
+    }
 
 }

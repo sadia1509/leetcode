@@ -7,6 +7,7 @@ public class Main {
         Logs.println("Hello world!");
 //        DSA.run();
 //        LCE.run();
-        LCM.run();
+//        LCM.run();
+        LCH.run();
     }
 }

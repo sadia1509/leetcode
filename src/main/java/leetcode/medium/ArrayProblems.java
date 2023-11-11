@@ -1,6 +1,7 @@
 package leetcode.medium;
 
 import common.*;
+
 import java.util.*;
 
 public class ArrayProblems {
@@ -75,4 +76,50 @@ public class ArrayProblems {
         }
         return count;
     }
+
+    // Kth Largest Element in an Array
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
+        for (int n : nums) queue.offer(n);
+        int ans = 0;
+        for (int i = 0; i < k && !queue.isEmpty(); i++) ans = queue.poll();
+        return ans;
+    }
+
+    // Restore the Array From Adjacent Pairs
+    public int[] restoreArray(int[][] adjacentPairs) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        List<Integer> list;
+        int start = 0;
+        for (int[] row : adjacentPairs) {
+            graph.computeIfAbsent(row[0], k -> new ArrayList<>()).add(row[1]);
+            graph.computeIfAbsent(row[1], k -> new ArrayList<>()).add(row[0]);
+        }
+        for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
+            if (entry.getValue().size() == 1) {
+                start = entry.getKey();
+                break;
+            }
+        }
+        // DFS
+        Set<Integer> visited = new HashSet<>();
+        visited.add(start);
+        list = new LinkedList<>();
+        dfs(start, graph, list, visited);
+        int[] arr = new int[list.size()];
+        start = 0;
+        for (int i : list) arr[start++] = i;
+        System.out.println(list);
+        return arr;
+    }
+
+    private static void dfs(int current, Map<Integer, List<Integer>> graph, List<Integer> list, Set<Integer> visited) {
+        list.add(current);
+        visited.add(current);
+        for (int neighbor : graph.get(current))
+            if (!visited.contains(neighbor))
+                dfs(neighbor, graph, list, visited);
+    }
+
+
 }
