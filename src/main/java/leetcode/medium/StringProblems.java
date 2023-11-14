@@ -1,7 +1,7 @@
 package leetcode.medium;
 
 import java.math.BigInteger;
-import java.util.HashMap;
+import java.util.*;
 
 public class StringProblems {
     // Multiply Strings
@@ -74,6 +74,56 @@ public class StringProblems {
             start = j + 1;
         }
         return new int[]{maxLen, start};
+    }
+
+    // String to Integer (atoi)
+    public int myAtoi(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        s = s.trim();
+        int i = 0, sign = 1, num = 0, len = s.length();
+        while (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            sign = (s.charAt(i) == '-') ? -1 : 1;
+            if(i > 0) return num;
+            i++;
+        }
+        while (i < len && Character.isDigit(s.charAt(i))) {
+            int digit = s.charAt(i) - '0';
+            try {
+                num = Math.multiplyExact(num, 10);
+                num = Math.addExact(num, digit);
+            } catch (ArithmeticException e) {
+                return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            i++;
+        }
+        return sign * num;
+    }
+
+    // Sort Vowels in a String
+    public String sortVowels(String s) {
+        List<Character> vowels = List.of('A', 'E', 'O', 'I', 'U', 'a', 'e', 'o', 'i', 'u');
+        Map<Character, Integer> tempVowels = new TreeMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(vowels.contains(c)) tempVowels.compute(c, (key, oldValue) -> (oldValue == null) ? 1 : oldValue + 1);
+        }
+        List<Character> tempV = new LinkedList<>(tempVowels.keySet());
+        if (tempV.isEmpty()) return s;
+        StringBuilder sb = new StringBuilder();
+        char tempChar = tempV.get(0);
+        for (int i = 0, k = 0; i < s.length(); i++) {
+            if (vowels.contains(s.charAt(i))) {
+                int count = tempVowels.get(tempChar);
+                if(count == 0) {
+                    tempChar = tempV.get(++k);
+                    count = tempVowels.get(tempChar);
+                }
+                sb.append(tempChar);
+                tempVowels.put(tempChar, count-1);
+            }
+            else sb.append(s.charAt(i));
+        }
+        return sb.toString();
     }
 
 }

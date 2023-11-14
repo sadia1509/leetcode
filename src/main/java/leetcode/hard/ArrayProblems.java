@@ -1,6 +1,6 @@
 package leetcode.hard;
 
-import java.math.BigInteger;
+import java.util.*;
 
 public class ArrayProblems {
     //Median of Two Sorted Arrays
@@ -60,4 +60,19 @@ public class ArrayProblems {
         while (i < leftArray.length) arr[k++] = leftArray[i++];
         while (j < rightArray.length) arr[k++] = rightArray[j++];
     }
+
+    // First Missing Positive
+    public int firstMissingPositive(int[] nums) {
+        Arrays.sort(nums);
+        System.out.println(Arrays.toString(nums));
+        int nextPositive = 1, prev = Integer.MIN_VALUE;
+        for (int i : nums) {
+            if (i <= 0 || prev == i) continue;
+            if (i == nextPositive) nextPositive++;
+            else break;
+            prev = i;
+        }
+        return nextPositive;
+    }
+
 }
