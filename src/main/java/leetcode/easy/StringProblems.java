@@ -159,4 +159,96 @@ public class StringProblems {
         arr[k] = s.charAt(s.length() - 1) == 'I' ? low : high;
         return arr;
     }
+
+    // Remove Letter To Equalize Frequency
+    public boolean equalFrequency(String word) {
+        int mini = Integer.MAX_VALUE, maxi = Integer.MIN_VALUE;
+        Map<Character, Integer> map = new HashMap<>();
+        for (char i : word.toCharArray())
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            mini = Math.min(mini, entry.getValue());
+            maxi = Math.max(maxi, entry.getValue());
+        }
+        int len = word.length();
+        return (map.size() * mini + 1 == len) ||
+                (maxi * (map.size() - 1) + 1 == len && mini == 1) ||
+                (map.size() == 1);
+    }
+
+    // Shuffle String
+    public String restoreString(String s, int[] indices) {
+        Map<Integer, Character> trackerMap = new TreeMap<>();
+        for(int i=0; i<indices.length; i++)
+            trackerMap.put(indices[i], s.charAt(i));
+        StringBuilder sb = new StringBuilder();
+        for(char c: trackerMap.values()) sb.append(c);
+        return sb.toString();
+    }
+
+    // Maximum Number of Words Found in Sentences
+    public int mostWordsFound(String[] sentences) {
+        int [] arr = new int [sentences.length];
+        int k = 0;
+        for(String i: sentences){
+            int counter = 0;
+            for(String j : i.split(" ")) counter++;
+            arr[k++] = counter;
+        }
+        k = 0;
+        for(int i : arr) k = Math.max(k, i);
+        return k;
+    }
+
+    // Goal Parser Interpretation
+    public String interpret(String command) {
+        StringBuilder sb = new StringBuilder();
+        char[] arr = command.toCharArray();
+        int i = 0;
+        for (; i < arr.length - 1; i++) {
+            if (arr[i] == '(' && arr[i + 1] == ')') {
+                sb.append('o');
+                i++;
+            }
+            else if (arr[i] == '(' && arr[i + 1] == 'a') {
+                sb.append("al");
+                i += 3;
+            } else sb.append(arr[i]);
+        }
+        if (i < arr.length) sb.append(arr[i]++);
+        return sb.toString();
+    }
+
+    // Jewels and Stones
+    public int numJewelsInStones(String jewels, String stones) {
+        Set<Character> jewelsSet = new HashSet<>();
+        for(char i : jewels.toCharArray()) jewelsSet.add(i);
+        int counter = 0;
+        for(char i : stones.toCharArray())
+            if (jewelsSet.contains(i)) counter++;
+        return counter;
+    }
+
+    // Final Value of Variable After Performing Operations
+    public int finalValueAfterOperations(String[] operations) {
+        int x = 0;
+        for (String i : operations) {
+            switch (i) {
+                case "++X":
+                    ++x;
+                    break;
+                case "X++":
+                    x++;
+                    break;
+                case "--X":
+                    --x;
+                    break;
+                case "X--":
+                    x--;
+                    break;
+            }
+        }
+        return x;
+    }
+
 }

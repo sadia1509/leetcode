@@ -126,4 +126,20 @@ public class StringProblems {
         return sb.toString();
     }
 
+    // Find Unique Binary String
+    public String findDifferentBinaryString(String[] nums) {
+        int n = nums.length;
+        if (n == 0) return "";
+        int num = (int) Math.pow(2, n) - 1;
+        int[] intNums = new int[n];
+        int k = 0;
+        for (String i : nums) intNums[k++] = Integer.parseInt(i, 2);
+        Arrays.sort(intNums);
+        for (int i = n - 1; i >= 0; i--) if (num == intNums[i]) num--;
+        StringBuilder sb = new StringBuilder();
+        sb.append(Integer.toBinaryString(num));
+        int numLength = sb.length();
+        while (numLength++ < n) sb.insert(0, '0');
+        return sb.toString();
+    }
 }
