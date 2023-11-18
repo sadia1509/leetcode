@@ -179,24 +179,24 @@ public class StringProblems {
     // Shuffle String
     public String restoreString(String s, int[] indices) {
         Map<Integer, Character> trackerMap = new TreeMap<>();
-        for(int i=0; i<indices.length; i++)
+        for (int i = 0; i < indices.length; i++)
             trackerMap.put(indices[i], s.charAt(i));
         StringBuilder sb = new StringBuilder();
-        for(char c: trackerMap.values()) sb.append(c);
+        for (char c : trackerMap.values()) sb.append(c);
         return sb.toString();
     }
 
     // Maximum Number of Words Found in Sentences
     public int mostWordsFound(String[] sentences) {
-        int [] arr = new int [sentences.length];
+        int[] arr = new int[sentences.length];
         int k = 0;
-        for(String i: sentences){
+        for (String i : sentences) {
             int counter = 0;
-            for(String j : i.split(" ")) counter++;
+            for (String j : i.split(" ")) counter++;
             arr[k++] = counter;
         }
         k = 0;
-        for(int i : arr) k = Math.max(k, i);
+        for (int i : arr) k = Math.max(k, i);
         return k;
     }
 
@@ -209,8 +209,7 @@ public class StringProblems {
             if (arr[i] == '(' && arr[i + 1] == ')') {
                 sb.append('o');
                 i++;
-            }
-            else if (arr[i] == '(' && arr[i + 1] == 'a') {
+            } else if (arr[i] == '(' && arr[i + 1] == 'a') {
                 sb.append("al");
                 i += 3;
             } else sb.append(arr[i]);
@@ -222,9 +221,9 @@ public class StringProblems {
     // Jewels and Stones
     public int numJewelsInStones(String jewels, String stones) {
         Set<Character> jewelsSet = new HashSet<>();
-        for(char i : jewels.toCharArray()) jewelsSet.add(i);
+        for (char i : jewels.toCharArray()) jewelsSet.add(i);
         int counter = 0;
-        for(char i : stones.toCharArray())
+        for (char i : stones.toCharArray())
             if (jewelsSet.contains(i)) counter++;
         return counter;
     }
@@ -251,4 +250,25 @@ public class StringProblems {
         return x;
     }
 
+    // Circular Sentence
+    public boolean isCircularSentence(String sentence) {
+        String[] arr = sentence.split(" ");
+        int arrLen = arr.length;
+        if (arrLen == 1)
+            return arr[0].charAt(0) == arr[0].charAt(arr[0].length() - 1);
+        String prev = arr[0];
+        for (int i = 1; i < arrLen; i++) {
+            if (prev.charAt(prev.length() - 1) != arr[i].charAt(0)) return false;
+            prev = arr[i];
+        }
+        return prev.charAt(prev.length() - 1) == arr[0].charAt(0);
+    }
+
+    // Rotate String
+    public boolean rotateString(String s, String goal) {
+        if (s.length() != goal.length()) return false;
+        if (s.equals(goal)) return true;
+        s += s;
+        return s.contains(goal);
+    }
 }

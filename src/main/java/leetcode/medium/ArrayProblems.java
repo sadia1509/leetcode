@@ -150,4 +150,15 @@ public class ArrayProblems {
         return finalList;
     }
 
+    // Minimize Maximum Pair Sum in Array
+    public int minPairSum(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int i = 0, j=nums.length-1;
+        Arrays.sort(nums);
+        while (i<j)
+            max = Math.max(max, nums[i++] + nums[j--]);
+        return max;
+    }
+
+
 }

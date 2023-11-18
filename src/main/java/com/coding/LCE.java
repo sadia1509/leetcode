@@ -30,6 +30,7 @@ public class LCE {
 //        Logs.println("Segments: " + stringProblems.countSegments("Hello, my name is John"));
 //        Logs.println("Split in equal: " + stringProblems.balancedStringSplit("RLRRRLLRLL"));
 //        Logs.println("DI string match: " + stringProblems.diStringMatch("IDID"));
+//        Logs.println("Rotate string: " + stringProblems.rotateString("clrwmpkwru", "wmpkwruclr"));
 
         /* Number */
         NumberProblems numberProblems = new NumberProblems();

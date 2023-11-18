@@ -3,6 +3,7 @@ package com.coding;
 import common.*;
 import oop.abstraction.*;
 import oop.composition.*;
+import oop.enumeration.*;
 import oop.inheritance.*;
 import oop.interfaces.*;
 
@@ -68,5 +69,33 @@ public class OOP {
         Car myCar = new Car();
         // Starting the Car, which internally starts the Engine
         myCar.start();
+
+        /* Enum */
+        // Accessing enum constants
+        Cards hearts = Cards.HEARTS;
+        Cards diamonds = Cards.DIAMONDS;
+        // Accessing fields and calling methods
+        Logs.println("Hearts: " + hearts.getDisplayName() + ", Color: " + hearts.getColor());
+        Logs.println("Diamonds: " + diamonds.getDisplayName() + ", Color: " + diamonds.getColor());
+        // Enum iteration
+        System.out.println("All Suits:");
+        for (Cards card : Cards.values())
+            Logs.println(card.getDisplayName() + " - " + card.getColor());
+        // Switch statement with enum
+        Cards randomSuit = Cards.CLUBS; // Assume some logic to get a random suit
+        switch (randomSuit) {
+            case HEARTS:
+                System.out.println("It's a heart!");
+                break;
+            case DIAMONDS:
+                System.out.println("It's a diamond!");
+                break;
+            case CLUBS:
+                System.out.println("It's a club!");
+                break;
+            case SPADES:
+                System.out.println("It's a spade!");
+                break;
+        }
     }
 }

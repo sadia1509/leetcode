@@ -8,6 +8,8 @@ public class Main {
 //        DSA.run();
 //        LCE.run();
 //        LCM.run();
-        LCH.run();
+//        LCH.run();
+//        OOP.run();
+        DP.run();
     }
 }
