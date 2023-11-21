@@ -160,5 +160,27 @@ public class ArrayProblems {
         return max;
     }
 
+    // Count Nice Pairs in an Array
+    public int countNicePairs(int[] nums) {
+        final int mod = 1000000007;
+        int total = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (final int num : nums){
+            final int diff = num - rev(num);
+            final int count = map.getOrDefault(diff, 0);
+            total = (total + count) % mod;
+            map.put(diff, count + 1);
+        }
+        return total;
+    }
+
+    private int rev(int num) {
+        int revNum = 0;
+        while (num != 0) {
+            revNum = revNum * 10 + (num % 10);
+            num /= 10;
+        }
+        return revNum;
+    }
 
 }
