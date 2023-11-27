@@ -1,6 +1,7 @@
 package dsa.datastructure.nonlinear;
 
 import common.*;
+
 import java.util.*;
 
 public class GraphClass {
@@ -72,4 +73,17 @@ public class GraphClass {
         }
     }
 
+    public int[][] to2DArray(Map<Integer, List<Edge>> graph, int[] nodes) {
+        int len = nodes.length;
+        int[][] graphArray = new int[len][len];
+        for (int i = 0; i < len; i++) Arrays.fill(graphArray[i], Integer.MAX_VALUE);
+        graph.forEach((source, edges) -> {
+            edges.forEach(edge -> {
+                graphArray[source][edge.getDestination()] = edge.getWeight();
+            });
+        });
+        for (int i = 0; i < len; i++) graphArray[i][i] = 0;
+//        Utils.Integer().printArray(Utils.intToInteger(graphArray));
+        return graphArray;
+    }
 }

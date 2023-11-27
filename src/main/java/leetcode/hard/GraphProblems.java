@@ -1,6 +1,7 @@
 package leetcode.hard;
 
 import common.*;
+import extra.*;
 
 public class GraphProblems {
     // Design Graph With Shortest Path Calculator

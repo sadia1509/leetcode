@@ -42,28 +42,6 @@ public class DSA {
 //        linkedList.removeElements(head, 7);
 
 
-//        linkedList.rotateLinkedList(linkedList.makeDoublyLinkedList(new int[]{1,2,3,4,5}),3);
-//        linkedList.removeDuplicate(linkedList.makeDoublyLinkedList(new int[]{1,2,3,2,2,4,2,2,4,4,5}));
-//        linkedList.insertInSortedDoubly(linkedList.makeDoublyLinkedList(new int[]{2,4,5,6,8,9}), 11);
-//        linkedList.pairSum(linkedList.makeDoublyLinkedList(new int[]{1,2,4,5,6,8,9}), 7);
-//        linkedList.deletionCircular(linkedList.makeCircularLinkedList(new int[]{1,2,3,4,5,6}), 6);
-//        linkedList.splitInHalves(linkedList.makeCircularLinkedList(new int[]{1,2,3,4,5,6}));
-//        linkedList.intersectionTwoLinkedList(linkedList.makeLinkedList(new int[]{4,5}), linkedList.makeLinkedList(new int[]{1,2,4,5,6}));
-//        linkedList.removeDuplicates(linkedList.makeLinkedList(new int[]{1,2,4}));
-//        linkedList.detectLoopLength(linkedList.circleLinkedList());
-//        linkedList.detectLoop(linkedList.circleLinkedList());
-//        linkedList.deleteNodeDoubly(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}), linkedList.makeLinkedList(new int[]{1}));
-//        linkedList.circularLinkedListTraversal(linkedList.makeCircularLinkedList(new int[]{5, 4, 3, 2, 1}));
-//        linkedList.sizeOfDoubly(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}));
-//        linkedList.reverseDoublyLinkedList(linkedList.makeDoublyLinkedList(new int[]{5, 4, 3, 2, 1}));
-//        linkedList.exchangeFirstLast(linkedList.makeCircularLinkedList(new int[]{5, 4, 3, 2, 1}));
-//        linkedList.convertToCircular(linkedList.makeLinkedList(new int[]{9, 1, 2, 10, 3, 7}));
-//        linkedList.countCircularNodes(linkedList.makeCircularLinkedList(new int[]{9, 1, 2, 10, 3, 7}));
-//        linkedList.circularLinkedListCheck(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
-//        linkedList.circularLinkedListCheck(linkedList.makeCircularLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
-//        linkedList.elemCount(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7, 1}), 1);
-//        linkedList.middlePrint(linkedList.makeLinkedList(new int[]{1, 1, 2, 10, 3, 7}));
-
         Search search = new Search();
 //        Logs.println("Binary Search: " + search.binarySearch(new int[]{2, 5, 6, 8, 9, 10}, 0, 5, 6));
 //        Logs.println("Linear 2D Search: " + search.linerSearch2D(new String[][]{{"hay", "hay"}, {"hay", "hay"},
@@ -122,5 +100,20 @@ public class DSA {
 //        Logs.println("Is the tree a subtree of another tree: " + treeClass.isSubTree(root, subRoot));
 
 
+        GraphClass graphClass = new GraphClass();
+
+        ShortestPath shortestPath = new ShortestPath();
+//        UndirectedGraph weightedGraph = new UndirectedGraph(true);
+//        DirectedGraph weightedGraph = new DirectedGraph(true);
+//        weightedGraph.addEdge(0, 1, 3);
+//        weightedGraph.addEdge(0, 2, 2);
+//        weightedGraph.addEdge(1, 2, 5);
+//        weightedGraph.addEdge(1, 3, 7);
+//        weightedGraph.addEdge(2, 4, 1);
+//        weightedGraph.addEdge(3, 4, 4);
+//        weightedGraph.addEdge(4, 5, 2);
+//        shortestPath.dijkstra(weightedGraph.getWeightedGraph(), 0, 5);
+//        shortestPath.bellmanFord(weightedGraph.getWeightedGraph(), new int[]{0,1,2,3,4,5}, 0);
+//        shortestPath.floydWarshall(graphClass.to2DArray(weightedGraph.getWeightedGraph(), new int[]{0, 1, 2, 3, 4, 5}));
     }
 }
