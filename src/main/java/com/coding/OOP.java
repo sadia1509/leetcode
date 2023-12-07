@@ -6,6 +6,9 @@ import oop.composition.*;
 import oop.enumeration.*;
 import oop.inheritance.*;
 import oop.interfaces.*;
+import oop.tool.ComparatorClass;
+
+import java.util.Arrays;
 
 public class OOP {
     public static void run() {
@@ -79,24 +82,30 @@ public class OOP {
 //        Logs.println("Hearts: " + hearts.getDisplayName() + ", Color: " + hearts.getColor());
 //        Logs.println("Diamonds: " + diamonds.getDisplayName() + ", Color: " + diamonds.getColor());
 //        // Enum iteration
-//        System.out.println("All Suits:");
+//        Logs.println("All Suits:");
 //        for (Cards card : Cards.values())
 //            Logs.println(card.getDisplayName() + " - " + card.getColor());
 //        // Switch statement with enum
 //        Cards randomSuit = Cards.CLUBS; // Assume some logic to get a random suit
 //        switch (randomSuit) {
 //            case HEARTS:
-//                System.out.println("It's a heart!");
+//                Logs.println("It's a heart!");
 //                break;
 //            case DIAMONDS:
-//                System.out.println("It's a diamond!");
+//                Logs.println("It's a diamond!");
 //                break;
 //            case CLUBS:
-//                System.out.println("It's a club!");
+//                Logs.println("It's a club!");
 //                break;
 //            case SPADES:
-//                System.out.println("It's a spade!");
+//                Logs.println("It's a spade!");
 //                break;
 //        }
+
+        /* Tools */
+        ComparatorClass comparatorClass = new ComparatorClass();
+//        comparatorClass.sortByStringLength(Arrays.asList("sadia", "sam", "i", "ok"));
+//        comparatorClass.sortTheStudentsMarks();
+//        comparatorClass.sortTheStudentNames();
     }
 }

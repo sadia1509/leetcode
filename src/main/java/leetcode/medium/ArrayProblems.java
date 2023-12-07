@@ -109,7 +109,7 @@ public class ArrayProblems {
         int[] arr = new int[list.size()];
         start = 0;
         for (int i : list) arr[start++] = i;
-        System.out.println(list);
+        Logs.println(list);
         return arr;
     }
 

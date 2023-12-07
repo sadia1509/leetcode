@@ -41,7 +41,7 @@ public class Sort {
     // Quick sort
     public void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     public void quickSort(int[] arr, int high, int low) {

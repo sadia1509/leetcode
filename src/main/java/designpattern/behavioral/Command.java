@@ -39,11 +39,11 @@ class LightOffCommand implements Commands {
 // Receiver
 class Light {
     public void turnOn() {
-        System.out.println("Light is ON");
+        Logs.println("Light is ON");
     }
 
     public void turnOff() {
-        System.out.println("Light is OFF");
+        Logs.println("Light is OFF");
     }
 }
 

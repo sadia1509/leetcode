@@ -64,7 +64,6 @@ public class ArrayProblems {
     // First Missing Positive
     public int firstMissingPositive(int[] nums) {
         Arrays.sort(nums);
-        System.out.println(Arrays.toString(nums));
         int nextPositive = 1, prev = Integer.MIN_VALUE;
         for (int i : nums) {
             if (i <= 0 || prev == i) continue;
