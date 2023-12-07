@@ -21,7 +21,7 @@ public class ArrayProblems {
     }
 
     // Sort Colors
-    public void sortColors(Integer[] nums) {
+    public void sortColors(int[] nums) {
         int red = 0, white = 1, blue = 2;
         int redCounter = 0, whiteCounter = 0, blueCounter = 0;
         for (int i : nums) {
@@ -33,7 +33,7 @@ public class ArrayProblems {
         while (redCounter-- != 0) nums[k++] = red;
         while (whiteCounter-- != 0) nums[k++] = white;
         while (blueCounter-- != 0) nums[k++] = blue;
-        Utils.Integer().printArray(nums);
+        Utils.Integer().printArray(Utils.intToInteger(nums));
     }
 
     // Valid Triangle Number

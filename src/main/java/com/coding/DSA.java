@@ -52,15 +52,15 @@ public class DSA {
 
         Sort sort = new Sort();
 //        Logs.print("Bubble sort: ");
-//        sort.bubbleSort(new Integer[] {2,3,4,1,4,9,5,7});
+//        sort.bubbleSort(new int[] {2,3,4,1,4,9,5,7});
 //        Logs.print("Selection sort: ");
-//        sort.selectionSort(new Integer[] {2,3,4,1,4,9,5,7});
+//        sort.selectionSort(new int[] {2,3,4,1,4,9,5,7});
 //        Logs.print("Insertion sort: ");
-//        sort.insertionSort(new Integer[] {2,3,4,1,4,9,5,7});
+//        sort.insertionSort(new int[] {2,3,4,1,4,9,5,7});
 //        Logs.print("Quick sort: ");
-//        sort.quickSort(new Integer[] {2,3,4,1,4,9,5,7});
+//        sort.quickSort(new int[] {2,3,4,1,4,9,5,7});
 //        Logs.print("Merge sort: ");
-//        sort.mergeSort(new Integer[] {2,3,4,1,4,9,5,7});
+//        sort.mergeSort(new int[] {2,3,4,1,4,9,5,7});
 
 
 

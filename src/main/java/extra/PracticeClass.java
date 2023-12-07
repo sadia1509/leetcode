@@ -7,28 +7,28 @@ public class PracticeClass {
     // Rearrange array such that even positioned are greater than odd
     public void evenPositionedGreater(int[] arr) {
         Arrays.sort(arr);
-        Integer[] arrRes = new Integer[arr.length];
+        int[] arrRes = new int[arr.length];
         for (int i = 0, j = 0, k = arr.length - 1; i < arrRes.length; i++) {
             if ((i + 1) % 2 == 0) arrRes[i] = arr[k--];
             else arrRes[i] = arr[j++];
         }
-        Utils.Integer().printArray(arrRes);
+        Utils.Integer().printArray(Utils.intToInteger(arrRes));
     }
 
     // Rearrange an array in maximum minimum form using Two Pointer Technique
     public void maxMinTwoPointer(int[] arr) {
         int smallPointer = 0, largePointer = arr.length - 1;
-        Integer[] newArr = new Integer[arr.length];
+        int[] newArr = new int[arr.length];
         for (int i = 0; i < arr.length; i++)
             newArr[i] = i % 2 == 0 ? arr[largePointer--] : arr[smallPointer++];
-        Utils.Integer().printArray(newArr);
+        Utils.Integer().printArray(Utils.intToInteger(newArr));
     }
 
     // Segregate even and odd numbers
-    public void segregateEvenOdd(Integer[] arr) {
+    public void segregateEvenOdd(int[] arr) {
         for (int i = 0, j = 0; i < arr.length; i++)
-            if (arr[i] % 2 == 0) Utils.Integer().swap(arr, j++, i);
-        Utils.Integer().printArray(arr);
+            if (arr[i] % 2 == 0) Utils.Integer().swap(Utils.intToInteger(arr), j++, i);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Print All Distinct Elements of a given integer array
@@ -76,25 +76,25 @@ public class PracticeClass {
     }
 
     // Rearrange an array such that arr[i] = i
-    public void rearrange(Integer[] arr) {
+    public void rearrange(int[] arr) {
         for (int k = 0; k < 2; k++)
             for (int i = 0; i < arr.length; i++)
                 if (arr[i] < arr.length && arr[i] != -1)
-                    Utils.Integer().swap(arr, i, arr[i]);
-        Utils.Integer().printArray(arr);
+                    Utils.Integer().swap(Utils.intToInteger(arr), i, arr[i]);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Reorder an array according to given indexes
-    public void reorderingTheArrays(Integer[] arr, Integer[] index) {
+    public void reorderingTheArrays(int[] arr, int[] index) {
         for (int i = 0; i < index.length; i++) {
             int minIndex = i;
             for (int j = i + 1; j < index.length; j++)
                 if (index[j] < index[minIndex]) minIndex = j;
-            Utils.Integer().swap(index, i, minIndex);
-            Utils.Integer().swap(arr, i, minIndex);
+            Utils.Integer().swap(Utils.intToInteger(index), i, minIndex);
+            Utils.Integer().swap(Utils.intToInteger(arr), i, minIndex);
         }
-        Utils.Integer().printArray(index);
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(index));
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
 

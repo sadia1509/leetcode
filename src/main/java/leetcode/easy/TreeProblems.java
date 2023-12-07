@@ -9,7 +9,7 @@ public class TreeProblems {
     TreeClass treeClass = new TreeClass();
 
     // Find Mode in Binary Search Tree
-    public Integer[] findMode(TreeNode root) {
+    public int [] findMode(TreeNode root) {
         if (root == null) return null;
         Map<Integer, Integer> map = new HashMap<>();
         int max = findMode(root, map, 0);
@@ -19,7 +19,7 @@ public class TreeProblems {
                     if (value == max) list.add(key);
                 }
         );
-        Integer[] arr = new Integer[list.size()];
+        int [] arr = new int [list.size()];
         for (int i = 0; i < list.size(); i++) arr[i] = list.get(i);
         return arr;
     }
@@ -153,4 +153,51 @@ public class TreeProblems {
         if (cloneRef != null) return cloneRef;
         return getTargetCopy(original.right, cloned.right, target);
     }
+
+    // Sum of Root To Leaf Binary Numbers
+    public int sumRootToLeaf(TreeNode root) {
+        return sumRootToLeaf(root, 0);
+    }
+
+    int sumRootToLeaf(TreeNode root, int val) {
+        if (root == null) return 0;
+        // Update val
+        val = (val * 2) + (int) root.value;
+        // if current node is leaf, return the current value of val
+        if (root.left == null && root.right == null) return val;
+        return sumRootToLeaf(root.left, val) + sumRootToLeaf(root.right, val);
+    }
+
+    // Evaluate Boolean Binary Tree
+    public boolean evaluateTree(TreeNode root) {
+        if ((int) root.value < 2) return (int) root.value == 1;
+        if ((int) root.value == 2) // OR
+            return evaluateTree(root.left) || evaluateTree(root.right);
+        else // AND
+            return evaluateTree(root.left) && evaluateTree(root.right);
+    }
+
+    // Increasing Order Search Tree
+    public TreeNode increasingBST(TreeNode root) {
+        return increasingBST(root, null);
+    }
+
+    private TreeNode increasingBST(TreeNode root, TreeNode tail) {
+        if (root == null) return tail;
+        TreeNode ans = increasingBST(root.left, root);
+        root.left = null;
+        root.right = increasingBST(root.right, tail);
+        return ans;
+    }
+
+    // Merge Two Binary Trees
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if (root1 == null) return root2;
+        if (root2 == null) return root1;
+        root1.value = (int) root1.value + (int) root2.value;
+        root1.left = mergeTrees(root1.left, root2.left);
+        root1.right = mergeTrees(root1.right, root2.right);
+        return root1;
+    }
+
 }

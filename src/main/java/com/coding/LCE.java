@@ -83,7 +83,7 @@ public class LCE {
 //        Logs.println("3 sum: " + arrayProblems.threeSum(new int[]{-1,0,1,2,-1,-4}));
 //        Logs.println("Missing number: " + arrayProblems.missingNumber(new int[]{1}));
 //        Logs.println("Move zeros: " ); arrayProblems.moveZeroes(new int[]{0,1,0,3,12});
-//        Logs.println("Discount: " ); arrayProblems.finalPrices(new Integer[]{4,7,1,9,4,8,8,9,4});
+//        Logs.println("Discount: " ); arrayProblems.finalPrices(new int[]{4,7,1,9,4,8,8,9,4});
 //        Logs.println("Next greater num: "); arrayProblems.nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 2, 3, 4});
 //        Logs.println("Array partition: " + arrayProblems.arrayPairSum(new int[]{6,2,6,5,1,2}));
 //        Logs.println("Max sum: " + arrayProblems.maximizeSum(new int[]{1,2,3,4,5},3));

@@ -115,5 +115,16 @@ public class NumberProblems {
         return sum;
     }
 
+    // Count of Matches in Tournament
+    public int numberOfMatches(int n) {
+        int matches = 0, temp;
+        while (n != 1) {
+            temp = n / 2;
+            if (n % 2 == 0) matches += temp;
+            else matches += temp + 1;
+            n = temp;
+        }
+        return matches;
+    }
 
 }

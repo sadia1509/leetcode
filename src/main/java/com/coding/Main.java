@@ -5,11 +5,11 @@ import common.*;
 public class Main {
     public static void main(String[] args) {
         Logs.println("Hello world!");
-//        DSA.run();
+        DSA.run();
 //        LCE.run();
 //        LCM.run();
 //        LCH.run();
 //        OOP.run();
-        DP.run();
+//        DP.run();
     }
 }

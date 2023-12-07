@@ -20,4 +20,26 @@ public class TreeProblems {
         if (sum / total == root.val) counter++;
         return new int[]{sum, total};
     }
+
+    // Sum Root to Leaf Numbers
+    public int sumNumbers(TreeNode root) {
+        return sumNumbers(root, 0);
+    }
+
+    int sumNumbers(TreeNode root, int sum) {
+        if (root == null) return 0;
+        sum = (sum * 10) + (int) root.value;
+        if (root.left == null && root.right == null) return sum;
+        return sumNumbers(root.left, sum) + sumNumbers(root.right, sum);
+    }
+
+    // Validate Binary Search Tree
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    private static boolean isValidBST(TreeNode root, long lowerBound, long upperBound) {
+        if (root == null) return true;
+        if ((int) root.value <= lowerBound || (int) root.value >= upperBound) return false;
+        return isValidBST(root.left, lowerBound, (int) root.value) && isValidBST(root.right, (int) root.value, upperBound);
+    }
 }

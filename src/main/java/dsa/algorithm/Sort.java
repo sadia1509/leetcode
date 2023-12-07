@@ -1,86 +1,83 @@
 package dsa.algorithm;
 
 import common.*;
+
 import java.util.Arrays;
 
 public class Sort {
 
     // Bubble sort
-    public void bubbleSort(Integer[] arr) {
+    public void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++)
             for (int j = i + 1; j < arr.length; j++)
                 if (arr[i] > arr[j])
-                    Utils.Integer().swap(arr, i, j);
-        Utils.Integer().printArray(arr);
+                    Utils.Integer().swap(Utils.intToInteger(arr), i, j);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Selection sort
-    public void selectionSort(Integer[] arr) {
+    public void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++)
                 if (arr[j] < arr[minIndex]) minIndex = j;
             if (minIndex != i)
-                Utils.Integer().swap(arr, i, minIndex);
+                Utils.Integer().swap(Utils.intToInteger(arr), i, minIndex);
         }
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Insertion sort
-    public void insertionSort(Integer[] arr) {
+    public void insertionSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int currentValue = arr[i], j = i - 1;
             while (j >= 0 && currentValue < arr[j])
                 arr[j + 1] = arr[j--];
             arr[j + 1] = currentValue;
         }
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Quick sort
-    public void quickSort(Integer[] arr) {
+    public void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
         Utils.Integer().printArray(arr);
     }
 
-    public void quickSort(Integer[] arr, int startingIndex, int endingIndex) {
-        if (startingIndex < endingIndex) {
-            int partitionIndex = partition(arr, startingIndex, endingIndex);
-            quickSort(arr, startingIndex, partitionIndex - 1);
-            quickSort(arr, partitionIndex + 1, endingIndex);
+    public void quickSort(int[] arr, int high, int low) {
+        if (high < low) {
+            int partitionIndex = partition(arr, high, low);
+            quickSort(arr, high, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, low);
         }
     }
 
-    private int partition(Integer[] arr, int startingIndex, int endingIndex) {
-        int pivot = arr[endingIndex],
-                leftPointer = startingIndex,
-                rightPointer = endingIndex - 1;
-
-        while (leftPointer < rightPointer) {
-            while (arr[leftPointer] <= pivot && leftPointer < rightPointer) leftPointer++;
-            while (arr[rightPointer] >= pivot && leftPointer < rightPointer) rightPointer--;
-            if (leftPointer == rightPointer) continue;
-            Utils.Integer().swap(arr, leftPointer, rightPointer);
+    private int partition(int[] arr, int high, int low) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                if (j != i) Utils.Integer().swap(Utils.intToInteger(arr), i, j);
+            }
         }
-
-        if (arr[leftPointer] > pivot) Utils.Integer().swap(arr, leftPointer, endingIndex);
-        else leftPointer = endingIndex;
-
-        return leftPointer;
+        // Swap array[i+1] and array[high] (to put the pivot in its correct position)
+        Utils.Integer().swap(Utils.intToInteger(arr), i + 1, high);
+        return i + 1;
     }
 
     // Merge sort
-    public static void mergeSort(Integer[] arr) {
+    public static void mergeSort(int[] arr) {
         mergeSort(arr, arr.length);
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
-    private static void mergeSort(Integer[] arr, int arrLength) {
+    private static void mergeSort(int[] arr, int arrLength) {
         if (arrLength < 2) return;
         int midIndex = arrLength / 2;
 
-        Integer[] leftArray = new Integer[midIndex];
-        Integer[] rightArray = new Integer[arrLength - midIndex];
+        int[] leftArray = new int[midIndex];
+        int[] rightArray = new int[arrLength - midIndex];
         for (int i = 0; i < midIndex; i++) leftArray[i] = arr[i];
         for (int i = midIndex; i < arr.length; i++) rightArray[i - midIndex] = arr[i];
 
@@ -89,7 +86,7 @@ public class Sort {
         merge(arr, leftArray, rightArray);
     }
 
-    private static void merge(Integer[] arr, Integer[] leftArray, Integer[] rightArray) {
+    private static void merge(int[] arr, int[] leftArray, int[] rightArray) {
         int i = 0, j = 0, k = 0;
         while (i < leftArray.length && j < rightArray.length) {
             if (leftArray[i] <= rightArray[j]) arr[k++] = leftArray[i++];
@@ -100,10 +97,10 @@ public class Sort {
     }
 
     // Sort an array in wave form
-    public void waveSort(Integer[] arr) {
+    public void waveSort(int[] arr) {
         Arrays.sort(arr);
         for (int i = 0; i < arr.length - 1; i += 2)
-            Utils.Integer().swap(arr, i, i + 1);
-        Utils.Integer().printArray(arr);
+            Utils.Integer().swap(Utils.intToInteger(arr), i, i + 1);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 }

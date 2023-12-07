@@ -26,10 +26,10 @@ public class ArrayProblems {
 
     // Counting Bits
     public void countBits(int n) {
-        Integer[] arr = new Integer[n + 1];
+        int[] arr = new int[n + 1];
         for (int i = 0; i <= n; i++)
             arr[i] = Integer.toBinaryString(i).replaceAll("0", "").length();
-        Utils.Integer().printArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
     }
 
     // Reverse Vowels of a String
@@ -137,7 +137,7 @@ public class ArrayProblems {
     }
 
     // Move Zeroes
-    public void moveZeroes(Integer[] nums) { //0,1,0,3,12
+    public void moveZeroes(int [] nums) { //0,1,0,3,12
         int nonZeroIndex = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) continue;
@@ -145,11 +145,11 @@ public class ArrayProblems {
             if (i != nonZeroIndex) nums[i] = 0;
             nonZeroIndex++;
         }
-        Utils.Integer().printArray(nums);
+        Utils.Integer().printArray(Utils.intToInteger(nums));
     }
 
     // Find Target Indices After Sorting Array
-    public List<Integer> targetIndices(Integer[] nums, int target) {
+    public List<Integer> targetIndices(int[] nums, int target) {
         List<Integer> list = new LinkedList<>();
         Sort.mergeSort(nums);
         for (int i = 0; i < nums.length; i++)
@@ -204,7 +204,7 @@ public class ArrayProblems {
     }
 
     // Final Prices With a Special Discount in a Shop
-    public Integer[] finalPrices(Integer[] prices) {
+    public int[] finalPrices(int[] prices) {
         int len = prices.length;
         for (int i = 0; i < len - 1; i++) {
             int discount = 0;
@@ -216,7 +216,7 @@ public class ArrayProblems {
             }
             prices[i] -= discount;
         }
-        Utils.Integer().printArray(prices);
+        Utils.Integer().printArray(Utils.intToInteger(prices));
         return prices;
     }
 
