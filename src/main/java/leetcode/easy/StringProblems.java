@@ -271,4 +271,36 @@ public class StringProblems {
         s += s;
         return s.contains(goal);
     }
+
+    // Fizz Buzz
+    public List<String> fizzBuzz(int n) {
+        List<String> list = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            if (i % 3 == 0 && i % 5 == 0) list.add("FizzBuzz");
+            else if (i % 3 == 0) list.add("Fizz");
+            else if (i % 5 == 0) list.add("Buzz");
+            else list.add(String.valueOf(i));
+        }
+        return list;
+    }
+
+    // Convert a Number to Hexadecimal
+    public String toHex(int num) {
+        return Integer.toHexString(num);
+    }
+
+    // Word Pattern
+    public boolean wordPattern(String pattern, String s) {
+        Set<Character> patternSet = new LinkedHashSet<>();
+        for (char i : pattern.toCharArray()) patternSet.add(i);
+        Set<String> sSet = new LinkedHashSet<>(Arrays.asList(s.split(" ")));
+        if (patternSet.size() != sSet.size() || sSet.isEmpty() || patternSet.isEmpty()) return false;
+        Map<String, String> hashMap = new HashMap<>();
+        Iterator<String> sIterator = sSet.iterator();
+        Iterator<Character> patternIterator = patternSet.iterator();
+        while (sIterator.hasNext()) hashMap.put(sIterator.next(), patternIterator.next().toString());
+        StringBuilder sb = new StringBuilder();
+        for (String word : s.split(" ")) sb.append(hashMap.get(word));
+        return pattern.contentEquals(sb);
+    }
 }

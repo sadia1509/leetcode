@@ -127,4 +127,31 @@ public class NumberProblems {
         return matches;
     }
 
+    // First Bad Version
+    public int firstBadVersion(int n) {
+        int left = 1, right = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) right = mid;
+            else left = mid + 1;
+        }
+        return left;
+    }
+
+    private boolean isBadVersion(int version) {
+        int bad = 1702766719;
+        return version == bad;
+    }
+
+    // Number of 1 Bits
+    public int hammingWeight(int n) {
+        int result = 0;
+        while (n != 0) {
+            result += n & 1;
+            n >>>= 1; // Unsigned right shift
+//            n = n >> 1; // Signed right shift
+        }
+        return result;
+    }
+
 }

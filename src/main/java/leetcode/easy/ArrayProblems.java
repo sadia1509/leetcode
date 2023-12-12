@@ -137,7 +137,7 @@ public class ArrayProblems {
     }
 
     // Move Zeroes
-    public void moveZeroes(int [] nums) { //0,1,0,3,12
+    public void moveZeroes(int[] nums) { //0,1,0,3,12
         int nonZeroIndex = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) continue;
@@ -326,28 +326,28 @@ public class ArrayProblems {
 
     // Sum of Values at Indices With K Set Bits
     public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
-        int sum=0;
-        for(int i=0; i<nums.size(); i++)
-            if(Integer.bitCount(i) == k) sum += nums.get(i);
+        int sum = 0;
+        for (int i = 0; i < nums.size(); i++)
+            if (Integer.bitCount(i) == k) sum += nums.get(i);
         return sum;
     }
 
     // How Many Numbers Are Smaller Than the Current Number
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int [] arr = Arrays.copyOf(nums, nums.length);
+        int[] arr = Arrays.copyOf(nums, nums.length);
         Arrays.sort(arr);
         Map<Integer, Integer> map = new HashMap<>();
         map.put(arr[0], 0);
         int tempCount = 0;
-        for(int i=1; i<arr.length; i++){
-            if(arr[i-1] == arr[i]) {
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i - 1] == arr[i]) {
                 tempCount++;
                 continue;
             }
-            map.put(arr[i], map.get(arr[i-1]) + 1 + tempCount);
+            map.put(arr[i], map.get(arr[i - 1]) + 1 + tempCount);
             tempCount = 0;
         }
-        for (int i = 0; i<nums.length; i++)
+        for (int i = 0; i < nums.length; i++)
             nums[i] = map.get(nums[i]);
         return nums;
     }
@@ -355,8 +355,8 @@ public class ArrayProblems {
     // Running Sum of 1d Array
     public int[] runningSum(int[] nums) {
         int prev = 0;
-        for(int i=0;  i<nums.length; i++){
-            nums[i] = nums[i]+prev;
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] + prev;
             prev = nums[i];
         }
         return nums;
@@ -366,9 +366,9 @@ public class ArrayProblems {
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
         int currentMax = Integer.MIN_VALUE;
         List<Boolean> booleanList = new LinkedList<>();
-        for(int i : candies) currentMax = Math.max(currentMax, i);
-        for(int i : candies) {
-            if (extraCandies+i >= currentMax) booleanList.add(true);
+        for (int i : candies) currentMax = Math.max(currentMax, i);
+        for (int i : candies) {
+            if (extraCandies + i >= currentMax) booleanList.add(true);
             else booleanList.add(false);
         }
         return booleanList;
@@ -377,9 +377,9 @@ public class ArrayProblems {
     // Richest Customer Wealth
     public int maximumWealth(int[][] accounts) {
         int max = Integer.MIN_VALUE;
-        for(int [] acc : accounts){
+        for (int[] acc : accounts) {
             int count = 0;
-            for (int i: acc) count += i;
+            for (int i : acc) count += i;
             max = Math.max(max, count);
         }
         return max;
@@ -388,7 +388,7 @@ public class ArrayProblems {
     // Number of Employees Who Met the Target
     public int numberOfEmployeesWhoMetTarget(int[] hours, int target) {
         int counter = 0;
-        for(int i : hours)
+        for (int i : hours)
             if (i >= target) counter++;
         return counter;
     }
@@ -396,10 +396,10 @@ public class ArrayProblems {
     // Shuffle the Array
     public int[] shuffle(int[] nums, int n) {
         int len = nums.length;
-        int [] arr = new int[len];
-        int i = 0, j=n;
-        while (i<len){
-            arr[i++] = nums[j-n];
+        int[] arr = new int[len];
+        int i = 0, j = n;
+        while (i < len) {
+            arr[i++] = nums[j - n];
             arr[i++] = nums[j++];
         }
         return arr;
@@ -408,8 +408,8 @@ public class ArrayProblems {
     // Number of Good Pairs
     public int numIdenticalPairs(int[] nums) {
         int count = 0, len = nums.length;
-        for(int i=0; i<len-1; i++)
-            for(int j = i+1; j<len; j++)
+        for (int i = 0; i < len - 1; i++)
+            for (int j = i + 1; j < len; j++)
                 if (nums[i] == nums[j]) count++;
         return count;
     }
@@ -417,17 +417,33 @@ public class ArrayProblems {
     // Concatenation of Array
     public int[] getConcatenation(int[] nums) {
         int len = nums.length;
-        int [] arr = new int[len + len];
-        for(int i=0; i < len; i++)
-            arr[i] = arr[i+len] = nums[i];
+        int[] arr = new int[len + len];
+        for (int i = 0; i < len; i++)
+            arr[i] = arr[i + len] = nums[i];
         return arr;
     }
 
     // Build Array from Permutation
     public int[] buildArray(int[] nums) {
-        int [] arr = new int[nums.length];
-        for(int i = 0; i<arr.length; i++)
+        int[] arr = new int[nums.length];
+        for (int i = 0; i < arr.length; i++)
             arr[i] = nums[nums[i]];
+        return arr;
+    }
+
+    // Intersection of Two Arrays II
+    public int[] intersect(int[] nums1, int[] nums2) {
+        List<Integer> arrList = new LinkedList<>();
+        int[] count = new int[1001];
+        for (int i : nums1) count[i]++;
+        for (int i : nums2) {
+            if (count[i] > 0) {
+                arrList.add(i);
+                count[i]--;
+            }
+        }
+        int[] arr = new int[arrList.size()];
+        for (int i = 0; i < arr.length; i++) arr[i] = arrList.get(i);
         return arr;
     }
 }
