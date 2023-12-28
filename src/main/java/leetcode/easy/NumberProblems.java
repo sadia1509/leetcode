@@ -154,4 +154,35 @@ public class NumberProblems {
         return result;
     }
 
+    // Check if The Number is Fascinating
+    public boolean isFascinating(int n) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(n);
+        for (int i = 2; i < 4; i++) sb.append(n * i);
+        int[] arr = new int[10];
+        for (char i : sb.toString().toCharArray()) arr[i - '0']++;
+        for (int i = 1; i < arr.length; i++) if (arr[i] != 1) return false;
+        return true;
+    }
+
+    // Find the Maximum Achievable Number
+    public int theMaximumAchievableX(int num, int t) {
+        return num + t + t;
+    }
+
+    // Divisible and Non-divisible Sums Difference
+    public int differenceOfSums(int n, int m) {
+        int num1 = 0, num2 = 0;
+        for (int i = 1; i <= n; i++) {
+            if (i % m == 0) num2 += i;
+            else num1 += i;
+        }
+        return num1 - num2;
+    }
+
+    // Convert the Temperature
+    public double[] convertTemperature(double celsius) {
+        return new double[]{celsius + 273.15, celsius * 1.80 + 32.00};
+    }
+
 }

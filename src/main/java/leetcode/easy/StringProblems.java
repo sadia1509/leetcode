@@ -303,4 +303,70 @@ public class StringProblems {
         for (String word : s.split(" ")) sb.append(hashMap.get(word));
         return pattern.contentEquals(sb);
     }
+
+    // Maximum Score After Splitting a String
+    public int maxScore(String s) {
+        int max = 0, len = s.length();
+        for (int i = 1; i < len; i++) {
+            int total = count(s.substring(0, i), '0') + count(s.substring(i, len), '1');
+            max = Math.max(total, max);
+        }
+        return max;
+    }
+
+    private int count(String num, char key) {
+        int count = 0;
+        for (char n : num.toCharArray()) if (n == key) count++;
+        return count;
+    }
+
+    // Rings and Rods
+    public int countPoints(String rings) {
+        Map<Integer, Set<Character>> map = new HashMap<>();
+        for (int i = 1; i < rings.length(); i += 2) {
+            int rod = rings.charAt(i) - '0';
+            if (map.containsKey(rod)) {
+                Set<Character> set = map.get(rod);
+                set.add(rings.charAt(i - 1));
+                map.put(rod, set);
+            } else {
+                Set<Character> set = new HashSet<>();
+                set.add(rings.charAt(i - 1));
+                map.put(rod, set);
+            }
+        }
+        int count = 0;
+        for (Set<Character> set : map.values())
+            if (set.size() == 3) count++;
+        return count;
+    }
+
+    // Divide a String Into Groups of Size k
+    public String[] divideString(String s, int k, char fill) {
+        int len = s.length();
+        String[] arr = new String[len % k != 0 ? (len / k) + 1 : (len / k)];
+        int temp = 0, i = 0;
+        for (; i < len / k; i++) {
+            arr[i] = s.substring(temp, temp + k);
+            temp += k;
+        }
+        if (len % k != 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(s.substring(temp));
+            for (int j = 0; j < k - (len % k); j++)
+                sb.append(fill);
+            arr[i] = sb.toString();
+        }
+        return arr;
+    }
+
+    // Find Words Containing Character
+    public List<Integer> findWordsContaining(String[] words, char x) {
+        List<Integer> indexList = new LinkedList<>();
+        for (int i = 0; i < words.length; i++)
+            if (words[i].indexOf(x) != -1)
+                indexList.add(i);
+        return indexList;
+    }
+
 }

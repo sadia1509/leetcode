@@ -446,4 +446,216 @@ public class ArrayProblems {
         for (int i = 0; i < arr.length; i++) arr[i] = arrList.get(i);
         return arr;
     }
+
+    // Find Common Elements Between Two Arrays
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int first = 0, last = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            first = findCommon(nums2, nums1[i]);
+            if (first != 0) break;
+        }
+        for (int i = nums2.length - 1; i >= 0; i--) {
+            last = findCommon(nums1, nums2[i]);
+            if (last != 0) break;
+        }
+        return new int[]{first, last};
+    }
+
+    // Find Common Elements Between Two Arrays
+    public int[] findIntersectionValuesAnother(int[] nums1, int[] nums2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        for (int num : nums1) set1.add(num);
+        for (int num : nums2) set2.add(num);
+        int count1 = 0;
+        for (int num : nums1) if (set2.contains(num)) count1++;
+        int count2 = 0;
+        for (int num : nums2) if (set1.contains(num)) count2++;
+        return new int[]{count1, count2};
+    }
+
+    private int findCommon(int[] nums, int i) {
+        for (int j = 0; j < nums.length; j++) if (i == nums[j]) return i;
+        return 0;
+    }
+
+    // Count Tested Devices After Test Operations
+    public int countTestedDevices(int[] batteryPercentages) {
+        int count = 0;
+        for (int i = 0; i < batteryPercentages.length; i++) {
+            if (batteryPercentages[i] > 0) {
+                test(batteryPercentages, i);
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void test(int[] batteryPercentages, int start) {
+        for (int i = start; i < batteryPercentages.length; i++)
+            if (batteryPercentages[i] > 0) batteryPercentages[i]--;
+    }
+
+    // Find Missing and Repeated Values
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int n = grid.length, repeat = -1, missing = -1;
+        int[] arr = new int[n * n + 1];
+        for (int[] row : grid) for (int i : row) arr[i]++;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == 0 && missing == -1) missing = i;
+            else if (arr[i] == 2 && repeat == -1) repeat = i;
+        }
+        return new int[]{repeat, missing};
+    }
+
+    // Largest Positive Integer That Exists With Its Negative
+    public int findMaxK(int[] nums) {
+        Arrays.sort(nums);
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            if (nums[high] + nums[low] == 0) return nums[high];
+            else if (Math.abs(nums[low]) < nums[high]) high--;
+            else low++;
+        }
+        return -1;
+    }
+
+    // Divide Array Into Equal Pairs
+    public boolean divideArray(int[] nums) {
+        if (nums.length % 2 != 0) return false;
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length; i += 2)
+            if (nums[i - 1] != nums[i]) return false;
+        return true;
+    }
+
+    //  Find the Difference of Two Arrays
+    public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        for (int i : nums1) set1.add(i);
+        for (int i : nums2) set2.add(i);
+        List<Integer> list1 = new ArrayList<>();
+        for (int uniq1 : set1) if (!set2.contains(uniq1)) list1.add(uniq1);
+        List<Integer> list2 = new ArrayList<>();
+        for (int uniq2 : set2) if (!set1.contains(uniq2)) list2.add(uniq2);
+        return Arrays.asList(list1, list2);
+    }
+
+    // Find the Middle Index in Array
+    public int findMiddleIndex(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int leftSum = sum(nums, 0, i);
+            int rightSum = sum(nums, i + 1, nums.length);
+            if (leftSum == rightSum) return i;
+        }
+        return -1;
+    }
+
+    private int sum(int[] nums, int start, int end) {
+        int count = 0;
+        for (int i = start; i < end; i++) count += nums[i];
+        return count;
+    }
+
+    // Minimum Difference Between Highest and Lowest of K Scores
+    public int minimumDifference(int[] nums, int k) {
+        if (k == 1) return 0;
+        Arrays.sort(nums);
+        int min = Integer.MAX_VALUE;
+        int i = 0;
+        int j = k - 1;
+        while (j < nums.length)
+            min = Math.min(min, nums[j++] - nums[i++]);
+        return min;
+    }
+
+    // Matrix Similarity After Cyclic Shifts
+    public boolean areSimilar(int[][] mat, int k) {
+        final int n = mat[0].length;
+        for (int[] row : mat)
+            for (int j = 0; j < n; j++)
+                if (row[j] != row[(j + k) % n]) return false;
+        return true;
+    }
+
+    // Minimum Number Game
+    public int[] numberGame(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i += 2) {
+            int temp = nums[i];
+            nums[i] = nums[i + 1];
+            nums[i + 1] = temp;
+        }
+        return nums;
+    }
+
+    // Sum of Squares of Special Elements
+    public int sumOfSquares(int[] nums) {
+        int result = 0;
+        return result;
+    }
+
+    // Find the Peaks
+    public List<Integer> findPeaks(int[] mountain) {
+        List<Integer> list = new LinkedList<>();
+        for (int i = 1; i < mountain.length - 1; i++) {
+            if (mountain[i - 1] < mountain[i] && mountain[i] > mountain[i + 1])
+                list.add(i);
+        }
+        return list;
+    }
+
+    // Special Positions in a Binary Matrix
+    public int numSpecial(int[][] mat) {
+        int count = 0;
+        for (int i = 0; i < mat.length; i++)
+            for (int j = 0; j < mat[i].length; j++)
+                if (mat[i][j] == 1)
+                    if (allZerosInRow(mat, i, j, mat[i].length)) // Check if all other elements in the row are 0
+                        if (allZerosInColumn(mat, i, j, mat.length))
+                            count++; // Check if all other elements in the column are 0
+        return count;
+    }
+
+    private boolean allZerosInRow(int[][] mat, int row, int col, int len) {
+        for (int c = 0; c < len; c++)
+            if (c != col && mat[row][c] != 0)
+                return false;
+        return true;
+    }
+
+    private boolean allZerosInColumn(int[][] mat, int row, int col, int len) {
+        for (int r = 0; r < len; r++)
+            if (r != row && mat[r][col] != 0)
+                return false;
+        return true;
+    }
+
+    // Difference Between Ones and Zeros in Row and Column
+    public int[][] onesMinusZeros(int[][] grid) {
+        int len = grid[0].length, rowLen = grid.length;
+        int[] onesRow = new int[rowLen];
+        int[] onesCol = new int[len];
+        int[] zerosRow = new int[rowLen];
+        int[] zerosCol = new int[len];
+        for (int i = 0; i < rowLen; i++) {
+            for (int j = 0; j < len; j++) {
+                if (grid[i][j] == 1) {
+                    onesRow[i]++;
+                    onesCol[j]++;
+                } else {
+                    zerosRow[i]++;
+                    zerosCol[j]++;
+                }
+            }
+        }
+        int[][] diff = new int[rowLen][len];
+        for (int i = 0; i < rowLen; i++) {
+            for (int j = 0; j < len; j++) {
+                diff[i][j] = onesRow[i] + onesCol[j] - zerosRow[i] - zerosCol[j];
+            }
+        }
+        return diff;
+    }
 }
