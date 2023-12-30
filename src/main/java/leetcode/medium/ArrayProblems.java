@@ -183,4 +183,24 @@ public class ArrayProblems {
         return revNum;
     }
 
+    // Widest Vertical Area Between Two Points Containing No Points
+    public int maxWidthOfVerticalArea(int[][] points) {
+        int[] arr = new int[points.length];
+        int i = 0, max = 0;
+        for (int[] row : points) arr[i++] = row[0];
+        Arrays.sort(arr);
+        for (int j = arr.length - 1; j >= 1; j--)
+            max = Math.max(max, arr[j] - arr[j - 1]);
+        return max;
+    }
+
+    // Find The Original Array of Prefix Xor
+    public int[] findArray(int[] pref) {
+        int[] arr = new int[pref.length];
+        arr[0] = pref[0];
+        for (int i = 1; i < pref.length; i++)
+            arr[i] = pref[i - 1] ^ pref[i];
+        return arr;
+    }
+
 }

@@ -1,5 +1,7 @@
 package leetcode.easy;
 
+import common.*;
+
 import java.util.*;
 
 public class NumberProblems {
@@ -183,6 +185,20 @@ public class NumberProblems {
     // Convert the Temperature
     public double[] convertTemperature(double celsius) {
         return new double[]{celsius + 273.15, celsius * 1.80 + 32.00};
+    }
+
+    // Number of Common Factors
+    public int commonFactors(int a, int b) {
+        int min = Math.min(a, b);
+        int count = 0;
+        for (int i = 1; i <= min; i++)
+            if (a % i == 0 && b % i == 0) count++;
+        return count;
+    }
+
+    // A Number After a Double Reversal
+    public boolean isSameAfterReversals(int num) {
+        return num == Utils.reverseNumber(Utils.reverseNumber(num));
     }
 
 }

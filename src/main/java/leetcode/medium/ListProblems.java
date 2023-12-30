@@ -56,4 +56,25 @@ public class ListProblems {
 
         return head;
     }
+
+    // Insert Greatest Common Divisors in Linked List
+    public ListNode insertGreatestCommonDivisors(ListNode head) {
+        int i = 1;
+        ListNode temp = null;
+        for (ListNode n = head; n != null; n = n.next, i++) {
+            if (i % 2 == 0) {
+                ListNode node = new ListNode(findGCD((int) temp.data, (int) n.data));
+                temp.next = node;
+                node.next = n;
+                n = temp.next;
+            } else temp = n;
+        }
+        return head;
+    }
+
+    private int findGCD(int a, int b) {
+        if (b == 0) return a;
+        return findGCD(b, a % b);
+    }
+
 }

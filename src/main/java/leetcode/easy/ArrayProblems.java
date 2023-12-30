@@ -658,4 +658,14 @@ public class ArrayProblems {
         }
         return diff;
     }
+
+    // Count Number of Distinct Integers After Reverse Operations
+    public int countDistinctIntegers(int[] nums) {
+        Set<Integer> numberSet = new HashSet<>();
+        for (int i : nums){
+            numberSet.add(i);
+            numberSet.add(Utils.reverseNumber(i));
+        }
+        return numberSet.size();
+    }
 }

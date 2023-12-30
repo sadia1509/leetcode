@@ -83,7 +83,7 @@ public class StringProblems {
         int i = 0, sign = 1, num = 0, len = s.length();
         while (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
             sign = (s.charAt(i) == '-') ? -1 : 1;
-            if(i > 0) return num;
+            if (i > 0) return num;
             i++;
         }
         while (i < len && Character.isDigit(s.charAt(i))) {
@@ -105,7 +105,7 @@ public class StringProblems {
         Map<Character, Integer> tempVowels = new TreeMap<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(vowels.contains(c)) tempVowels.compute(c, (key, oldValue) -> (oldValue == null) ? 1 : oldValue + 1);
+            if (vowels.contains(c)) tempVowels.compute(c, (key, oldValue) -> (oldValue == null) ? 1 : oldValue + 1);
         }
         List<Character> tempV = new LinkedList<>(tempVowels.keySet());
         if (tempV.isEmpty()) return s;
@@ -114,14 +114,13 @@ public class StringProblems {
         for (int i = 0, k = 0; i < s.length(); i++) {
             if (vowels.contains(s.charAt(i))) {
                 int count = tempVowels.get(tempChar);
-                if(count == 0) {
+                if (count == 0) {
                     tempChar = tempV.get(++k);
                     count = tempVowels.get(tempChar);
                 }
                 sb.append(tempChar);
-                tempVowels.put(tempChar, count-1);
-            }
-            else sb.append(s.charAt(i));
+                tempVowels.put(tempChar, count - 1);
+            } else sb.append(s.charAt(i));
         }
         return sb.toString();
     }
@@ -141,5 +140,20 @@ public class StringProblems {
         int numLength = sb.length();
         while (numLength++ < n) sb.insert(0, '0');
         return sb.toString();
+    }
+
+    // Optimal Partition of String
+    public int partitionString(String s) {
+        int[] lastSeen = new int[26];
+        Arrays.fill(lastSeen, -1);
+        int current = 0, count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (lastSeen[s.charAt(i) - 'a'] >= current) {
+                count++;
+                current = i;
+            }
+            lastSeen[s.charAt(i) - 'a'] = i;
+        }
+        return ++count;
     }
 }

@@ -30,4 +30,13 @@ public class Utils {
                 .toArray(Integer[][]::new);
         return integerArray;
     }
+
+    public static int reverseNumber(int num) {
+        int reverseNum = 0;
+        while (num != 0) {
+            reverseNum = reverseNum * 10 + (num % 10);
+            num /= 10;
+        }
+        return reverseNum;
+    }
 }

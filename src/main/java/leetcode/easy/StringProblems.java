@@ -369,4 +369,23 @@ public class StringProblems {
         return indexList;
     }
 
+    // Partitioning Into Minimum Number Of Deci-Binary Numbers
+    public int minPartitions(String n) {
+        int max = Integer.MIN_VALUE;
+        for (char c : n.toCharArray())
+            max = Math.max(max, c - '0');
+        return max;
+    }
+
+    // Redistribute Characters to Make All Strings Equal
+    public boolean makeEqual(String[] words) {
+        int[] arr = new int[26];
+        for (String word : words)
+            for (char ch : word.toCharArray())
+                arr[ch - 'a']++;
+        for (int i : arr)
+            if (i % words.length != 0) return false;
+        return true;
+    }
+
 }

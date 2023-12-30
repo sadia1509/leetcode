@@ -31,6 +31,8 @@ public class LCE {
 //        Logs.println("Split in equal: " + stringProblems.balancedStringSplit("RLRRRLLRLL"));
 //        Logs.println("DI string match: " + stringProblems.diStringMatch("IDID"));
 //        Logs.println("Rotate string: " + stringProblems.rotateString("clrwmpkwru", "wmpkwruclr"));
+//        Logs.println("Redistribute Characters: " + stringProblems.makeEqual(new String[]{"abc","aabc","bc"}));
+
 
         /* Number */
         NumberProblems numberProblems = new NumberProblems();
@@ -41,6 +43,8 @@ public class LCE {
 //        Logs.println("Perfect number: " + numberProblems.checkPerfectNumber(28));
 //        Logs.println("Min sum of 4 digits: " + numberProblems.minimumSum(2932));
 //        Logs.println("Max 69: " + numberProblems.maximum69Number(6995));
+//        Logs.println("Common factors: " + numberProblems.commonFactors(12, 6));
+//        Logs.println("Double reversal: " + numberProblems.isSameAfterReversals(1800));
 
 
         /* Recursion */
@@ -88,5 +92,6 @@ public class LCE {
 //        Logs.println("Array partition: " + arrayProblems.arrayPairSum(new int[]{6,2,6,5,1,2}));
 //        Logs.println("Max sum: " + arrayProblems.maximizeSum(new int[]{1,2,3,4,5},3));
 //        Logs.println("Min operation for increasing: " + arrayProblems.minOperations(new int[]{1,5,2,4,1}));
+//        Logs.println("Count distinct numbers: " + arrayProblems.countDistinctIntegers(new int[]{1,13,10,12,31}));
     }
 }
