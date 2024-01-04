@@ -2,10 +2,16 @@ package common;
 
 public class ListNode {
     public Object data;
+    public int val;
     public ListNode next, prev;
 
     public ListNode(Object data) {
         this.data = data;
+    }
+
+    public ListNode(int val) {
+        this.val = val;
+        this.data = val;
     }
 
     public ListNode(Object data, ListNode next) {

@@ -147,7 +147,7 @@ public class TreeProblems {
     // Find a Corresponding Node of a Binary Tree in a Clone of That Tree
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
         if (original == null || cloned == null) return null;
-        if (cloned.value == target.value) return cloned;
+        if (cloned.val == target.val) return cloned;
         TreeNode cloneRef;
         cloneRef = getTargetCopy(original.left, cloned.left, target);
         if (cloneRef != null) return cloneRef;
@@ -162,7 +162,7 @@ public class TreeProblems {
     int sumRootToLeaf(TreeNode root, int val) {
         if (root == null) return 0;
         // Update val
-        val = (val * 2) + (int) root.value;
+        val = (val * 2) + root.val;
         // if current node is leaf, return the current value of val
         if (root.left == null && root.right == null) return val;
         return sumRootToLeaf(root.left, val) + sumRootToLeaf(root.right, val);
@@ -170,8 +170,8 @@ public class TreeProblems {
 
     // Evaluate Boolean Binary Tree
     public boolean evaluateTree(TreeNode root) {
-        if ((int) root.value < 2) return (int) root.value == 1;
-        if ((int) root.value == 2) // OR
+        if (root.val < 2) return root.val == 1;
+        if (root.val == 2) // OR
             return evaluateTree(root.left) || evaluateTree(root.right);
         else // AND
             return evaluateTree(root.left) && evaluateTree(root.right);
@@ -194,7 +194,7 @@ public class TreeProblems {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
         if (root1 == null) return root2;
         if (root2 == null) return root1;
-        root1.value = (int) root1.value + (int) root2.value;
+        root1.val = root1.val + root2.val;
         root1.left = mergeTrees(root1.left, root2.left);
         root1.right = mergeTrees(root1.right, root2.right);
         return root1;
@@ -203,7 +203,7 @@ public class TreeProblems {
     // Search in a Binary Search Tree
     public TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;
-        if ((int) root.value == val) return root;
+        if (root.val == val) return root;
         TreeNode temp = searchBST(root.left, val);
         if (temp != null) return temp;
         return searchBST(root.right, val);

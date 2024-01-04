@@ -195,7 +195,7 @@ public class LinkedList {
         return count;
     }
 
-    //Check if a linked list is Circular Linked List
+    // Check if a linked list is Circular Linked List
     public boolean isCircular(ListNode head) {
         ListNode m = head.next;
         while (m != head && m != null) m = m.next;

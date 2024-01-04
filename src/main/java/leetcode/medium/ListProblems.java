@@ -7,7 +7,7 @@ public class ListProblems {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) return null;
         ListNode head, tail, n = l1, m = l2;
-        int temp = (int) n.data + (int) m.data;
+        int temp = n.val + m.val;
         int additional = temp / 10;
         head = new ListNode(temp % 10);
         tail = head;
@@ -20,7 +20,7 @@ public class ListProblems {
                 l2Smaller = true;
                 break;
             }
-            temp = (int) n.data + (int) m.data + additional;
+            temp = n.val + m.val + additional;
             ListNode node = new ListNode(temp % 10);
             additional = temp / 10;
             tail.next = node;
@@ -31,7 +31,7 @@ public class ListProblems {
 
         if (l2Smaller) {
             while (n != null) {
-                temp = (int) n.data + additional;
+                temp = n.val + additional;
                 ListNode node = new ListNode(temp % 10);
                 additional = temp / 10;
                 tail.next = node;
@@ -40,7 +40,7 @@ public class ListProblems {
             }
         } else {
             while (m != null) {
-                temp = (int) m.data + additional;
+                temp = m.val + additional;
                 ListNode node = new ListNode(temp % 10);
                 additional = temp / 10;
                 tail.next = node;
@@ -63,7 +63,7 @@ public class ListProblems {
         ListNode temp = null;
         for (ListNode n = head; n != null; n = n.next, i++) {
             if (i % 2 == 0) {
-                ListNode node = new ListNode(findGCD((int) temp.data, (int) n.data));
+                ListNode node = new ListNode(findGCD(temp.val, n.val));
                 temp.next = node;
                 node.next = n;
                 n = temp.next;
