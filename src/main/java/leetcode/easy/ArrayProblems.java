@@ -662,10 +662,85 @@ public class ArrayProblems {
     // Count Number of Distinct Integers After Reverse Operations
     public int countDistinctIntegers(int[] nums) {
         Set<Integer> numberSet = new HashSet<>();
-        for (int i : nums){
+        for (int i : nums) {
             numberSet.add(i);
             numberSet.add(Utils.reverseNumber(i));
         }
         return numberSet.size();
+    }
+
+    // Sort Integers by The Number of 1 Bits
+    public int[] sortByBits(int[] arr) {
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        for (int i : arr) {
+            int bits = Integer.bitCount(i);
+            List<Integer> list = map.getOrDefault(bits, new ArrayList<>());
+            list.add(i);
+            map.put(bits, list);
+        }
+        int i = 0;
+        for (List<Integer> list : map.values()) {
+            Collections.sort(list);
+            for (int elem : list) arr[i++] = elem;
+        }
+        return arr;
+    }
+
+    // Separate the Digits in an Array
+    public int[] separateDigits(int[] nums) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int num : nums) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(num);
+            for (char ch : sb.toString().toCharArray())
+                queue.offer(ch - '0');
+        }
+        int[] arr = new int[queue.size()];
+        int i = 0;
+        while (!queue.isEmpty())
+            arr[i++] = queue.poll();
+        return arr;
+    }
+
+    // Cells with Odd Values in a Matrix
+    public int oddCells(int m, int n, int[][] indices) {
+        int[][] arr = new int[m][n];
+        for (int[] row : arr) Arrays.fill(row, 0);
+        for (int[] row : indices) {
+            for (int i = 0; i < n; i++) arr[row[0]][i]++;
+            for (int i = 0; i < m; i++) arr[i][row[1]]++;
+        }
+        int oddCounter = 0;
+        for (int[] row : arr)
+            for (int i : row)
+                if (i % 2 != 0) oddCounter++;
+        return oddCounter;
+    }
+
+    // Number Of Rectangles That Can Form The Largest Square
+    public int countGoodRectangles(int[][] rectangles) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int[] row : rectangles) {
+            int min = Math.min(row[0], row[1]);
+            map.put(min, map.getOrDefault(min, 0) + 1);
+        }
+        int max = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+            max = Math.max(entry.getKey(), max);
+        return map.get(max);
+    }
+
+    // Assign Cookies
+    public int findContentChildren(int[] g, int[] s) {
+        int contentChildren = 0;
+        Arrays.sort(g);
+        Arrays.sort(s);
+        for (int i = 0, j = 0; i < s.length && j < g.length; i++) {
+            if (s[i] >= g[j]) {
+                contentChildren++;
+                j++;
+            }
+        }
+        return contentChildren;
     }
 }

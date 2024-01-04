@@ -201,4 +201,47 @@ public class NumberProblems {
         return num == Utils.reverseNumber(Utils.reverseNumber(num));
     }
 
+    // Number of Steps to Reduce a Number to Zero
+    public int numberOfSteps(int num) {
+        int steps = 0;
+        while (num != 0) {
+            if (num % 2 == 0) num /= 2;
+            else num--;
+            steps++;
+        }
+        return steps;
+    }
+
+    // Calculate Money in Leetcode Bank
+    public int totalMoney(int n) {
+        int increment = 0, number = 1, total = 0;
+        for (int i = 1; i <= n; i++) {
+            total += increment + number++;
+            if (i % 7 == 0) {
+                increment++;
+                number = 1;
+            }
+        }
+        return total;
+    }
+
+    // Self Dividing Numbers
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> list = new LinkedList<>();
+        for (int i = left; i <= right; i++)
+            getNumbers(list, i);
+        return list;
+    }
+
+    private void getNumbers(List<Integer> list, int i) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(i);
+        for (char ch : sb.toString().toCharArray()) {
+            int num = ch - '0';
+            if (num == 0 || i % num != 0) return;
+        }
+        list.add(i);
+    }
+
+
 }

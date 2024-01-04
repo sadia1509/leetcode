@@ -1,6 +1,7 @@
 package leetcode.medium;
 
 import common.*;
+import dsa.algorithm.Search;
 
 import java.util.*;
 
@@ -153,9 +154,9 @@ public class ArrayProblems {
     // Minimize Maximum Pair Sum in Array
     public int minPairSum(int[] nums) {
         int max = Integer.MIN_VALUE;
-        int i = 0, j=nums.length-1;
+        int i = 0, j = nums.length - 1;
         Arrays.sort(nums);
-        while (i<j)
+        while (i < j)
             max = Math.max(max, nums[i++] + nums[j--]);
         return max;
     }
@@ -165,7 +166,7 @@ public class ArrayProblems {
         final int mod = 1000000007;
         int total = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        for (final int num : nums){
+        for (final int num : nums) {
             final int diff = num - rev(num);
             final int count = map.getOrDefault(diff, 0);
             total = (total + count) % mod;
@@ -203,4 +204,134 @@ public class ArrayProblems {
         return arr;
     }
 
+    // Find Triangular Sum of an Array
+    public int triangularSum(int[] nums) {
+        int n = nums.length;
+        if (n == 1) return nums[0];
+        while (n != 1) {
+            for (int i = 0; i < n - 1; i++)
+                nums[i] = (nums[i] + nums[i + 1]) % 10;
+            n--;
+        }
+        return nums[0];
+    }
+
+    // Sort the Students by Their Kth Score
+    public int[][] sortTheStudents(int[][] score, int k) {
+        //  Arrays.sort(score, (a, b) -> Integer.compare(b[k],a[k]));  // 1 line code!
+        quickSort(score, k, 0, score.length - 1);
+        return score;
+    }
+
+    private void quickSort(int[][] arr, int k, int begin, int end) {
+        if (begin < end) {
+            int pivot = findPivot(arr, k, begin, end);
+            quickSort(arr, k, begin, pivot - 1);
+            quickSort(arr, k, pivot + 1, end);
+        }
+    }
+
+    private int findPivot(int[][] arr, int k, int begin, int end) {
+        int pivot = arr[end][k];
+        int i = begin - 1;
+        for (int j = begin; j < end; j++)
+            if (arr[j][k] > pivot)
+                swap(arr, ++i, j);
+        swap(arr, i + 1, end);
+        return i + 1;
+    }
+
+    private void swap(int[][] arr, int i, int j) {
+        for (int k = 0; k < arr[0].length; k++) {
+            int temp = arr[i][k];
+            arr[i][k] = arr[j][k];
+            arr[j][k] = temp;
+        }
+    }
+
+    // Number of Laser Beams in a Bank
+    public int numberOfBeams(String[] bank) {
+        int num = 0, k = 0, arrSize = 0;
+        for (int i = 0; i < bank.length; i++)
+            if (bank[i].contains("1")) arrSize++;
+        int[] arr = new int[arrSize];
+        for (int i = 0; i < bank.length; i++) {
+            if (bank[i].contains("1")) {
+                int counter = 0;
+                for (char ch : bank[i].toCharArray())
+                    if (ch - '0' == 1) counter++;
+                arr[k++] = counter;
+            }
+        }
+        for (int i = 1; i < arrSize; i++)
+            num += arr[i - 1] * arr[i];
+        return num;
+    }
+
+    // Search a 2D Matrix
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for (int[] row : matrix)
+            if (Search.binarySearch(row, target) >= 0) return true;
+        return false;
+    }
+
+    // Maximum Number of Coins You Can Get
+    public int maxCoins(int[] piles) {
+        Arrays.sort(piles);
+        int count = 0, limit = 0;
+        for (int i = piles.length - 2; i >= limit; i -= 2) {
+            count += piles[i];
+            limit++;
+        }
+        return count;
+    }
+
+    // Partition Array According to Given Pivot
+    public int[] pivotArray(int[] nums, int pivot) {
+        int count = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        int i = -1;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] < pivot)
+                Utils.Integer().swap(Utils.intToInteger(nums), ++i, j);
+            else if (nums[j] == pivot) count++;
+            else queue.offer(nums[j]);
+        }
+        while (count != 0) {
+            nums[++i] = pivot;
+            count--;
+        }
+        while (!queue.isEmpty())
+            nums[++i] = queue.poll();
+        return nums;
+    }
+
+    // Minimum Number of Operations to Make Array Empty
+    public int minOperations(int[] nums) {
+        int operations = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : nums)
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        for (int mv : map.values()) {
+            if (mv % 3 == 0)
+                operations += mv / 3;
+            else {
+                int res = mod(mv);
+                if (res == -1) return -1;
+                operations += res;
+            }
+        }
+        return operations;
+    }
+
+    private int mod(int mv) {
+        int operations = 0;
+        while (mv - 3 > 1) {
+            mv -= 3;
+            operations++;
+        }
+        if (mv % 2 == 0) operations += mv / 2;
+        else if (mv == 1) return -1;
+        return operations;
+    }
 }

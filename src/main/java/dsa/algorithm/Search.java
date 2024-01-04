@@ -16,7 +16,11 @@ public class Search {
         return -1;
     }
 
-    public static int binarySearch(int[] arr, int left, int right, int target) {
+    public static int binarySearch(int[] arr, int target) {
+        return binarySearch(arr, 0, arr.length - 1, target);
+    }
+
+    private static int binarySearch(int[] arr, int left, int right, int target) {
         if (left > right) return -1;
         int mid = (left + right) / 2;
         if (arr[mid] == target) return mid;

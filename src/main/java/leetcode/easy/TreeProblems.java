@@ -9,7 +9,7 @@ public class TreeProblems {
     TreeClass treeClass = new TreeClass();
 
     // Find Mode in Binary Search Tree
-    public int [] findMode(TreeNode root) {
+    public int[] findMode(TreeNode root) {
         if (root == null) return null;
         Map<Integer, Integer> map = new HashMap<>();
         int max = findMode(root, map, 0);
@@ -19,7 +19,7 @@ public class TreeProblems {
                     if (value == max) list.add(key);
                 }
         );
-        int [] arr = new int [list.size()];
+        int[] arr = new int[list.size()];
         for (int i = 0; i < list.size(); i++) arr[i] = list.get(i);
         return arr;
     }
@@ -198,6 +198,15 @@ public class TreeProblems {
         root1.left = mergeTrees(root1.left, root2.left);
         root1.right = mergeTrees(root1.right, root2.right);
         return root1;
+    }
+
+    // Search in a Binary Search Tree
+    public TreeNode searchBST(TreeNode root, int val) {
+        if (root == null) return null;
+        if ((int) root.value == val) return root;
+        TreeNode temp = searchBST(root.left, val);
+        if (temp != null) return temp;
+        return searchBST(root.right, val);
     }
 
 }

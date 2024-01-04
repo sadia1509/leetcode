@@ -388,4 +388,72 @@ public class StringProblems {
         return true;
     }
 
+    // Check If Two String Arrays are Equivalent
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        StringBuilder sb1 = new StringBuilder();
+        for (String word : word1)
+            sb1.append(word);
+        StringBuilder sb2 = new StringBuilder();
+        for (String word : word2)
+            sb2.append(word);
+        return sb1.toString().equals(sb2.toString());
+    }
+
+    // Generate a String With Characters That Have Odd Counts
+    public String generateTheString(int n) {
+        StringBuilder sb = new StringBuilder();
+        if (n % 2 == 0) {
+            sb.append("a".repeat(n - 1));
+            sb.append("b");
+        } else sb.append("a".repeat(n));
+        return sb.toString();
+    }
+
+    // Count Sorted Vowel Strings
+    public int countVowelStrings(int n) {
+        int mul = 1, j = 1;
+        for (int i = 5; i < 5 + n; i++, j++)
+            mul = (mul * i) / j;
+        return mul;
+    }
+
+    // Remove Trailing Zeros From a String
+    public String removeTrailingZeros(String num) {
+        int i = num.length() - 1;
+        for (; i >= 0; i--) if (num.charAt(i) - '0' != 0) break;
+        return num.substring(0, ++i);
+    }
+
+    // Find First Palindromic String in the Array
+    public String firstPalindrome(String[] words) {
+        for (String word : words)
+            if (isPalindrome(word)) return word;
+        return "";
+    }
+
+    private boolean isPalindrome(String word) {
+        for (int i = 0, j = word.length() - 1; i < j; i++, j--)
+            if (word.charAt(i) != word.charAt(j)) return false;
+        return true;
+    }
+
+    // Count Items Matching a Rule
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        switch (ruleKey) {
+            case "type":
+                return checkTheRule(ruleValue, items, 0);
+            case "color":
+                return checkTheRule(ruleValue, items, 1);
+            case "name":
+                return checkTheRule(ruleValue, items, 2);
+        }
+        return -1;
+    }
+
+    private int checkTheRule(String ruleValue, List<List<String>> items, int i) {
+        int count = 0;
+        for (List<String> item : items)
+            if (item.get(i).equals(ruleValue)) count++;
+        return count;
+    }
 }
