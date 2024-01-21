@@ -334,4 +334,110 @@ public class ArrayProblems {
         else if (mv == 1) return -1;
         return operations;
     }
+
+    // Permutations
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> list = new LinkedList<>();
+        permuteUnique(list, nums, new LinkedList<>(), new boolean[nums.length]);
+        return list;
+    }
+
+    private void permuteUnique(List<List<Integer>> list, int[] nums, LinkedList<Integer> tempList, boolean[] used) {
+        if (tempList.size() == nums.length && !list.contains(tempList)) {
+            list.add(new LinkedList<>(tempList));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) continue;
+            used[i] = true;
+            tempList.add(nums[i]);
+            permuteUnique(list, nums, tempList, used);
+            used[i] = false;
+            tempList.remove(tempList.size() - 1);
+        }
+    }
+
+    // Permutations
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new LinkedList<>();
+        permute(list, nums, new LinkedList<>());
+        return list;
+    }
+
+    private void permute(List<List<Integer>> list, int[] nums, LinkedList<Integer> tempList) {
+        if (tempList.size() == nums.length) {
+            list.add(new LinkedList<>(tempList));
+            return;
+        }
+        for (int num : nums) {
+            if (tempList.contains(num)) continue;
+            tempList.add(num);
+            permute(list, nums, tempList);
+            tempList.remove(tempList.size() - 1);
+        }
+    }
+
+    // Rotate Image
+    public void rotate(int[][] matrix) {
+        int len = matrix.length;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int[] row : matrix)
+            for (int i : row)
+                queue.offer(i);
+        for (int i = len - 1; i >= 0; i--)
+            for (int j = 0; j < len; j++)
+                matrix[j][i] = queue.poll();
+    }
+
+    // Next Permutation
+    public void nextPermutation(int[] nums) {
+        int mark = -1, len = nums.length;
+        for (int i = len - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                mark = i;
+                break;
+            }
+        }
+        if (mark == -1) {
+            reverse(nums, 0, len - 1);
+            return;
+        }
+        for (int i = len - 1; i > mark; i--) {
+            if (nums[i] > nums[mark]) {
+                Utils.Integer().swap(Utils.intToInteger(nums), i, mark);
+                break;
+            }
+        }
+        reverse(nums, mark + 1, len - 1);
+    }
+
+    private void reverse(int[] nums, int begin, int end) {
+        while (begin < end)
+            Utils.Integer().swap(Utils.intToInteger(nums), begin++, end--);
+    }
+
+    // Minimum Falling Path Sum
+    public int minFallingPathSum(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] paths = new int[rows][cols];
+        // Copy the first row from the input matrix to the DP matrix
+        System.arraycopy(matrix[0], 0, paths[0], 0, cols);
+        // Iterate through the remaining rows
+        for (int i = 1; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // Calculate the minimum falling path sum for the current cell
+                paths[i][j] = matrix[i][j] +
+                        Math.min(
+                                paths[i - 1][Math.max(0, j - 1)],
+                                Math.min(paths[i - 1][j],
+                                        paths[i - 1][Math.min(cols - 1, j + 1)])
+                        );
+            }
+        }
+        int minSum = Integer.MAX_VALUE;
+        for (int value : paths[rows - 1])
+            minSum = Math.min(minSum, value);
+        return minSum;
+    }
 }

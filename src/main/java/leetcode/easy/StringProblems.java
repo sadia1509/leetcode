@@ -456,4 +456,18 @@ public class StringProblems {
             if (item.get(i).equals(ruleValue)) count++;
         return count;
     }
+
+    // Determine if String Halves Are Alike
+    public boolean halvesAreAlike(String s) {
+        int len = s.length();
+        return getVowelsNumber(s, 0, len / 2) == getVowelsNumber(s, len / 2, len);
+    }
+
+    private int getVowelsNumber(String s, int begin, int end) {
+        Set<Character> set = Set.of('a', 'e', 'o', 'i', 'u', 'A', 'E', 'O', 'I', 'U');
+        int count = 0;
+        while (begin < end)
+            if (set.contains(s.charAt(begin++))) count++;
+        return count;
+    }
 }

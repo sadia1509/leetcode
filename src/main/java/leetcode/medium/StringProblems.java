@@ -156,4 +156,28 @@ public class StringProblems {
         }
         return ++count;
     }
+
+    // Generate Parentheses
+    public List<String> generateParenthesis(int n) {
+        List<String> list = new LinkedList<>();
+        generateParenthesis(n, 0, 0, list, new StringBuilder());
+        return list;
+    }
+
+    private void generateParenthesis(int n, int open, int close, List<String> list, StringBuilder sb) {
+        if (n == open && n == close) {
+            list.add(sb.toString());
+            sb = new StringBuilder();
+        }
+        if (open < n) {
+            sb.append('(');
+            generateParenthesis(n, open + 1, close, list, sb);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        if (close < open) {
+            sb.append(')');
+            generateParenthesis(n, open, close + 1, list, sb);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
 }

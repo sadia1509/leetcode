@@ -62,7 +62,7 @@ public class TreeClass {
     }
 
     // Max depth or Max height
-    public int maxDepthOrHeight(TreeNode root) {
+    public static int maxDepthOrHeight(TreeNode root) {
         return root == null ? 0 :
                 Math.max(maxDepthOrHeight(root.left), maxDepthOrHeight(root.right)) + 1;
     }

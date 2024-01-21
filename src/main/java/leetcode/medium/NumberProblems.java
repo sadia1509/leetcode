@@ -36,4 +36,10 @@ public class NumberProblems {
         return Math.max(Math.abs(sx - fx), Math.abs(sy - fy)) <= t;
     }
 
+    // Divide Two Integers
+    public int divide(int dividend, int divisor) {
+        int res = dividend / divisor;
+        if (dividend < 0 && divisor < 0 && res == Integer.MIN_VALUE) res = Integer.MAX_VALUE;
+        return res;
+    }
 }

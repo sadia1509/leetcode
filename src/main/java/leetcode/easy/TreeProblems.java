@@ -209,4 +209,19 @@ public class TreeProblems {
         return searchBST(root.right, val);
     }
 
+    // Leaf-Similar Trees
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        List<Integer> leaves1 = new LinkedList<>();
+        List<Integer> leaves2 = new LinkedList<>();
+        getLeaves(root1, leaves1);
+        getLeaves(root2, leaves2);
+        return leaves1.equals(leaves2);
+    }
+
+    private void getLeaves(TreeNode root, List<Integer> leaves) {
+        if (root == null) return;
+        getLeaves(root.left, leaves);
+        getLeaves(root.right, leaves);
+        if (root.left == null && root.right == null) leaves.add(root.val);
+    }
 }

@@ -1,7 +1,7 @@
 package leetcode.medium;
 
 import common.*;
-
+import dsa.datastructure.nonlinear.TreeClass;
 import java.util.*;
 
 public class TreeProblems {
@@ -45,7 +45,7 @@ public class TreeProblems {
         if (root.val <= lowerBound || root.val >= upperBound) return false;
         return isValidBST(root.left, lowerBound, root.val) && isValidBST(root.right, root.val, upperBound);
     }
-;
+
     // Maximum Binary Tree
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         if (nums.length == 0) return null;
@@ -176,4 +176,51 @@ public class TreeProblems {
         return parentList;
     }
 
+
+    // Count Good Nodes in Binary Tree
+    private int sum = 0;
+
+    public int goodNodes(TreeNode root) {
+        findSum(root, root.val);
+        return sum;
+    }
+
+    private void findSum(TreeNode root, int max) {
+        if (root == null) return;
+        if (root.val >= max) sum++;
+        max = Math.max(root.val, max);
+        findSum(root.left, max);
+        findSum(root.right, max);
+    }
+
+    // All Paths From Source to Target
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> paths = new LinkedList<>();
+        Stack<Integer> pathStack = new Stack<>();
+        dfs(graph, paths, pathStack, 0);
+        return paths;
+    }
+
+    private void dfs(int[][] graph, List<List<Integer>> paths, Stack<Integer> pathStack, int elem) {
+        pathStack.add(elem);
+        if (elem == graph.length - 1)
+            paths.add(new LinkedList<>(pathStack));
+        else
+            for (int x : graph[elem])
+                dfs(graph, paths, pathStack, x);
+        pathStack.pop();
+    }
+
+    // Deepest Leaves Sum
+    public int deepestLeavesSum(TreeNode root) {
+        deepestLeavesSum(root, 1, TreeClass.maxDepthOrHeight(root));
+        return sum;
+    }
+
+    private void deepestLeavesSum(TreeNode root, int level, int maxLevel) {
+        if (root == null) return;
+        if (root.left == null && root.right == null && level == maxLevel) sum += root.val;
+        deepestLeavesSum(root.left, level + 1, maxLevel);
+        deepestLeavesSum(root.right, level + 1, maxLevel);
+    }
 }

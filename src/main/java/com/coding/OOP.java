@@ -7,6 +7,7 @@ import oop.enumeration.*;
 import oop.inheritance.*;
 import oop.interfaces.*;
 import oop.tool.ComparatorClass;
+import oop.tool.IOClass;
 
 import java.util.Arrays;
 
@@ -107,5 +108,10 @@ public class OOP {
 //        comparatorClass.sortByStringLength(Arrays.asList("sadia", "sam", "i", "ok"));
 //        comparatorClass.sortTheStudentsMarks();
 //        comparatorClass.sortTheStudentNames();
+
+        IOClass ioClass = new IOClass();
+//        ioClass.inputPrinter();
+        ioClass.writeTextFile();
+        ioClass.readTextFile();
     }
 }

@@ -43,7 +43,7 @@ public class ListProblems {
     public void deleteNode(ListNode node) {
         node.data = node.next.data;
         node.next = node.next.next;
-        System.out.println(node);
+        Logs.println(node);
     }
 
     // Determine Color of a Chessboard Square
