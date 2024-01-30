@@ -42,4 +42,41 @@ public class NumberProblems {
         if (dividend < 0 && divisor < 0 && res == Integer.MIN_VALUE) res = Integer.MAX_VALUE;
         return res;
     }
+
+    // Combinations
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> list = new LinkedList<>();
+        combine(1, n, k, list, new Stack<>());
+        return list;
+    }
+
+    private void combine(int start, int n, int k, List<List<Integer>> list, Stack<Integer> temp) {
+        if (k == 0) {
+            list.add(new LinkedList<>(temp));
+            return;
+        }
+        if (start > n) return;
+        temp.push(start);
+        combine(start + 1, n, k - 1, list, temp);
+        temp.pop();
+        combine(start + 1, n, k, list, temp);
+    }
+
+    // Strictly Palindromic Number
+    public boolean isStrictlyPalindromic(int n) {
+        for (int i=2; i<=n-1; i++){
+            String str = base(i, n);
+            if(!Utils.isPalidrome(str)) return false;
+        }
+        return true;
+    }
+
+    private String base(int i, int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n!=0){
+            sb.append(n%i);
+            n /= i;
+        }
+        return sb.toString();
+    }
 }

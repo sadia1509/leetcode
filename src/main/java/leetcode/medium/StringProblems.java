@@ -180,4 +180,65 @@ public class StringProblems {
             sb.deleteCharAt(sb.length() - 1);
         }
     }
+
+    // Group Anagrams
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String str : strs) {
+            char[] temp = str.toCharArray();
+            Arrays.sort(temp);
+            String tempStr = new String(temp);
+            if (map.containsKey(tempStr)) map.get(tempStr).add(str);
+            else {
+                List<String> newList = new LinkedList<>();
+                newList.add(str);
+                map.put(tempStr, newList);
+            }
+        }
+        return new LinkedList<>(map.values());
+    }
+
+    // Evaluate Reverse Polish Notation
+    public int evalRPN(String[] tokens) {
+        Set<String> set = Set.of("+", "-", "/", "*");
+        Stack<String> stack = new Stack<>();
+        for (String str : tokens) {
+            if (set.contains(str)) {
+                int a = Integer.parseInt(stack.pop());
+                int b = Integer.parseInt(stack.pop());
+                evalRPN(a, b, str, stack);
+            } else stack.push(str);
+        }
+        return Integer.parseInt(stack.pop());
+    }
+
+    private void evalRPN(int a, int b, String operator, Stack<String> stack) {
+        switch (operator) {
+            case "+":
+                stack.push(String.valueOf(a + b));
+                break;
+            case "-":
+                stack.push(String.valueOf(b - a));
+                break;
+            case "*":
+                stack.push(String.valueOf(a * b));
+                break;
+            case "/":
+                stack.push(String.valueOf(b / a));
+                break;
+        }
+    }
+
+    // Encode and Decode TinyURL
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        return Base64.getEncoder().encodeToString(longUrl.getBytes());
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        return new String(Base64.getDecoder().decode(shortUrl));
+    }
+
+
 }

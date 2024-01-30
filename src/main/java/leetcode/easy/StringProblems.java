@@ -427,14 +427,8 @@ public class StringProblems {
     // Find First Palindromic String in the Array
     public String firstPalindrome(String[] words) {
         for (String word : words)
-            if (isPalindrome(word)) return word;
+            if (Utils.isPalindrome(word)) return word;
         return "";
-    }
-
-    private boolean isPalindrome(String word) {
-        for (int i = 0, j = word.length() - 1; i < j; i++, j--)
-            if (word.charAt(i) != word.charAt(j)) return false;
-        return true;
     }
 
     // Count Items Matching a Rule
@@ -468,6 +462,18 @@ public class StringProblems {
         int count = 0;
         while (begin < end)
             if (set.contains(s.charAt(begin++))) count++;
+        return count;
+    }
+
+    // Minimum Number of Pushes to Type Word I
+    public int minimumPushes(String word) {
+        int len = word.length();
+        if (len <= 8) return len;
+        int count = 0, x = 1;
+        for (int i = 1; i <= len; i++) {
+            count += x;
+            if (i % 8 == 0) x++;
+        }
         return count;
     }
 }

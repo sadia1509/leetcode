@@ -440,4 +440,29 @@ public class ArrayProblems {
             minSum = Math.min(minSum, value);
         return minSum;
     }
+
+    // Out of Boundary Paths
+    final int MOD = 1_000_000_007;
+
+    public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        int[][][] arr = new int[m][n][maxMove + 1];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                Arrays.fill(arr[i][j], -1);
+                arr[i][j][0] = 0;
+            }
+        }
+        return findPaths(m, n, maxMove, startRow, startColumn, arr);
+    }
+
+    private int findPaths(int m, int n, int move, int i, int j, int[][][] arr) {
+        if (i < 0 || i > m - 1 || j < 0 || j > n - 1) return 1;
+        if (arr[i][j][move] != -1) return arr[i][j][move];
+        long ans = 0;
+        ans += findPaths(m, n, move - 1, i + 1, j, arr) % MOD;
+        ans += findPaths(m, n, move - 1, i - 1, j, arr) % MOD;
+        ans += findPaths(m, n, move - 1, i, j + 1, arr) % MOD;
+        ans += findPaths(m, n, move - 1, i, j - 1, arr) % MOD;
+        return arr[i][j][move] = (int) (ans % MOD);
+    }
 }

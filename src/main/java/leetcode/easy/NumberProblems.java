@@ -243,5 +243,44 @@ public class NumberProblems {
         list.add(i);
     }
 
+    // Count Elements With Maximum Frequency
+    public int maxFrequencyElements(int[] nums) {
+        int[] arr = new int[101];
+        for (int i : nums) arr[i]++;
+        Arrays.sort(arr);
+        int count = arr[100];
+        for (int i = 99; i >= 0; i--) {
+            if (arr[100] == arr[i]) count += arr[i];
+            else break;
+        }
+        return count;
+    }
 
+    // Number Complement
+    public int findComplement(int num) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : Integer.toBinaryString(num).toCharArray()) {
+            if (c == '1') sb.append('0');
+            else sb.append('1');
+        }
+        return Integer.parseInt(sb.toString(), 2);
+    }
+
+    // Number of Changing Keys
+    public int countKeyChanges(String s) {
+        int count = 0;
+        s = s.toLowerCase();
+        for (int i = 1; i < s.length(); i++)
+            if (s.charAt(i - 1) != s.charAt(i)) count++;
+        return count;
+    }
+
+    // Find Indices With Index and Value Difference I
+    public int[] findIndices(int[] nums, int indexDifference, int valueDifference) {
+        for (int i = 0; i < nums.length; i++)
+            for (int j = 0; j < nums.length; j++)
+                if (Math.abs(i - j) >= indexDifference && Math.abs(nums[i] - nums[j]) >= valueDifference)
+                    return new int[]{i, j};
+        return new int[]{-1, -1};
+    }
 }
