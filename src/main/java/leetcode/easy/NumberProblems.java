@@ -2,6 +2,7 @@ package leetcode.easy;
 
 import common.*;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class NumberProblems {
@@ -282,5 +283,11 @@ public class NumberProblems {
                 if (Math.abs(i - j) >= indexDifference && Math.abs(nums[i] - nums[j]) >= valueDifference)
                     return new int[]{i, j};
         return new int[]{-1, -1};
+    }
+
+    // Day of the Week
+    public String dayOfTheWeek(int day, int month, int year) {
+        String answer = LocalDate.of(year, month, day).getDayOfWeek().toString();
+        return answer.substring(0, 1).toUpperCase() + answer.substring(1).toLowerCase();
     }
 }

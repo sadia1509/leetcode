@@ -1,7 +1,7 @@
 package leetcode.easy;
 
+import common.*;
 import java.util.*;
-import java.util.LinkedList;
 
 public class StringProblems {
     // Minimize String Length
@@ -475,5 +475,54 @@ public class StringProblems {
             if (i % 8 == 0) x++;
         }
         return count;
+    }
+
+    // Reformat Date
+    public String reformatDate(String date) {
+        List<String> list = List.of(" ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        StringBuilder sb = new StringBuilder();
+        String[] arr = date.split(" ");
+        sb.append(arr[2]).append("-");
+        int month = list.indexOf(arr[1]);
+        if (month < 10) sb.append("0").append(month).append("-");
+        else sb.append(month).append("-");
+        if (arr[0].length() == 3) sb.append("0").append(arr[0].charAt(0));
+        else sb.append(arr[0], 0, 2);
+        return sb.toString();
+    }
+
+    // Day of the Year
+    public int dayOfYear(String date) {
+        int[] daysInMonth = new int[]{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
+        int days = 0;
+        boolean isLeapYear = isLeapYear(Integer.parseInt(date.substring(0, 4)));
+        int month = Integer.parseInt(date.substring(5, 7));
+        days += daysInMonth[month - 1];
+        int day = Integer.parseInt(date.substring(8, 10));
+        days += day;
+        if (month > 2 && isLeapYear) days++;
+        return days;
+    }
+
+    boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    // Maximum Number of Words You Can Type
+    public int canBeTypedWords(String text, String brokenLetters) {
+        int counter = 0;
+        boolean flag;
+        for (String word : text.split(" ")) {
+            flag = false;
+            for (char ch : word.toCharArray()) {
+                if (brokenLetters.contains("" + ch)) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) continue;
+            counter++;
+        }
+        return counter;
     }
 }

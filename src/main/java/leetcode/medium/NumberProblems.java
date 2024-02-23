@@ -1,5 +1,8 @@
 package leetcode.medium;
 
+import common.*;
+import java.util.*;
+
 public class NumberProblems {
     //Reverse Integer
     public int reverse(int x) { //-12300   12
@@ -66,7 +69,7 @@ public class NumberProblems {
     public boolean isStrictlyPalindromic(int n) {
         for (int i=2; i<=n-1; i++){
             String str = base(i, n);
-            if(!Utils.isPalidrome(str)) return false;
+            if(!Utils.isPalindrome(str)) return false;
         }
         return true;
     }

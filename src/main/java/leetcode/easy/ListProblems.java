@@ -55,4 +55,12 @@ public class ListProblems {
             return num % 2 == 0;
         } else return num % 2 != 0;
     }
+
+    // Convert Binary Number in a Linked List to Integer
+    public int getDecimalValue(ListNode head) {
+        StringBuilder sb = new StringBuilder();
+        for (ListNode n = head; n != null; n = n.next)
+            sb.append(n.val);
+        return Integer.parseInt(sb.toString(), 2);
+    }
 }

@@ -240,5 +240,53 @@ public class StringProblems {
         return new String(Base64.getDecoder().decode(shortUrl));
     }
 
+    // Longest Common Subsequence
+    int[][] memo;
+    int n, m;
 
+    public int longestCommonSubsequence(String text1, String text2) {
+        n = text1.length();
+        m = text2.length();
+        memo = new int[n][m];
+        for (int[] row : memo) Arrays.fill(row, -1);
+        return longestCommonSubsequence(text1, text2, 0, 0);
+    }
+
+    private int longestCommonSubsequence(String text1, String text2, int i, int j) {
+        if (i >= n || j >= m) return 0;
+        if (memo[i][j] != -1) return memo[i][j];
+        if (text1.charAt(i) == text2.charAt(j))
+            return memo[i][j] = 1 + longestCommonSubsequence(text1, text2, i + 1, j + 1);
+        return memo[i][j] = Math.max(longestCommonSubsequence(text1, text2, i + 1, j),
+                longestCommonSubsequence(text1, text2, i, j + 1));
+    }
+
+    // Letter Combinations of a Phone Number
+    public List<String> letterCombinations(String digits) {
+        if (digits.isEmpty()) return new ArrayList<>();
+        List<String> list = new LinkedList<>();
+        Map<Character, String> map = Map.of('2', "abc",
+                '3', "def",
+                '4', "ghi",
+                '5', "jkl",
+                '6', "mno",
+                '7', "pqrs",
+                '8', "tuv",
+                '9', "wxyz");
+        letterCombinations(0, digits, list, new StringBuilder(), map);
+        return list;
+    }
+
+    private void letterCombinations(int i, String digits, List<String> list, StringBuilder sb, Map<Character, String> map) {
+        if (i >= digits.length()) {
+            list.add(sb.toString());
+            return;
+        }
+        char num = digits.charAt(i);
+        for (char ch : map.get(num).toCharArray()) {
+            sb.append(ch);
+            letterCombinations(i + 1, digits, list, sb, map);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
 }

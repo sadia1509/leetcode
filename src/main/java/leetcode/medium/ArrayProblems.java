@@ -465,4 +465,122 @@ public class ArrayProblems {
         ans += findPaths(m, n, move - 1, i, j - 1, arr) % MOD;
         return arr[i][j][move] = (int) (ans % MOD);
     }
+
+    // Single Number III
+    public int[] singleNumber(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : nums) map.put(i, map.getOrDefault(i, 0) + 1);
+        int counter = 0;
+        int[] arr = new int[2];
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+            if (entry.getValue() == 1)
+                arr[counter++] = entry.getKey();
+        return arr;
+    }
+
+    // 3Sum Closest
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int closeSum = Integer.MAX_VALUE;
+        int len = nums.length;
+        for (int k = 0; k < len - 2; k++) {
+            int i = k + 1, j = len - 1;
+            while (i < j) {
+                int sum = nums[k] + nums[i] + nums[j];
+                if (Math.abs(target - sum) < Math.abs(target - closeSum))
+                    closeSum = sum;
+                if (sum < target) i++;
+                else j--;
+            }
+        }
+        return closeSum;
+    }
+
+    //  Spiral Matrix II
+    public int[][] generateMatrix(int n) {
+        if (n == 0) return new int[][]{};
+        int[][] matrix = new int[n][n];
+        int top = 0, bottom = n - 1, left = 0, right = n - 1;
+        int sign = 0, value = 1;
+        while (top <= bottom && left <= right) {
+            switch (sign) {
+                case 0:
+                    for (int i = left; i <= right; i++)
+                        matrix[top][i] = value++;
+                    top++;
+                    break;
+                case 1:
+                    for (int i = top; i <= bottom; i++)
+                        matrix[i][right] = value++;
+                    right--;
+                    break;
+                case 2:
+                    for (int i = right; i >= left; i--)
+                        matrix[bottom][i] = value++;
+                    bottom--;
+                    break;
+                case 3:
+                    for (int i = bottom; i >= top; i--)
+                        matrix[i][left] = value++;
+                    left++;
+                    break;
+            }
+            sign = (sign + 1) % 4;
+        }
+        return matrix;
+    }
+
+    // Spiral Matrix
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> ans = new LinkedList<>();
+        int n = matrix.length;
+        if (n == 0) return ans;
+        int m = matrix[0].length;
+        int top = 0, bottom = n - 1, left = 0, right = m - 1;
+        int sign = 0;
+        while (top <= bottom && left <= right) {
+            switch (sign) {
+                case 0:
+                    for (int i = left; i <= right; i++)
+                        ans.add(matrix[top][i]);
+                    top++;
+                    break;
+                case 1:
+                    for (int i = top; i <= bottom; i++)
+                        ans.add(matrix[i][right]);
+                    right--;
+                    break;
+                case 2:
+                    for (int i = right; i >= left; i--)
+                        ans.add(matrix[bottom][i]);
+                    bottom--;
+                    break;
+                case 3:
+                    for (int i = bottom; i >= top; i--)
+                        ans.add(matrix[i][left]);
+                    left++;
+                    break;
+            }
+            sign = (sign + 1) % 4;
+        }
+        return ans;
+    }
+
+    // Merge Intervals
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        Stack<int[]> stack = new Stack<>();
+        for (int i = 0; i < intervals.length; i++) {
+            if (stack.isEmpty()) stack.push(intervals[i]);
+            else {
+                int end = stack.peek()[1];
+                if (end >= intervals[i][0]) stack.peek()[1] = Math.max(end, intervals[i][1]);
+                else stack.push(intervals[i]);
+            }
+        }
+        int[][] result = new int[stack.size()][];
+        int k = 0;
+        for (int[] arr : stack) result[k++] = arr;
+        return result;
+    }
 }

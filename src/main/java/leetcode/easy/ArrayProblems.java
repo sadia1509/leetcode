@@ -743,4 +743,111 @@ public class ArrayProblems {
         }
         return contentChildren;
     }
+
+    // Set Mismatch
+    public int[] findErrorNums(int[] nums) {
+        int[] arr = new int[nums.length + 1];
+        for (int i : nums) arr[i]++;
+        List<Integer> list = new LinkedList<>();
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] > 1) list.add(i);
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] == 0) list.add(i);
+        int[] ar = new int[list.size()];
+        int k = 0;
+        for (int i : list) ar[k++] = i;
+        return ar;
+    }
+
+    // Rank Transform of an Array
+    public int[] arrayRankTransform(int[] arr) {
+        int len = arr.length;
+        int[] res = new int[len];
+        int[] tempArr = arr.clone();
+        Map<Integer, Integer> map = new HashMap<>();
+        Arrays.sort(tempArr);
+        for (int i : tempArr)
+            map.putIfAbsent(i, map.size() + 1);
+        for (int i = 0; i < len; i++)
+            res[i] = map.get(arr[i]);
+        return res;
+    }
+
+    // Minimum Absolute Difference
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Arrays.sort(arr);
+        List<List<Integer>> list = new LinkedList<>();
+        Map<List<Integer>, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < arr.length - 1; i++)
+            map.put(List.of(arr[i], arr[i + 1]), Math.abs(arr[i] - arr[i + 1]));
+        int min = Integer.MAX_VALUE;
+        for (int i : map.values()) min = Math.min(min, i);
+        for (Map.Entry<List<Integer>, Integer> entry : map.entrySet())
+            if (min == entry.getValue()) list.add(entry.getKey());
+        return list;
+    }
+
+    // Unique Number of Occurrences
+    public boolean uniqueOccurrences(int[] arr) {
+        int[] temp = new int[2001];
+        for (int i : arr) temp[i + 1000]++;
+        Set<Integer> set = new HashSet<>();
+        for (int i : temp) {
+            if (i == 0) continue;
+            if (set.contains(i)) return false;
+            set.add(i);
+        }
+        return true;
+    }
+
+    // Relative Sort Array
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int[] count = new int[1001];
+        for (int i : arr1) count[i]++;
+        int k = 0;
+        int[] arr = new int[arr1.length];
+        for (int i : arr2) {
+            if (count[i] != 0) {
+                while (count[i] > 0) {
+                    arr[k++] = i;
+                    count[i]--;
+                }
+            }
+        }
+        for (int i = 0; i < 1001; i++) {
+            if (count[i] != 0) {
+                while (count[i] > 0) {
+                    arr[k++] = i;
+                    count[i]--;
+                }
+            }
+        }
+        return arr;
+    }
+
+    // Minimum Cost of Buying Candies With Discount
+    public int minimumCost(int[] cost) {
+        int total = 0;
+        Arrays.sort(cost);
+        int len = cost.length;
+        if (len == 1) return cost[0];
+        for (int i = len - 1; i >= 0; i -= 3) {
+            total += cost[i];
+            if (i - 1 >= 0) total += cost[i - 1];
+        }
+        return total;
+    }
+
+    // Find the Town Judge
+    public int findJudge(int n, int[][] trust) {
+        int[] in = new int[n + 1];
+        int[] out = new int[n + 1];
+        for (int[] person : trust) {
+            in[person[0]]++;
+            out[person[1]]++;
+        }
+        for (int i = 1; i <= n; i++)
+            if (in[i] == 0 && out[i] == n - 1) return i;
+        return -1;
+    }
 }

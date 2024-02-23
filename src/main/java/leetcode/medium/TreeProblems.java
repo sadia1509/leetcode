@@ -1,8 +1,8 @@
 package leetcode.medium;
 
 import common.*;
-import dsa.datastructure.nonlinear.TreeClass;
 import java.util.*;
+import dsa.datastructure.nonlinear.TreeClass;
 
 public class TreeProblems {
     // Count Nodes Equal to Average of Subtree
@@ -222,5 +222,40 @@ public class TreeProblems {
         if (root.left == null && root.right == null && level == maxLevel) sum += root.val;
         deepestLeavesSum(root.left, level + 1, maxLevel);
         deepestLeavesSum(root.right, level + 1, maxLevel);
+    }
+
+    // Pseudo-Palindromic Paths in a Binary Tree
+    int count = 0;
+
+    public int pseudoPalindromicPaths(TreeNode root) {
+        pseudoPalindromicPathsHelper(root, new int[10]);
+        return count;
+    }
+
+    public void pseudoPalindromicPathsHelper(TreeNode root, int[] arr) {
+        if (root == null) return;
+        arr[root.val]++;
+        pseudoPalindromicPathsHelper(root.left, arr);
+        pseudoPalindromicPathsHelper(root.right, arr);
+        if (root.left == null && root.right == null) {
+            int odds = 0;
+            for (int i : arr)
+                if (i % 2 != 0) odds++;
+            if (odds == 1 || odds == 0) count++;
+        }
+        arr[root.val]--;
+    }
+
+    // Flatten Binary Tree to Linked List
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+        flatten(root.left);
+        flatten(root.right);
+        TreeNode rightSubtree = root.right;
+        root.right = root.left;
+        root.left = null;
+        TreeNode current = root;
+        while (current.right != null) current = current.right;
+        current.right = rightSubtree;
     }
 }

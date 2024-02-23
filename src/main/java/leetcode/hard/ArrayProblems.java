@@ -89,4 +89,38 @@ public class ArrayProblems {
         }
         return max;
     }
+
+    // Unique Paths III
+    int rs, cs, ans, noObsCount, iStart, jStart;
+    int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+
+    public int uniquePathsIII(int[][] grid) {
+        rs = grid.length;
+        cs = grid[0].length;
+        for (int i = 0; i < rs; i++) {
+            for (int j = 0; j < cs; j++) {
+                if (grid[i][j] == 0) noObsCount++;
+                else if (grid[i][j] == 1) {
+                    iStart = i;
+                    jStart = j;
+                    noObsCount++;
+                }
+            }
+        }
+        backTrackForUniquePathsIII(grid, 0, iStart, jStart);
+        return ans;
+    }
+
+    private void backTrackForUniquePathsIII(int[][] grid, int count, int i, int j) {
+        if (i < 0 || i >= rs || j < 0 || j >= cs || grid[i][j] == -1) return;
+        if (grid[i][j] == 2) {
+            if (count == noObsCount) ans++;
+            return;
+        }
+        grid[i][j] = -1;
+        for (int[] dirRow : directions)
+            backTrackForUniquePathsIII(grid, count + 1, i + dirRow[0], j + dirRow[1]);
+        grid[i][j] = 0;
+    }
+
 }
