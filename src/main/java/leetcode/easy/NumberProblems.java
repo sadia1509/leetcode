@@ -290,4 +290,18 @@ public class NumberProblems {
         String answer = LocalDate.of(year, month, day).getDayOfWeek().toString();
         return answer.substring(0, 1).toUpperCase() + answer.substring(1).toLowerCase();
     }
+
+    // Maximum Odd Binary Number
+    public String maximumOddBinaryNumber(String s) {
+        int counter_1 = 0, counter_0 = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == '1') counter_1++;
+            else counter_0++;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < counter_1 - 1; i++) sb.append('1');
+        for (int i = 0; i < counter_0; i++) sb.append('0');
+        sb.append('1');
+        return sb.toString();
+    }
 }

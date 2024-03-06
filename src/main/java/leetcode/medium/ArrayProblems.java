@@ -583,4 +583,26 @@ public class ArrayProblems {
         for (int[] arr : stack) result[k++] = arr;
         return result;
     }
+
+    // Bag of Tokens
+    public int bagOfTokensScore(int[] tokens, int power) {
+        Arrays.sort(tokens);
+        int maxScore = 0, score = 0;
+        int i = 0, j = tokens.length - 1;
+        while (i <= j) {
+            if (power >= tokens[i]) {
+                power -= tokens[i];
+                score++;
+                i++;
+                maxScore = Math.max(score, maxScore);
+            } else {
+                if (score >= 1) {
+                    power += tokens[j];
+                    score--;
+                    j--;
+                } else i++;
+            }
+        }
+        return maxScore;
+    }
 }

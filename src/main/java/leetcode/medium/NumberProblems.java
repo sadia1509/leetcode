@@ -1,6 +1,7 @@
 package leetcode.medium;
 
 import common.*;
+
 import java.util.*;
 
 public class NumberProblems {
@@ -67,18 +68,50 @@ public class NumberProblems {
 
     // Strictly Palindromic Number
     public boolean isStrictlyPalindromic(int n) {
-        for (int i=2; i<=n-1; i++){
+        for (int i = 2; i <= n - 1; i++) {
             String str = base(i, n);
-            if(!Utils.isPalindrome(str)) return false;
+            if (!Utils.isPalindrome(str)) return false;
         }
         return true;
     }
 
     private String base(int i, int n) {
         StringBuilder sb = new StringBuilder();
-        while (n!=0){
-            sb.append(n%i);
+        while (n != 0) {
+            sb.append(n % i);
             n /= i;
+        }
+        return sb.toString();
+    }
+
+    // Lexicographical Numbers
+    public List<Integer> lexicalOrder(int n) {
+        List<Integer> numList = new ArrayList<>();
+        String[] arr = new String[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = String.valueOf(i + 1);
+        Arrays.sort(arr);
+        for (String numStr : arr)
+            numList.add(Integer.parseInt(numStr));
+        Arrays.copyOf(arr, arr.length);
+        return numList;
+    }
+
+    // Integer to Roman
+    public String intToRoman(int num) {
+        int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        StringBuilder sb = new StringBuilder();
+        while (num > 0) {
+            int times = 0, i = 0;
+            for (; i < 13; i++) {
+                if (nums[i] <= num) {
+                    times = num / nums[i];
+                    break;
+                }
+            }
+            sb.append(roman[i].repeat(times));
+            num %= nums[i];
         }
         return sb.toString();
     }

@@ -289,4 +289,83 @@ public class StringProblems {
             sb.deleteCharAt(sb.length() - 1);
         }
     }
+
+    // Sort Characters By Frequency
+    public String frequencySort(String s) {
+        int[] letters = new int[62];
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) letters[c - '0' + 52]++;
+            else if (c - 'a' < 0) letters[c - 'A' + 26]++;
+            else letters[c - 'a']++;
+        }
+        List<Object[]> list = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            if (letters[i] != 0) {
+                char ch = (char) ('a' + i);
+                fillList(ch, letters[i], list);
+            }
+        }
+        for (int i = 26; i < 52; i++) {
+            if (letters[i] != 0) {
+                char ch = (char) ('A' + i - 26);
+                fillList(ch, letters[i], list);
+            }
+        }
+        for (int i = 52; i < 62; i++) {
+            if (letters[i] != 0) {
+                char ch = (char) ('0' + i - 52);
+                fillList(ch, letters[i], list);
+            }
+        }
+        Collections.sort(list, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] o1, Object[] o2) {
+                Integer value1 = (Integer) o1[1];
+                Integer value2 = (Integer) o2[1];
+                return value2.compareTo(value1);
+            }
+        });
+        StringBuilder sb = new StringBuilder();
+        for (Object[] ar : list)
+            sb.append(String.valueOf(ar[0]).repeat(Math.max(0, (int) ar[1])));
+        return sb.toString();
+    }
+
+    private void fillList(char ch, int freq, List<Object[]> list) {
+        Object[] arr = new Object[2];
+        arr[0] = ch;
+        arr[1] = freq;
+        list.add(arr);
+    }
+
+    // Make String a Subsequence Using Cyclic Increments
+    public boolean canMakeSubsequence(String str1, String str2) {
+        char[] str1Arr = str1.toCharArray();
+        char[] str2Arr = str2.toCharArray();
+        int i = 0, j = 0, len2 = str2Arr.length, prev = -1;
+        while (i < str1Arr.length && j < len2) {
+            if (str1Arr[i] == str2Arr[j]) {
+                i++;
+                j++;
+            } else if (prev == i) {
+                i++;
+            } else {
+                if (str1Arr[i] == 'z') str1Arr[i] = 'a';
+                else str1Arr[i]++;
+                prev = i;
+            }
+        }
+        return j == len2;
+    }
+
+    // Minimum Length of String After Deleting Similar Ends
+    public int minimumLength(String s) { // 594
+        int left = 0, right = s.length() - 1;
+        while (left < right && s.charAt(left) == s.charAt(right)) {
+            int cur = s.charAt(left);
+            while (left <= right && s.charAt(left) == cur) left++;
+            while (right >= left && s.charAt(right) == cur) right--;
+        }
+        return left <= right ? right - left + 1 : 0;
+    }
 }

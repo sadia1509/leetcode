@@ -233,4 +233,40 @@ public class LinkedList {
         printSinglyList(head);
     }
 
+    // Copy a singly linkedList
+    public ListNode copyList(ListNode head) {
+        if (head == null) return head;
+        ListNode newHead = new ListNode(head.val);
+        ListNode tail = newHead;
+        for (ListNode n = head.next; n != null; n = n.next) {
+            tail.next = new ListNode(n.val);
+            tail = tail.next;
+        }
+        return newHead;
+    }
+
+    // Reverse a singly linkedList
+    public ListNode reversedList(ListNode head) {
+        ListNode prev = null, current = head;
+        while (current != null) {
+            ListNode nextCurrent = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextCurrent;
+        }
+        return prev;
+    }
+
+    // Middle node of a singly linkedList
+    public ListNode getMiddleNode(ListNode head) {
+        if (head == null) return head;
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+        // while (fast != null && fast.next != null) for [1,2,3,4] -> 3 as a middle node
+        // while (fast.next != null && fast.next.next != null) for [1,2,3,4] -> 2 as a middle node
+    }
 }

@@ -3,7 +3,7 @@ package leetcode.medium;
 import java.util.*;
 
 public class StackProblems {
-    //Build an Array With Stack Operations
+    // Build an Array With Stack Operations
     public List<String> buildArray(int[] target, int n) {
         Stack<Integer> stack = new Stack();
         List<String> operations = new ArrayList<>();
