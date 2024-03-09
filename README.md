@@ -54,6 +54,19 @@ All DSA / leetcode related problems in java
     </tr>
     <tr>
     <tr>
+      <td><strong>Bogo / Bozo Sort</strong></td>
+      <td>
+        <table>
+          <tr>
+            <td>Worst: O((n+1)!)</td>
+            <td>Avg: O((n+1)!)</td>
+            <td>Best: O((n+1)!)</td>
+          </tr>
+        </table>
+      </td>
+      <td>O((n+1)!)</td>
+    </tr>
+    <tr>
       <td><strong>Bubble Sort</strong></td>
       <td>
         <table>
@@ -264,10 +277,10 @@ All DSA / leetcode related problems in java
   </tbody>
 </table>
 
-
 ## **OOP**
 
 - Cannot Instantiate Interfaces or Abstract Classes:
+
 ```java
 // Example interface
 interface MyInterface {
@@ -276,7 +289,9 @@ interface MyInterface {
 // Cannot instantiate an interface
 // MyInterface instance = new MyInterface(); // Compilation error
 ```
+
 - Cannot Create Objects of Abstract Classes:
+
 ```java
 // Example abstract class
 abstract class MyAbstractClass {
@@ -285,59 +300,79 @@ abstract class MyAbstractClass {
 // Cannot instantiate an abstract class
 // MyAbstractClass instance = new MyAbstractClass(); // Compilation error
 ```
+
 - Cannot Inherit from Multiple Classes (in Java):
+
 ```java
 // Multiple inheritance is not allowed for classes in Java
 // class MyClass extends ParentClass1, ParentClass2 { } // Compilation error
 ```
+
 - Cannot Access Private Members of Another Class:
+
 ```java
 class MyClass {
     private int myPrivateField;
 }
+
 class AnotherClass {
     // Cannot access myPrivateField directly
     // int value = new MyClass().myPrivateField; // Compilation error
 }
 ```
+
 - Cannot Override Final Methods or Classes:
+
 ```java
 class ParentClass {
-    final void finalMethod() { }
+    final void finalMethod() {
+    }
 }
+
 class ChildClass extends ParentClass {
     // Cannot override finalMethod
     // void finalMethod() { } // Compilation error
 }
 ```
+
 - Cannot Access Non-Static Members from Static Context (without an instance):
+
 ```java
 class MyClass {
     int nonStaticField;
+
     static void staticMethod() {
         // Cannot access non-static field directly
         // int value = nonStaticField; // Compilation error
     }
 }
 ```
+
 - Cannot Access Protected Members from Unrelated Classes:
+
 ```java
 class ParentClass {
     protected int protectedField;
 }
+
 class UnrelatedClass {
     // Cannot access protectedField directly
     // int value = new ParentClass().protectedField; // Compilation error
 }
 ```
+
 - Cannot Change the Type of an Object at Runtime:
+
 ```java
-class MyClass { }
+class MyClass {
+}
 // Cannot change the type of an object at runtime
 // MyClass myObject = new MyClass();
 // String newType = (String) myObject; // Runtime error (ClassCastException)
 ```
+
 - Cannot Create Circular Dependencies:
+
 ```java
 // Circular dependency example (not allowed)
 // class ClassA {
@@ -347,7 +382,9 @@ class MyClass { }
 //     ClassA a;
 // }
 ```
+
 - Cannot Access Members of an Object Before Initialization:
+
 ```java
 class MyClass {
     int uninitializedField;

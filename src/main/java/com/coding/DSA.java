@@ -61,6 +61,8 @@ public class DSA {
 //        sort.quickSort(new int[] {2,3,4,1,4,9,5,7});
 //        Logs.print("Merge sort: ");
 //        sort.mergeSort(new int[] {2,3,4,1,4,9,5,7});
+//        Logs.print("Bogo sort: ");
+//        sort.bogoSort(new int[]{2, 1});
 
 
 

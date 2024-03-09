@@ -3,6 +3,7 @@ package dsa.algorithm;
 import common.*;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Sort {
 
@@ -102,5 +103,24 @@ public class Sort {
         for (int i = 0; i < arr.length - 1; i += 2)
             Utils.Integer().swap(Utils.intToInteger(arr), i, i + 1);
         Utils.Integer().printArray(Utils.intToInteger(arr));
+    }
+
+    // BOGO sort or Shuffle sort  (Please do not run it)
+    public void bogoSort(int[] arr) {
+        while (!isSorted(arr)) shuffleArray(arr);
+        Utils.Integer().printArray(Utils.intToInteger(arr));
+    }
+
+    private void shuffleArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int index = new Random().nextInt(i + 1);
+            Utils.Integer().swap(Utils.intToInteger(arr), i, index);
+        }
+    }
+
+    private boolean isSorted(int[] arr) {
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i - 1] > arr[i]) return false;
+        return true;
     }
 }
