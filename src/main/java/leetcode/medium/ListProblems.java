@@ -424,4 +424,23 @@ public class ListProblems {
         }
         return null;
     }
+
+    // Remove Zero Sum Consecutive Nodes from Linked List
+    public ListNode removeZeroSumSublists(ListNode head) {
+        if (head == null) return head;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        Map<Integer, ListNode> tracker = new HashMap<>();
+        int prefixSum = 0;
+        for (ListNode n = dummyHead; n != null; n = n.next) {
+            prefixSum += n.val;
+            tracker.put(prefixSum, n);
+        }
+        prefixSum = 0;
+        for (ListNode n = dummyHead; n != null; n = n.next) {
+            prefixSum += n.val;
+            n.next = tracker.get(prefixSum).next;
+        }
+        return dummyHead.next;
+    }
 }

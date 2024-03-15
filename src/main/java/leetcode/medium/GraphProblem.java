@@ -55,4 +55,14 @@ public class GraphProblem {
         board[r][c] = temp;
         return ans;
     }
+
+    // Minimum Number of Vertices to Reach All Nodes
+    public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
+        Set<Integer> inEdge = new HashSet<>();
+        for (List<Integer> edge : edges) inEdge.add(edge.get(1));
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < n; i++)
+            if (!inEdge.contains(i)) ans.add(i);
+        return ans;
+    }
 }

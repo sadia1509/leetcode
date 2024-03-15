@@ -605,4 +605,17 @@ public class ArrayProblems {
         }
         return maxScore;
     }
+
+    // Binary Subarrays With Sum
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int count = 0, prefixSum = 0;
+        Map<Integer, Integer> sumCounts = new HashMap<>();
+        sumCounts.put(0, 1);
+        for (int a : nums) {
+            prefixSum += a;
+            count += sumCounts.getOrDefault(prefixSum - goal, 0);
+            sumCounts.put(prefixSum, sumCounts.getOrDefault(prefixSum, 0) + 1);
+        }
+        return count;
+    }
 }
