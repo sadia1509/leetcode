@@ -289,4 +289,44 @@ public class TreeProblems {
         }
         return mainList;
     }
+
+    // Lowest Common Ancestor of a Binary Tree
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) return root;
+        return left == null ? right : left;
+    }
+
+    // Construct Binary Tree from Preorder and Inorder Traversal
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0) return null;
+        int root = preorder[0];
+        int index = 0;
+        for (int i = 0; i < inorder.length; i++)
+            if (root == inorder[i]) index = i;
+        TreeNode node = new TreeNode(root);
+        node.left = buildTree(Arrays.copyOfRange(preorder, 1, index + 1),
+                Arrays.copyOfRange(inorder, 0, index));
+        node.right = buildTree(Arrays.copyOfRange(preorder, index + 1, preorder.length),
+                Arrays.copyOfRange(inorder, index + 1, inorder.length));
+        return node;
+    }
+
+    // Construct Binary Tree from Inorder and Postorder Traversal
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+        int postLen = postorder.length;
+        if (postLen == 0) return null;
+        int root = postorder[postLen - 1];
+        int index = postLen - 1;
+        for (int i = postLen - 1; i >= 0; i--)
+            if (root == inorder[i]) index = i;
+        TreeNode node = new TreeNode(root);
+        node.left = buildTree2(Arrays.copyOfRange(inorder, 0, index),
+                Arrays.copyOfRange(postorder, 0, index));
+        node.right = buildTree2(Arrays.copyOfRange(inorder, index + 1, inorder.length),
+                Arrays.copyOfRange(postorder, index, postLen - 1));
+        return node;
+    }
 }

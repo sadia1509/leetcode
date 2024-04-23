@@ -11,7 +11,10 @@ public class LCM {
 
         /* Tree */
         TreeProblems treeProblems = new TreeProblems();
-        // averageOfSubtree
+//        TreeNode root = TreeNode.getIntTree(new int[]{3,5,1,6,2,0,8,-1,-1,7,4}, 0);
+//        Logs.println(treeProblems.lowestCommonAncestor(root, root.left, root.right));
+//        Logs.println("Build tree: " + treeProblems.buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7}));
+//        Logs.println("Build tree: " + treeProblems.buildTree2(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3}));
 
         /* Stack */
 //        StackProblems stackProblems = new StackProblems();
@@ -29,9 +32,6 @@ public class LCM {
 
         /* Recursion */
 //        RecursiveProblems recursiveProblems = new RecursiveProblems();
-
-        /* Tree */
-//        TreeProblems treeProblems = new TreeProblems();
 
 
         /* Array */
