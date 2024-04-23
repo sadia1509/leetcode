@@ -2,6 +2,8 @@ package leetcode.hard;
 
 import common.*;
 
+import java.util.*;
+
 public class ListProblems {
     // Reverse Nodes in k-Group
     public ListNode reverseKGroup(ListNode head, int k) {
@@ -93,4 +95,75 @@ public class ListProblems {
         }
         return head;
     }
+
+    //  N-Queens
+    public List<List<String>> solveNQueens(int n) {
+        boolean[][] board = new boolean[n][n];
+        List<List<String>> list = new ArrayList<>();
+        solveNQueens(board, 0, list);
+        return list;
+    }
+
+    private void solveNQueens(boolean[][] board, int row, List<List<String>> list) {
+        if (row == board.length) {
+            addToList(list, board);
+            return;
+        }
+        for (int col = 0; col < board.length; col++) {
+            if (isSafe(board, row, col)) {
+                board[row][col] = true;
+                solveNQueens(board, row + 1, list);
+                board[row][col] = false;
+            }
+        }
+    }
+
+    private boolean isSafe(boolean[][] board, int row, int col) {
+        // vertical
+        for (int i = 0; i < row; i++)
+            if (board[i][col]) return false;
+        // left diagonal
+        int minLeft = Math.min(row, col);
+        for (int i = 1; i <= minLeft; i++)
+            if (board[row - i][col - i]) return false;
+        // right diagonal
+        int minRight = Math.min(row, board.length - col - 1);
+        for (int i = 1; i <= minRight; i++)
+            if (board[row - i][col + i]) return false;
+        return true;
+    }
+
+    private void addToList(List<List<String>> list, boolean[][] board) {
+        List<String> innerList = new LinkedList<>();
+        StringBuilder sb;
+        for (boolean[] row : board) {
+            sb = new StringBuilder();
+            for (boolean elem : row) {
+                if (elem) sb.append("Q");
+                else sb.append(".");
+            }
+            innerList.add(sb.toString());
+        }
+        list.add(innerList);
+    }
+
+    // N-Queens II
+    public int totalNQueens(int n) {
+        boolean[][] board = new boolean[n][n];
+        return totalNQueens(board, 0);
+    }
+
+    private int totalNQueens(boolean[][] board, int row) {
+        if (row == board.length) return 1;
+        int count = 0;
+        for (int col = 0; col < board.length; col++) {
+            if (isSafe(board, row, col)) {
+                board[row][col] = true;
+                count += totalNQueens(board, row + 1);
+                board[row][col] = false;
+            }
+        }
+        return count;
+    }
+
 }

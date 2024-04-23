@@ -1,5 +1,7 @@
 package leetcode.hard;
 
+import common.*;
+
 import java.util.*;
 
 public class ArrayProblems {
@@ -123,4 +125,53 @@ public class ArrayProblems {
         grid[i][j] = 0;
     }
 
+    // Sudoku Solver
+    public void solveSudoku(char[][] board) {
+        solveSudoku(board, board.length);
+//        for (char[] r : board) Logs.println(Arrays.toString(r));
+    }
+
+    private boolean solveSudoku(char[][] board, int n) {
+        int row = -1, col = -1;
+        boolean isNoEmptyLeft = true;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == '.') {
+                    row = i;
+                    col = j;
+                    isNoEmptyLeft = false;
+                    break;
+                }
+            }
+            if (!isNoEmptyLeft) break;
+        }
+        if (isNoEmptyLeft) return true; //Solved
+        for (int i = 1; i <= 9; i++) {
+            char num = (char) (i + '0');
+            if (isSafe(board, row, col, num)) {
+                board[row][col] = num;
+                if (solveSudoku(board, n))
+                    return true;
+                else board[row][col] = '.';
+            }
+        }
+        return false;
+    }
+
+    public static boolean isSafe(char[][] board, int row, int col, char num) {
+        // row
+        for (int i = 0; i < board.length; i++)
+            if (board[row][i] == num) return false;
+        // column
+        for (char[] rowBoard : board)
+            if (rowBoard[col] == num) return false;
+        // box
+        int sqrt = (int) Math.sqrt(board.length);
+        int rowStart = row - row % sqrt;
+        int colStart = col - col % sqrt;
+        for (int i = rowStart; i < rowStart + sqrt; i++)
+            for (int j = colStart; j < colStart + sqrt; j++)
+                if (board[i][j] == num) return false;
+        return true;
+    }
 }

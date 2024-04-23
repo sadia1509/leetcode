@@ -443,4 +443,31 @@ public class ListProblems {
         }
         return dummyHead.next;
     }
+
+    // Remove Duplicates from Sorted List II
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode n = head;
+        Set<Integer> tracker = new HashSet<>();
+        while (n.next != null) {
+            if (n.val == n.next.val) {
+                tracker.add(n.val);
+                n.next = n.next.next;
+            } else n = n.next;
+        }
+        for (int i : tracker) head = removeNode(head, i);
+        return head;
+    }
+
+    private ListNode removeNode(ListNode head, int i) {
+        if (i == head.val) head = head.next;
+        else {
+            ListNode n = head;
+            while (n.next != null) {
+                if (n.next.val == i) n.next = n.next.next;
+                else n = n.next;
+            }
+        }
+        return head;
+    }
 }

@@ -224,4 +224,54 @@ public class TreeProblems {
         getLeaves(root.right, leaves);
         if (root.left == null && root.right == null) leaves.add(root.val);
     }
+
+    // Cousins in Binary Tree
+    public boolean isCousins(TreeNode root, int x, int y) {
+        TreeNode xx = findTreeNode(root, x);
+        TreeNode yy = findTreeNode(root, y);
+        return (levelTreeNode(root, xx, 0) == levelTreeNode(root, yy, 0) && !isSibling(root, xx, yy));
+    }
+
+    private boolean isSibling(TreeNode root, TreeNode x, TreeNode y) {
+        if (root == null) return false;
+        return (root.left == x && root.right == y || root.left == y && root.right == x
+                || isSibling(root.left, x, y) || isSibling(root.right, x, y));
+
+    }
+
+    private int levelTreeNode(TreeNode root, TreeNode r, int level) {
+        if (root == null) return 0;
+        if (root == r) return level;
+        int ans = levelTreeNode(root.left, r, level + 1);
+        if (ans != 0) return ans;
+        return levelTreeNode(root.right, r, level + 1);
+    }
+
+    private TreeNode findTreeNode(TreeNode node, int n) {
+        if (node == null) return null;
+        if (node.val == n) return node;
+        TreeNode m = findTreeNode(node.left, n);
+        if (m != null) return m;
+        return findTreeNode(node.right, n);
+    }
+
+    // Average of Levels in Binary Tree
+    public List<Double> averageOfLevels(TreeNode root) {
+        if (root == null) return null;
+        List<Double> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            double sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode popped = queue.poll();
+                sum += popped.val;
+                if (popped.left != null) queue.offer(popped.left);
+                if (popped.right != null) queue.offer(popped.right);
+            }
+            result.add(sum / size);
+        }
+        return result;
+    }
 }

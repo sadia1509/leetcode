@@ -304,4 +304,24 @@ public class NumberProblems {
         sb.append('1');
         return sb.toString();
     }
+
+    // Happy Number
+    public boolean isHappy(int n) {
+        int slow = n, fast = n;
+        do {
+            slow = findSqrt(slow);
+            fast = findSqrt(findSqrt(fast));
+        } while (slow != fast);
+        return slow == 1;
+    }
+
+    private int findSqrt(int n) {
+        int result = 0;
+        while (n != 0) {
+            int num = n % 10;
+            result += num * num;
+            n /= 10;
+        }
+        return result;
+    }
 }

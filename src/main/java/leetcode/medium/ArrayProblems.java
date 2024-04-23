@@ -633,4 +633,105 @@ public class ArrayProblems {
         }
         return maxLength;
     }
+
+    // Find All Duplicates in an Array
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> list = new LinkedList<>();
+        int[] arr = new int[nums.length + 1];
+        for (int i : nums) arr[i]++;
+        for (int i = 0; i < arr.length; i++)
+            if (arr[i] > 1) list.add(i);
+        return list;
+    }
+
+    // Find the Duplicate Number
+    public int findDuplicate(int[] nums) {
+        int[] arr = new int[nums.length];
+        for (int i : nums) arr[i]++;
+        for (int i = 0; i < nums.length; i++)
+            if (arr[i] > 1) return i;
+        return -1;
+    }
+
+    // Find Peak Element
+    public int findPeakElement(int[] nums) {
+        int start = 0, end = nums.length - 1, mid;
+        while (start < end) {
+            mid = start + (end - start) / 2;
+            if (nums[mid] > nums[mid + 1]) end = mid;
+            else start = mid + 1;
+        }
+        return start;
+    }
+
+    // Search in Rotated Sorted Array II
+    public boolean searchII(int[] nums, int target) {
+        return search(nums, target, 0, nums.length - 1);
+    }
+
+    public boolean search(int[] nums, int target, int s, int e) {
+        if (s > e) return false;
+        int m = s + (e - s) / 2;
+        if (nums[m] == target) return true;
+        if (nums[s] == nums[m] && nums[m] == nums[e])
+            return search(nums, target, s + 1, e - 1);
+        if (nums[s] <= nums[m]) {
+            if (target >= nums[s] && target <= nums[m])
+                return search(nums, target, s, m - 1);
+            else return search(nums, target, m + 1, e);
+        } else {
+            if (target >= nums[m] && target <= nums[e])
+                return search(nums, target, m + 1, e);
+            else return search(nums, target, s, m - 1);
+        }
+    }
+
+    // Subsets II
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> outerList = new LinkedList<>();
+        Arrays.sort(nums);
+        outerList.add(new ArrayList<>());
+        int start, end = 0;
+        for (int k = 0; k < nums.length; k++) {
+            start = 0;
+            if (k > 0 && nums[k] == nums[k - 1])
+                start = end + 1;
+            int n = outerList.size();
+            end = n - 1;
+            for (int i = start; i < n; i++) {
+                List<Integer> innerList = new ArrayList<>(outerList.get(i));
+                innerList.add(k);
+                outerList.add(innerList);
+            }
+        }
+        return outerList;
+    }
+
+    // Valid Sudoku
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    char num = board[i][j];
+                    board[i][j] = '.';
+                    if (!leetcode.hard.ArrayProblems.isSafe(board, i, j, num)) return false;
+                    board[i][j] = num;
+                }
+            }
+        }
+        return true;
+    }
+
+    // Rotate Array
+    public void rotate(int[] nums, int k) {
+        int len = nums.length;
+        k %= len;
+        int[] temp = new int[k];
+        int idx = len - k;
+        for (int i = 0; i < k; i++) temp[i] = nums[idx++];
+        idx = len - k - 1;
+        for (; idx >= 0; idx--) nums[idx + k] = nums[idx];
+        idx = 0;
+        for (int i : temp) nums[idx++] = i;
+    }
 }

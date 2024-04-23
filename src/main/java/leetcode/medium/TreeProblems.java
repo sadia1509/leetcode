@@ -1,7 +1,9 @@
 package leetcode.medium;
 
 import common.*;
+
 import java.util.*;
+
 import dsa.datastructure.nonlinear.TreeClass;
 
 public class TreeProblems {
@@ -257,5 +259,34 @@ public class TreeProblems {
         TreeNode current = root;
         while (current.right != null) current = current.right;
         current.right = rightSubtree;
+    }
+
+    // Binary Tree Zigzag Level Order Traversal
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        List<List<Integer>> mainList = new ArrayList<>();
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.add(root);
+        boolean isReversed = false;
+        while (!deque.isEmpty()) {
+            int size = deque.size();
+            List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                if (!isReversed) {
+                    TreeNode popped = deque.pollFirst();
+                    list.add(popped.val);
+                    if (popped.left != null) deque.offerLast(popped.left);
+                    if (popped.right != null) deque.offerLast(popped.right);
+                } else {
+                    TreeNode popped = deque.pollLast();
+                    list.add(popped.val);
+                    if (popped.right != null) deque.offerFirst(popped.right);
+                    if (popped.left != null) deque.offerFirst(popped.left);
+                }
+            }
+            isReversed = !isReversed;
+            mainList.add(list);
+        }
+        return mainList;
     }
 }

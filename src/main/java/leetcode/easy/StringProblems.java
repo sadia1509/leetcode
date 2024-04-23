@@ -525,4 +525,21 @@ public class StringProblems {
         }
         return counter;
     }
+
+    // Is Subsequence
+    public boolean isSubsequence(String s, String t) {
+        for (char ch : t.toCharArray()) {
+            if (s.isEmpty()) return true;
+            if (ch == s.charAt(0))
+                s = s.substring(1);
+        }
+        return s.isEmpty();
+    }
+
+    // Longest Uncommon Subsequence I
+    public int findLUSlength(String a, String b) {
+        if (a.equals(b)) return -1;
+        else return Math.max(a.length(), b.length());
+
+    }
 }

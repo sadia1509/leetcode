@@ -28,6 +28,16 @@ public class Search {
         else return binarySearch(arr, mid + 1, right, target);
     }
 
+    public int[] binarySearch2D(int[][] arr, int target) {
+        int r = 0, c = arr.length - 1;
+        while (r < arr.length && c >= 0) {
+            if (arr[r][c] == target) return new int[]{r, c};
+            else if (arr[r][c] > target) c--;
+            else r++;
+        }
+        return new int[]{-1, -1};
+    }
+
     public boolean searchInTree(TreeNode root, Object elem) {
         if (root == null) return false;
         if (root.value == elem || searchInTree(root.left, elem) || searchInTree(root.right, elem))

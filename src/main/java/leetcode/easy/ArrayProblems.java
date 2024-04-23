@@ -866,4 +866,51 @@ public class ArrayProblems {
         }
         return image;
     }
+
+    // Find All Numbers Disappeared in an Array
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> list = new LinkedList<>();
+        Sort.cycleSort(nums);
+        for (int i = 0; i < nums.length; i++)
+            if (i != nums[i] - 1) list.add(i + 1);
+        return list;
+    }
+
+    // Find Smallest Letter Greater Than Target
+    public char nextGreatestLetter(char[] letters, char target) {
+        int start = 0, end = letters.length - 1, mid;
+        while (start <= end) {
+            mid = start + (end - start) / 2;
+            if (target < letters[mid]) end = mid - 1;
+            else start = mid + 1;
+        }
+        return letters[start % letters.length];
+    }
+
+    // Find Closest Number to Zero
+    public int findClosestNumber(int[] nums) {
+        int closest = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (Math.abs(nums[i]) < Math.abs(closest)) closest = nums[i];
+            else if (Math.abs(nums[i]) == Math.abs(closest))
+                if (nums[i] > closest) closest = nums[i];
+        }
+        return closest;
+    }
+
+    // Number of Students Unable to Eat Lunch
+    public int countStudents(int[] students, int[] sandwiches) {
+        int std_0 = 0, std_1 = 0;
+        for (int i : students) {
+            if (i == 1) std_1++;
+            else std_0++;
+        }
+        int i = 0;
+        for (; i < sandwiches.length; i++) {
+            if (sandwiches[i] == 0 && std_0 > 0) std_0--;
+            else if (sandwiches[i] == 1 && std_1 > 0) std_1--;
+            else break;
+        }
+        return sandwiches.length - i;
+    }
 }

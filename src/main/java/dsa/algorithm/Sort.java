@@ -42,29 +42,20 @@ public class Sort {
     // Quick sort
     public void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
-        Utils.Integer().printArray(Utils.intToInteger(arr));
+        Utils.Integer().printArray(Utils.intToInteger(arr));    // Logs.println(Arrays.toString(arr));
     }
 
-    public void quickSort(int[] arr, int high, int low) {
-        if (high < low) {
-            int partitionIndex = partition(arr, high, low);
-            quickSort(arr, high, partitionIndex - 1);
-            quickSort(arr, partitionIndex + 1, low);
+    private void quickSort(int[] arr, int low, int high) {
+        if (low >= high) return;
+        int s = low, e = high, m = s + (e - s) / 2;
+        int pivot = arr[m];
+        while (s <= e) {
+            while (arr[s] < pivot) s++;
+            while (arr[e] > pivot) e--;
+            if (s <= e) Utils.Integer().swap(Utils.intToInteger(arr), s++, e--);
         }
-    }
-
-    private int partition(int[] arr, int high, int low) {
-        int pivot = arr[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                if (j != i) Utils.Integer().swap(Utils.intToInteger(arr), i, j);
-            }
-        }
-        // Swap array[i+1] and array[high] (to put the pivot in its correct position)
-        Utils.Integer().swap(Utils.intToInteger(arr), i + 1, high);
-        return i + 1;
+        quickSort(arr, low, e);
+        quickSort(arr, s, high);
     }
 
     // Merge sort
@@ -76,12 +67,8 @@ public class Sort {
     private static void mergeSort(int[] arr, int arrLength) {
         if (arrLength < 2) return;
         int midIndex = arrLength / 2;
-
-        int[] leftArray = new int[midIndex];
-        int[] rightArray = new int[arrLength - midIndex];
-        for (int i = 0; i < midIndex; i++) leftArray[i] = arr[i];
-        for (int i = midIndex; i < arr.length; i++) rightArray[i - midIndex] = arr[i];
-
+        int[] leftArray = Arrays.copyOfRange(arr, 0, midIndex);
+        int[] rightArray = Arrays.copyOfRange(arr, midIndex, arrLength);
         mergeSort(leftArray, leftArray.length);
         mergeSort(rightArray, rightArray.length);
         merge(arr, leftArray, rightArray);
@@ -103,6 +90,17 @@ public class Sort {
         for (int i = 0; i < arr.length - 1; i += 2)
             Utils.Integer().swap(Utils.intToInteger(arr), i, i + 1);
         Utils.Integer().printArray(Utils.intToInteger(arr));
+    }
+
+    // Cycle sort (when the elements are in a given range & no duplicates)
+    public static int[] cycleSort(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if (arr[correct] == arr[i]) i++;
+            else Utils.Integer().swap(Utils.intToInteger(arr), i, correct);
+        }
+        return arr;
     }
 
     // BOGO sort or Shuffle sort  (Please do not run it)
