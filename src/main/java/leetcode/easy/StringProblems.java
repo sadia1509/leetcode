@@ -1,6 +1,7 @@
 package leetcode.easy;
 
 import common.*;
+
 import java.util.*;
 
 public class StringProblems {
@@ -541,5 +542,89 @@ public class StringProblems {
         if (a.equals(b)) return -1;
         else return Math.max(a.length(), b.length());
 
+    }
+
+    // Maximum Repeating Substring
+    public int maxRepeating(String sequence, String word) {
+        int count = 0;
+        StringBuilder sb = new StringBuilder(word);
+        while (sequence.contains(sb)) {
+            count++;
+            sb.append(word);
+        }
+        return count;
+    }
+
+    // Sorting the Sentence
+    public String sortSentence(String s) {
+        StringBuilder sb = new StringBuilder();
+        String[] arr = new String[10];
+        for (String word : s.split(" ")) {
+            int size = word.length();
+            arr[word.charAt(size - 1) - '0'] = word.substring(0, size - 1);
+        }
+        for (String word : arr)
+            if (word != null) sb.append(word).append(" ");
+        return sb.toString().trim();
+    }
+
+    // Lexicographically Smallest Palindrome
+    public String makeSmallestPalindrome(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int len = s.length();
+        int size = len % 2 == 0 ? len / 2 : len / 2 + 1;
+        len -= 1;
+        for (int i = 0; i < size; i++) {
+            int char1 = sb.charAt(i) - '0';
+            int char2 = sb.charAt(len - i) - '0';
+            if (char1 == char2) continue;
+            if (char1 < char2) sb.setCharAt(len - i, sb.charAt(i));
+            else sb.setCharAt(i, sb.charAt(len - i));
+        }
+        return sb.toString();
+    }
+
+    // Score of a String
+    public int scoreOfString(String s) {
+        int score = 0;
+        for (int i = 0; i < s.length() - 1; i++)
+            score += Math.abs((s.charAt(i)) - (s.charAt(i + 1)));
+        return score;
+    }
+
+    // Longest Palindrome
+    public int longestPalindrome(String s) {
+        int count = 0;
+        int[] frequency = new int[52];
+        for (char ch : s.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z')
+                frequency[ch - 'a']++;
+            if (ch >= 'A' && ch <= 'Z')
+                frequency[26 + (ch - 'A')]++;
+        }
+        boolean oddExists = false;
+        for (int i : frequency) {
+            if (i % 2 == 0) count += i;
+            else {
+                count += i - 1;
+                oddExists = true;
+            }
+        }
+        return oddExists ? ++count : count;
+    }
+
+    // Reverse Prefix of Word
+    public String reversePrefix(String word, char ch) {
+        int index = word.indexOf(ch);
+        int i = 0;
+        StringBuilder sb = new StringBuilder(word);
+        while (i < index) {
+            char temp = sb.charAt(i);
+            sb.setCharAt(i, sb.charAt(index));
+            sb.setCharAt(index, temp);
+            i++;
+            index--;
+        }
+        return sb.toString();
     }
 }

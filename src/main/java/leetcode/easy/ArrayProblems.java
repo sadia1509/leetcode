@@ -913,4 +913,70 @@ public class ArrayProblems {
         }
         return sandwiches.length - i;
     }
+
+    // Longest Unequal Adjacent Groups Subsequence I
+    public List<String> getLongestSubsequence(String[] words, int[] groups) {
+        List<String> list = new ArrayList<>();
+        int prev = groups[0];
+        list.add(words[0]);
+        for (int i = 1; i < groups.length; i++) {
+            if (prev == groups[i]) continue;
+            list.add(words[i]);
+            prev = groups[i];
+        }
+        return list;
+    }
+
+    // Maximum Product Difference Between Two Pairs
+    public int maxProductDifference(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        return (nums[n - 1] * nums[n - 2]) - (nums[0] * nums[1]);
+    }
+
+    // Maximum Units on a Truck
+    public int maximumUnits(int[][] boxTypes, int truckSize) {
+        Arrays.sort(boxTypes, Comparator.comparingInt(a -> a[1]));
+        int sum = 0;
+        for (int i = boxTypes.length - 1; i >= 0; i--) {
+            int temp = boxTypes[i][0];
+            while (temp > 0 && truckSize > 0) {
+                sum += boxTypes[i][1];
+                temp--;
+                truckSize--;
+            }
+        }
+        return sum;
+    }
+
+    // Time Needed to Buy Tickets
+    public int timeRequiredToBuy(int[] tickets, int k) {
+        int totalSecond = 0;
+        for (int i = 0; i < tickets.length; i++) {
+            if (tickets[i] < tickets[k]) totalSecond += tickets[i];
+            else {
+                totalSecond += tickets[k];
+                if (i > k) totalSecond--;
+            }
+        }
+        return totalSecond;
+    }
+
+    // Find Common Characters
+    public List<String> commonChars(String[] words) {
+        List<String> list = new ArrayList<>();
+        int[] minFrequency = new int[26];
+        Arrays.fill(minFrequency, Integer.MAX_VALUE);
+        for (String word : words) {
+            int[] arr = new int[26];
+            for (char ch : word.toCharArray())
+                arr[ch - 'a']++;
+            for (int i = 0; i < 26; i++)
+                minFrequency[i] = Math.min(minFrequency[i], arr[i]);
+        }
+        for (int i = 0; i < 26; i++)
+            for (int j = 0; j < minFrequency[i]; j++)
+                list.add(String.valueOf((char) ('a' + i)));
+        return list;
+    }
 }

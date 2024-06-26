@@ -368,4 +368,15 @@ public class StringProblems {
         }
         return left <= right ? right - left + 1 : 0;
     }
+
+    // Append Characters to String to Make Subsequence
+    public int appendCharacters(String s, String t) {
+        int j = 0;
+        for (int i = 0; i < s.length() && j < t.length(); i++) {
+            char sCh = s.charAt(i);
+            char tCh = t.charAt(j);
+            if (sCh == tCh) j++;
+        }
+        return t.substring(j).length();
+    }
 }

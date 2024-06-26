@@ -324,4 +324,20 @@ public class NumberProblems {
         }
         return result;
     }
+
+    // Split With Minimum Sum
+    public int splitNum(int num) {
+        String numStr = String.valueOf(num);
+        int[] arr = new int[numStr.length()];
+        int j = 0;
+        for (char ch : numStr.toCharArray())
+            arr[j++] = ch - '0';
+        Arrays.sort(arr);
+        int num1 = 0, num2 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) num1 = (10 * num1) + arr[i];
+            else num2 = (10 * num2) + arr[i];
+        }
+        return num1 + num2;
+    }
 }

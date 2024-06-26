@@ -329,4 +329,14 @@ public class TreeProblems {
                 Arrays.copyOfRange(postorder, index, postLen - 1));
         return node;
     }
+
+    // Binary Search Tree to Greater Sum Tree
+    public TreeNode bstToGst(TreeNode root) {
+        if (root == null) return null;
+        bstToGst(root.right);
+        sum += root.val;
+        root.val = sum;
+        bstToGst(root.left);
+        return root;
+    }
 }
