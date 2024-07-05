@@ -115,4 +115,19 @@ public class NumberProblems {
         }
         return sb.toString();
     }
+
+    // Sum of Square Numbers
+    public boolean judgeSquareSum(int c) {
+        int len = (int) Math.sqrt(c) + 1;
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) arr[i] = i * i;
+        int i = 0, j = len - 1;
+        while (i <= j) {
+            long temp = (long) arr[i] + arr[j];
+            if (temp == c) return true;
+            else if (temp > c) j--;
+            else i++;
+        }
+        return false;
+    }
 }

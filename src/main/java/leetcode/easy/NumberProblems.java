@@ -340,4 +340,19 @@ public class NumberProblems {
         }
         return num1 + num2;
     }
+
+    // Find the Pivot Integer
+    public int pivotInteger(int n) {
+        int i = 1, j = n;
+        int sumL = 1, sumR = n;
+        while (i < j) {
+            if (sumL < sumR) sumL += ++i;
+            else if (sumL > sumR) sumR += --j;
+            else {
+                sumL += ++i;
+                sumR += --j;
+            }
+        }
+        return (sumL == sumR) ? i : -1;
+    }
 }

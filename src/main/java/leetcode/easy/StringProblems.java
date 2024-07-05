@@ -627,4 +627,12 @@ public class StringProblems {
         }
         return sb.toString();
     }
+
+    // Truncate Sentence
+    public String truncateSentence(String s, int k) {
+        StringBuilder sb = new StringBuilder();
+        String[] arr = s.split(" ");
+        for (int i = 0; i < k; i++) sb.append(" ").append(arr[i]);
+        return sb.toString().trim();
+    }
 }

@@ -979,4 +979,107 @@ public class ArrayProblems {
                 list.add(String.valueOf((char) ('a' + i)));
         return list;
     }
+
+    // Three Consecutive Odds
+    public boolean threeConsecutiveOdds(int[] arr) {
+        int count = 0, j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i == j && arr[i] % 2 != 0) {
+                count++;
+                j++;
+                if (count == 3) return true;
+            } else {
+                count = 0;
+                j = i + 1;
+            }
+        }
+        return false;
+    }
+
+    // Find the Highest Altitude
+    public int largestAltitude(int[] gain) {
+        int largestAltitude = 0;
+        largestAltitude = Math.max(largestAltitude, gain[0]);
+        for (int i = 1; i < gain.length; i++) {
+            gain[i] += gain[i - 1];
+            largestAltitude = Math.max(largestAltitude, gain[i]);
+        }
+        return largestAltitude;
+    }
+
+    // Sum of All Odd Length Subarrays
+    public int sumOddLengthSubarrays(int[] arr) {
+        int len = arr.length;
+        for (int i = 1; i < len; i++) arr[i] += arr[i - 1];
+        int sum = arr[len - 1];
+        int k = 3;
+        while (k <= len) {
+            int i = 0, j = k;
+            sum += arr[j - 1];
+            while (j < len) sum += arr[j++] - arr[i++];
+            k += 2;
+        }
+        return sum;
+    }
+
+    // Height Checker
+    public int heightChecker(int[] heights) {
+        int[] expected = heights.clone();
+        Arrays.sort(expected);
+        int count = 0;
+        for (int i = 0; i < heights.length; i++)
+            if (heights[i] != expected[i]) count++;
+        return count;
+    }
+
+    // Find Minimum Operations to Make All Elements Divisible by Three
+    public int minimumOperations(int[] nums) {
+        int count = 0;
+        for (int n : nums) {
+            int mod = n % 3;
+            count += Math.min(mod, 3 - mod);
+        }
+        return count;
+    }
+
+    // Sum of All Subset XOR Totals
+    public int subsetXORSum(int[] nums) {
+        ArrayList<Integer> xorList = new ArrayList<>();
+        subsetXORSum(nums, 0, new ArrayList<>(), xorList);
+        int sum = 0;
+        for (int i : xorList) sum += i;
+        return sum;
+    }
+
+    private void subsetXORSum(int[] nums, int index, ArrayList<Integer> list, ArrayList<Integer> xors) {
+        int xor = 0;
+        for (int i : list) xor ^= i;
+        xors.add(xor);
+        for (int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            subsetXORSum(nums, i + 1, list, xors);
+            list.remove(list.size() - 1);
+        }
+    }
+
+    // Count Number of Pairs With Absolute Difference K
+    public int countKDifference(int[] nums, int k) {
+        int count = 0, len = nums.length;
+        for (int i = 0; i < len; i++)
+            for (int j = i + 1; j < len; j++)
+                if (Math.abs(nums[i] - nums[j]) == k)
+                    count++;
+        return count;
+    }
+
+    // Matrix Diagonal Sum
+    public int diagonalSum(int[][] mat) {
+        int len = mat.length, sum = 0;
+        for (int i = 0, j = len - 1; i < len; i++, j--) {
+            sum += mat[i][i];
+            sum += mat[i][j];
+        }
+        if (len % 2 != 0) sum -= mat[len / 2][len / 2];
+        return sum;
+    }
 }

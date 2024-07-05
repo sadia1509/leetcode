@@ -734,4 +734,17 @@ public class ArrayProblems {
         idx = 0;
         for (int i : temp) nums[idx++] = i;
     }
+
+    // Count Number of Nice Subarrays
+    public int numberOfSubarrays(int[] nums, int k) {
+        int[] count = new int[nums.length + 1];
+        count[0] = 1;
+        int sum = 0, ans = 0;
+        for (int num : nums) {
+            sum += num % 2;
+            if (sum >= k) ans += count[sum - k];
+            count[sum]++;
+        }
+        return ans;
+    }
 }

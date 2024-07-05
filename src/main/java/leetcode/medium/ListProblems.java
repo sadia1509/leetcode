@@ -470,4 +470,26 @@ public class ListProblems {
         }
         return head;
     }
+
+    // Find the Minimum and Maximum Number of Nodes Between Critical Points
+    public int[] nodesBetweenCriticalPoints(ListNode head) {
+        ListNode prev = head, cur = head.next;
+        int index = 1, minDistance = Integer.MAX_VALUE;
+        int firstPoint = -1, previousPoint = -1;
+        while (cur.next != null) {
+            if (prev.val < cur.val && cur.next.val < cur.val || prev.val > cur.val && cur.next.val > cur.val) {
+                if (firstPoint == -1) firstPoint = index;
+                if (previousPoint == -1) previousPoint = index;
+                else {
+                    minDistance = Math.min(minDistance, index - previousPoint);
+                    previousPoint = index;
+                }
+            }
+            index++;
+            prev = cur;
+            cur = cur.next;
+        }
+        if (firstPoint == previousPoint) return new int[]{-1, -1};
+        else return new int[]{minDistance, previousPoint - firstPoint};
+    }
 }
