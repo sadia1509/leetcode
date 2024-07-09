@@ -747,4 +747,44 @@ public class ArrayProblems {
         }
         return ans;
     }
+
+    // Maximum Subarray
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0], currSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (currSum < 0) currSum = 0;
+            currSum += nums[i];
+            maxSum = Math.max(maxSum, currSum);
+        }
+        return maxSum;
+    }
+
+    // Maximum Product Subarray
+    public int maxProduct(int[] nums) {
+        int maxProduct = nums[0], minProduct = nums[0], result = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < 0) {
+                // Swap maxProduct and minProduct
+                int temp = maxProduct;
+                maxProduct = minProduct;
+                minProduct = temp;
+            }
+            maxProduct = Math.max(nums[i], maxProduct * nums[i]);
+            minProduct = Math.min(nums[i], minProduct * nums[i]);
+            result = Math.max(result, maxProduct);
+        }
+        return result;
+    }
+
+    // Average Waiting Time
+    public double averageWaitingTime(int[][] customers) {
+        int startingTime = customers[0][0], finishingTime = 0;
+        double totalTime = 0.0;
+        for (int[] customer : customers) {
+            startingTime = Math.max(customer[0], finishingTime);
+            finishingTime = startingTime + customer[1];
+            totalTime += finishingTime - customer[0];
+        }
+        return totalTime / customers.length;
+    }
 }

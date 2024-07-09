@@ -1082,4 +1082,15 @@ public class ArrayProblems {
         if (len % 2 != 0) sum -= mat[len / 2][len / 2];
         return sum;
     }
+
+    // Find Subarrays With Equal Sum
+    public boolean findSubarrays(int[] nums) {
+        Set<Integer> sums = new HashSet<>();
+        for (int i = 1; i < nums.length; i++) {
+            int sum = nums[i - 1] + nums[i];
+            if (sums.contains(sum)) return true;
+            sums.add(sum);
+        }
+        return false;
+    }
 }

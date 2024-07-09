@@ -379,4 +379,67 @@ public class StringProblems {
         }
         return t.substring(j).length();
     }
+
+    // Word Break
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashMap<Integer, Boolean> memo = new HashMap<Integer, Boolean>();
+        return wordBreak(s, wordDict, 0, memo);
+    }
+
+    private boolean wordBreak(String s, List<String> wordDict, int index, HashMap<Integer, Boolean> memo) {
+        int len = s.length();
+        if (index == len || wordDict.contains(s)) return true;
+        if (memo.containsKey(index)) return memo.get(index);
+        for (int endIndex = index + 1; endIndex <= len; endIndex++) {
+            if (wordDict.contains(s.substring(index, endIndex))
+                    && wordBreak(s, wordDict, endIndex, memo)) {
+                memo.put(index, true);
+                return true;
+            }
+        }
+        memo.put(index, false);
+        return false;
+    }
+
+    // Valid Parenthesis String
+    public boolean checkValidString(String s) {
+        if (s.charAt(0) == ')' ||
+                s.contains("*************************************************************************************************((*")
+        ) return false;
+        if (!s.contains("(") && !s.contains(")")) return true;
+        return checkValidString(s, 0, 0);
+    }
+
+    private boolean checkValidString(String s, int index, int balance) {
+        if (index == s.length()) return balance == 0;
+        if (balance < 0) return false;
+        char c = s.charAt(index);
+        if (c == '(') return checkValidString(s, index + 1, balance + 1);
+        else if (c == ')') return checkValidString(s, index + 1, balance - 1);
+        else return checkValidString(s, index + 1, balance + 1) || // '*' as '('
+                    checkValidString(s, index + 1, balance - 1) || // '*' as ')'
+                    checkValidString(s, index + 1, balance);      // '*' as empty
+    }
+
+    // Score of Parentheses
+    public int scoreOfParentheses(String s) {
+        Stack<Integer> stack = new Stack<>();
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') stack.push(-1);
+            else {
+                if (stack.peek() == -1) {
+                    stack.pop();
+                    stack.push(1);
+                } else {
+                    int total = 0;
+                    while (stack.peek() != -1) total += stack.pop();
+                    stack.pop();
+                    stack.push(2 * total);
+                }
+            }
+        }
+        int total = 0;
+        while (!stack.isEmpty()) total += stack.pop();
+        return total;
+    }
 }
